@@ -1,0 +1,59 @@
+@import "preboot.less";
+@import "pygments.less";
+@import "core.less";
+
+#footer {
+    padding-top: 60px;
+    padding-bottom: 10px;
+    border-top: 1px solid @black-10;
+    text-align: center;
+    //    background-color: #F8F8F8;
+    background-color: #31302B;
+    font: 13px/18px 'Courier New',Courier,monospace;
+    overflow: hidden;
+    position: relative;
+
+    a {
+        color: @brand-primary;
+    }
+
+    #footer-content {
+        a {
+            font-weight: bold;
+            color: #FFF;
+            padding: 10px 15px;
+        }
+    }
+
+    #copyright {
+        font: 12px/12px 'OpenSansRegular',sans-serif;
+        text-transform: uppercase;
+        color: #828070;
+        border-top: 1px solid #5A5955;
+        margin-top: 55px;
+        padding: 10px 0px 15px;
+        overflow: hidden;
+
+        li {
+            float: left;
+        }
+
+        a {
+            color: #CAC3B4;
+        }
+
+        .f-left {
+            padding-top: 11px;
+        }
+    }
+
+}
+
+.f-right, .right {
+    float: right !important;
+}
+
+.f-left, .left {
+    float: left !important;
+}
+

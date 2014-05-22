@@ -1,0 +1,11 @@
+<%inherit file="auth_base.html" />
+
+<%block name="subcontent">
+
+<div class="container" id="site-notice-lg">
+  <h1>${ _("Verification email have send") }</h1>
+  <p>${ _("A verification email have send to %s, check it please.") % email }</p>
+  <p>${ _("If you can not find email in your inbox, check the junk please.") }</p>
+</div>
+
+</%block>

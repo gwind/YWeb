@@ -1,0 +1,12 @@
+<%inherit file="auth_base.html" />
+
+<%block name="subcontent">
+
+<div class="container" id="site-notice-lg">
+  <h1>${ _("Sign Up Failed") }</h1>
+  <p>${ _("E-mail: ") } ${ email }</p>
+  <p>${ _("Sorry, report the following messages to admin please.") }</p>
+  <p class="text-danger">${ emsg }</p>
+</div>
+
+</%block>

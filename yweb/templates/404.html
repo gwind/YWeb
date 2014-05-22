@@ -1,0 +1,14 @@
+<%inherit file="/base.html"/>
+
+<%block name="content">
+<div class="big-center">
+  <h1 class="text-danger">${ _("Page Not Found") }</h1>
+  <p>${ _("Your request is ") }
+    <strong>${ request.uri }</strong>
+  </p>
+
+  % if message:
+  <div>${ message }</div>
+  % endif
+</div>
+</%block>

@@ -1,0 +1,46 @@
+<%inherit file="/base_basic.html" />
+
+<%block name="exthead">
+    <link rel="stylesheet" href="${ static_url('css/login.css', 'auth') }">
+</%block>
+
+<%block name="extbody">
+<div class="container">
+
+  <div class="form-signin">
+
+    <img class="site-logo" src="/static/img/logo.png">
+
+    <form method="POST">${ xsrf_form_html() }
+      ${ form.user(class_="form-control", placeholder=_("Username / Email / UID"), autofocus=true) }
+      ${ form.html_errors(form.user) }
+      ${ form.password(class_="form-control", placeholder=_("Password")) }
+      ${ form.html_errors(form.password) }
+
+      % if authcode:
+      <input type="hidden" name="authcode_key" value="${ authcode.key }"/>
+      <div class="input-group authcode-module">
+        <input class="form-control" id="authcode_code" name="authcode_code" placeholder="Input Auth Code" value="" type="text">
+        <span class="input-group-btn"><img src="${ reverse_url('auth:authcode:img', authcode.key) }"/></span>
+      </div>
+      ${ form.html_errors(form.authcode_code) }
+      % endif
+
+      <button class="btn btn-large btn-primary btn-block">${ _("Sign In") }</button>
+    </form>
+
+  </div>
+
+  <div id="well" class="well well-small">
+    <p style="margin: 0">${ _("Don't have an account?") } <strong><a href="${ reverse_url('auth:signup') }">${ _("Register now!") }</a></strong></p>
+  </div>
+  <p id="copyright">&copy;&nbsp;2014 <a href="http://www.ylinux.org/">YLinux.org</a> - <a href="${ reverse_url('auth:password:reset') }">${ _("Forgot your password?") }</a></p>
+
+</div> <!-- /container -->
+
+<script>
+  $(document).ready(function () {
+    $('#username').focus();
+  });
+</script>
+</%block>

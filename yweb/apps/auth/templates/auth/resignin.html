@@ -1,0 +1,35 @@
+<%inherit file="/base_basic.html" />
+
+<%block name="exthead">
+    <link rel="stylesheet" href="${ static_url('css/login.css', 'auth') }">
+</%block>
+
+<%block name="extbody">
+<div class="container">
+
+  <div class="form-signin">
+
+    <img src="/static/img/logo.png">
+    <p>
+      ${ _("Hi, ") }
+      <a href="/user/${ current_user.uid }">${ current_user.username }</a>
+    </p>
+    <p>
+      ${ _("You are signin already !") }
+    </p>
+    <p>
+      <a class="btn" href="/">${ _("Home") }</a>
+      <a class="btn" href="${ reverse_url('user:signout') }?next_url=${ request.full_url() }">${ _("Sign Out & Sign In") }</a>
+    </p>
+  </div>
+
+  <p id="copyright">&copy; Company Name - <a id="btnForgot">Forgot your password?</a></p>
+
+</div> <!-- /container -->
+
+<script>
+  $(document).ready(function () {
+    $('#username').focus();
+  });
+</script>
+</%block>

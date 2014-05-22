@@ -1,0 +1,15 @@
+<%inherit file="auth_base.html" />
+
+<%block name="subcontent">
+
+<div class="container" id="site-notice-lg">
+  <h1>${ _("Sign Up Step2 Faild!") }</h1>
+  % if key:
+  <p>${ _("Your key: %s") % key }</p>
+  % endif
+  % if emsg:
+  <p>${ _("Error message: %s") % emsg }</p>
+  % endif
+</div>
+
+</%block>
