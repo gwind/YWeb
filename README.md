@@ -4,6 +4,8 @@ YWeb ( YLinux Web Framework ) -- The First Choice For Your Great Site.
 
 基于 Python, Tornado, SQLAlchemy, Mako, WTForms 提供一整套 Web 开发环境与流程。
 
+![YWeb 默认首页](http://d.pcs.baidu.com/thumbnail/2d9e50decef58ef7b96a47981d624bda?fid=53473644-250528-484642136782398&time=1400824800&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-UJqwtHZ%2BhN9fR0ZMC0%2B1SMFznGs%3D&rt=sh&expires=2h&r=884196855&sharesign=unknown&size=c10000_u10000&quality=100)
+
 
 ## 组件
 
