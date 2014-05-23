@@ -4,7 +4,7 @@
 
 ## 最基本
 
-    git clone git@github.com:jianlee/YWeb.git
+    git clone https://github.com/jianlee/YWeb.git
     cd YWeb/yweb/
     cp default_settings.py settings.py
     python manage.py syncdb

@@ -42,3 +42,13 @@ Python 下优秀的 ORM 、数据库操作绑定库，可以很方便地与其�
 - 分享我们造的“轮子”，我们称之为app。希望今后能做到通过用这些 app 搭积木，就可以“开发”一个 Web 平台。
 
 
+# 资源
+
+## 截图
+
+http://pan.baidu.com/s/1c01TAFY#dir/path=%2FYWeb%2Fscreeshots
+
+## 安装文档
+
+https://github.com/jianlee/YWeb/blob/master/INSTALL.md
+
