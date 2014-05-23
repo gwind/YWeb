@@ -67,9 +67,9 @@ def get_site_handlers():
             # 为该 app 增加默认的 static URL，对应目录为其子目录 static/
             static_path = get_app_static_path( app_name )
             if static_path:
-
-                if hasattr(app_settings, 'static_prefix'):
-                    static_prefix = app_settings.static_prefix
+                app_settings = get_app_submodule( app_name, 'settings' )
+                if hasattr(app_settings, 'STATIC_PREFIX'):
+                    static_prefix = app_settings.STATIC_PREFIX
                 else:
                     static_prefix = app_name.split('.')[-1]
 

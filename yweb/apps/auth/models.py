@@ -12,9 +12,11 @@ from sqlalchemy import Column, Integer, String, \
     Sequence, DateTime, Table, ForeignKey, Boolean, Text
 from sqlalchemy.orm import relationship, backref
 
+import yweb.utils.ydatetime
 from yweb.orm import ORMBase
 from yweb.utils.i18n import ugettext as _
 from yweb.utils.random_ import random_ascii
+from yweb.conf import settings
 
 from .utils import enc_login_passwd, check_login_passwd, \
     encode_data, decode_data
