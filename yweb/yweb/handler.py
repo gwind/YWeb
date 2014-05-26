@@ -13,7 +13,7 @@ import tornado.web
 from yweb.conf import settings
 
 # Import my module
-from apps.auth.models import User, Session
+from apps.auth.models import User, Session, AuthCode
 
 
 class RequestHandler(tornado.web.RequestHandler):
@@ -42,6 +42,7 @@ class RequestHandler(tornado.web.RequestHandler):
             static_url=self.static_url,
             xsrf_form_html=self.xsrf_form_html,
             reverse_url=self.reverse_url,
+            module=self.load_module,
         )
 
         args.update(self.data)
@@ -153,6 +154,40 @@ class RequestHandler(tornado.web.RequestHandler):
 
         return url
 
+    def load_module(self, module_name, *args, **kwargs):
+        '''加载 ui module
+        '''
+
+        ui_modules = self.settings['y_ui_modules']
+
+        if module_name not in ui_modules.keys():
+            return '<p class="text-danger">' + \
+            'Can not find module "{0}"</p>'.format(module_name)
+
+        # TODO：保存该 module 为激活的，在 render 时可以像 tornado
+        # 里一样，加载 html, css, js 内容
+
+        Module = ui_modules.get(module_name)
+
+        return Module(self).render(*args, **kwargs)
+
+    def check_authcode(self):
+        '''检查 authcode 安全
+        '''
+
+        authcode_key = self.get_argument('authcode_key', None)
+        authcode_code = self.get_argument('authcode_code', None)
+        if not (authcode_key and authcode_code):
+            return False
+
+        ac = self.db.query(AuthCode).get(authcode_key)
+        if ac and ac.code.lower() == authcode_code.lower():
+            self.db.delete(ac)
+            self.db.commit()
+            return True
+
+        return False
+
 
 class DefaultIndexHandler(RequestHandler):
     '''默认的视图
@@ -191,3 +226,54 @@ class ApiRequestHandler(RequestHandler):
         d = { 'status': 'success', 'message': message, 'data': data }
 
         self.write( d )
+
+
+# 参考 tornado/web.py:UIModule
+class UIModule(object):
+    """A re-usable, modular UI unit on a page.
+
+    UI modules often execute additional queries, and they can include
+    additional CSS and JavaScript that will be included in the output
+    page, which is automatically inserted on page render.
+    """
+    def __init__(self, handler):
+        self.handler = handler
+        self.request = handler.request
+        self.ui = handler.ui
+        self.locale = handler.locale
+
+    @property
+    def current_user(self):
+        return self.handler.current_user
+
+    def render(self, *args, **kwargs):
+        """Overridden in subclasses to return this module's output."""
+        raise NotImplementedError()
+
+    def embedded_javascript(self):
+        """Returns a JavaScript string that will be embedded in the page."""
+        return None
+
+    def javascript_files(self):
+        """Returns a list of JavaScript files required by this module."""
+        return None
+
+    def embedded_css(self):
+        """Returns a CSS string that will be embedded in the page."""
+        return None
+
+    def css_files(self):
+        """Returns a list of CSS files required by this module."""
+        return None
+
+    def html_head(self):
+        """Returns a CSS string that will be put in the <head/> element"""
+        return None
+
+    def html_body(self):
+        """Returns an HTML string that will be put in the <body/> element"""
+        return None
+
+    def render_string(self, path, **kwargs):
+        """Renders a template and returns it as a string."""
+        return self.handler.render_string(path, **kwargs)

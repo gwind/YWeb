@@ -3,6 +3,7 @@
 from tornado.web import url
 from . import views
 from . import apis
+from . import modules
 
 
 handlers = [
@@ -46,3 +47,7 @@ api_handlers = [
     url( r'/auth/authcode/([0-9a-zA-Z]+).gif', apis.AuthCodeImg,
          name='auth:authcode:img' ),
 ]
+
+ui_modules = {
+    'authcode': modules.AuthCodeUI,
+}

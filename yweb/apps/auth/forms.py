@@ -38,26 +38,6 @@ def validate_password(form, field):
             raise ValidationError(_("Password is too simple"))
 
 
-def check_authcode(form, field):
-
-    '''检查验证码
-
-    '''
-    code = field.data
-
-    if len(code) >= 4: # 验证码不少于4
-
-        key = form.authcode_key.data
-        authcode = form._handler.db.query(AuthCode).get(key)
-
-        if authcode and authcode.code.lower() == code.lower():
-            form._handler.db.delete(authcode)
-            form._handler.db.commit()
-            return
-
-    raise ValidationError( _("Authcode does not match.") )
-
-
 class SignInForm(Form):
 
     '''用户登录表单
@@ -66,8 +46,6 @@ class SignInForm(Form):
 
     user = StringField( _('User'), default='' )
     password = PasswordField( _('Password'), default='' )
-    authcode_key = HiddenField( _("Authcode Key") )
-    authcode_code = StringField( _("Authcode Code"), [check_authcode] )
 
     def validate_user(form, field):
 
@@ -103,9 +81,6 @@ class SignUpForm(Form):
     email = StringField(_('Email Address'), [
         validators.Length(min=6, max=35), validators.Email()])
 
-    authcode_key = HiddenField( _("Authcode Key") )
-    authcode_code = StringField( _("Authcode Code"), [check_authcode] )
-
     def validate_email(form, field):
         user = form._handler.db.query(User).filter_by(email=field.data).first()
         if user:
@@ -120,9 +95,6 @@ class PasswordResetForm(Form):
 
     email = StringField(_('Email Address'), [
         validators.Length(min=6, max=35), validators.Email()])
-
-    authcode_key = HiddenField( _("Authcode Key") )
-    authcode_code = StringField( _("Authcode Code"), [check_authcode] )
 
     def validate_email(form, field):
 
@@ -145,9 +117,7 @@ class PasswordResetStep2Form(Form):
         validators.Required(),
         validators.EqualTo('confirm', message=_('Passwords must match'))
     ], default='')
-    confirm = PasswordField(_('Confirm'), default='')
-    authcode_key = HiddenField( _("Authcode Key"))
-    authcode_code = StringField(_("Authcode Code"), [check_authcode])
+    confirm = PasswordField(_('Password Confirm'), default='')
 
 
 class UserCreateForm(Form):
@@ -157,11 +127,11 @@ class UserCreateForm(Form):
     '''
 
     username = StringField(_('Username'))
-    password = PasswordField( _('Password'), [
+    password = PasswordField(_('Password'), [
         validators.Required(),
         validators.EqualTo('confirm', message=_('Passwords must match'))
-    ])
-    confirm = PasswordField(_('Password Confirm'))
+    ], default='')
+    confirm = PasswordField(_('Password Confirm'), default='')
     accept_tos = BooleanField(_('I accept the TOS'), [
         validators.Required()])
 

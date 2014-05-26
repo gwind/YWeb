@@ -23,7 +23,8 @@ import tornado.locale
 from yweb.conf import settings
 from yweb.orm import get_db_session
 from yweb.template import get_template_lookup
-from yweb.utils.findapps import get_site_handlers, get_static_urls
+from yweb.utils.findapps import get_site_handlers, \
+    get_static_urls, get_ui_modules
 import yweb.utils
 
 
@@ -33,11 +34,16 @@ class Application(tornado.web.Application):
 
         # TODO: TEST db connect
         self.db_session = get_db_session()
+
         self.template_lookup = get_template_lookup()
 
         site_handlers = get_site_handlers()
         logging.debug('Find Handlers:\n{0}'.format(
-            yweb.utils.yprint(site_handlers) ))
+            yweb.utils.yprint(site_handlers)))
+
+        ui_modules = get_ui_modules()
+        logging.debug('Find UI Modules:\n{0}'.format(
+            yweb.utils.yprint(ui_modules)))
 
         tornado_settings = {
             'cookie_secret': 'MTyNwNDc3OC40MjaexynagfeA3NjgKCg==',
@@ -47,6 +53,9 @@ class Application(tornado.web.Application):
             'debug': True,
             'static_path': settings.STATIC_PATH,
             'app_static_urls': get_static_urls(),
+            # 为了避免与 tornado application 的 ui_modules 冲突，
+            # 此处命名为 y_ui_modules
+            'y_ui_modules': ui_modules,
         }
 
         tornado.web.Application.__init__(

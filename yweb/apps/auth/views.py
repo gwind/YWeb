@@ -19,7 +19,7 @@ from yweb.conf import settings
 from yweb.mail import sendmail
 
 from apps.auth.models import User, Session, Group, \
-    AuthKey, AuthCode, create_user, create_authkey
+    AuthKey, create_user, create_authkey
 
 from .forms import SignInForm, SignUpForm, UserCreateForm, \
     PasswordResetForm, PasswordResetStep2Form
@@ -77,17 +77,17 @@ class SignIn(RequestHandler):
             # 方法一：重定向
             #self.redirect('/')
             # 方法二：宣传
-            self.render('auth/resignin.html')
+            return self.render('auth/resignin.html')
 
         self.template_path = 'auth/signin.html'
         self.title =  _('Login')
         self.data = { 'form': SignInForm(self) }
 
-    def get(self):
-        self.data['authcode'] = AuthCode.new(self.db)
-        self.render()
-
     def post(self):
+
+        # 检查 authcode
+        if not self.check_authcode():
+            return self.render(authcode_failed=True)
 
         form = self.data['form']
         if form.validate():
@@ -99,7 +99,6 @@ class SignIn(RequestHandler):
             next_url = self.get_argument('next_url', '/')
             return self.redirect( next_url )
 
-        self.data['authcode'] = AuthCode.new(self.db)
         self.render()
 
 
@@ -123,16 +122,24 @@ class SignUpStep1(RequestHandler):
     '''
 
     def prepare(self):
+
+        if self.current_user:
+            # 如果用户己经登录
+            # 方法一：重定向
+            #self.redirect('/')
+            # 方法二：宣传
+            return self.render('auth/resignin.html')
+
         self.title = _('Sign Up')
         self.template_path = 'auth/signup_step1.html'
         self.data = { 'form': SignUpForm(self) }
 
-    def get(self):
-        self.data['authcode'] = AuthCode.new(self.db)
-        self.render()
-
     def post(self):
 
+        # 检查 authcode
+        if not self.check_authcode():
+            return self.render(authcode_failed=True)
+        
         form = self.data['form']
 
         if form.validate():
@@ -154,7 +161,6 @@ class SignUpStep1(RequestHandler):
             else:
                 return self.render('auth/signup_step1_success.html', email=email)
 
-        self.data['authcode'] = AuthCode.new(self.db)
         self.render()
 
     def step2_url(self, key):
@@ -226,11 +232,11 @@ class PasswordResetStep1(RequestHandler):
         self.template_path = 'auth/password_reset_step1.html'
         self.data = { 'form': PasswordResetForm(self) }
 
-    def get(self):
-        self.data['authcode'] = AuthCode.new(self.db)
-        self.render()
-
     def post(self):
+
+        # 检查 authcode
+        if not self.check_authcode():
+            return self.render(authcode_failed=True)
 
         form = self.data['form']
 
@@ -254,7 +260,6 @@ class PasswordResetStep1(RequestHandler):
             else:
                 return self.render('auth/password_reset_step1_success.html', email=email)
 
-        self.data['authcode'] = AuthCode.new(self.db)
         self.render()
 
     def step2_url(self, key):
@@ -285,11 +290,11 @@ class PasswordResetStep2(RequestHandler):
         self.data = { 'form': PasswordResetStep2Form(self),
                       'authkey': authkey }
 
-    def get(self):
-        self.data['authcode'] = AuthCode.new(self.db)
-        self.render()
-
     def post(self):
+
+        # 检查 authcode
+        if not self.check_authcode():
+            return self.render(authcode_failed=True)
 
         authkey = self.data['authkey']
         form = self.data['form']
@@ -310,5 +315,4 @@ class PasswordResetStep2(RequestHandler):
             return self.render('auth/password_reset_step2_failed.html', **d)
 
         # form 验证出错
-        self.data['authcode'] = AuthCode.new(self.db)
         self.render()

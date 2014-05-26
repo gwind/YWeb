@@ -179,3 +179,17 @@ def get_static_urls():
     return static_urls
 
 
+def get_ui_modules():
+    '''发现所有的己安装 APP 的 ui modules
+
+    '''
+
+    ui_modules = {}
+
+    for app_name in settings.INSTALLED_APPS:
+        app_urls = get_app_submodule( app_name, 'urls' )
+        if app_urls:
+            if hasattr(app_urls, 'ui_modules'):
+                ui_modules.update( app_urls.ui_modules )
+
+    return ui_modules

@@ -9,7 +9,7 @@
 
   <div class="form-signin">
 
-    <img src="/static/img/logo.png">
+    <img class="site-logo" src="/static/img/logo.png">
     <p>
       ${ _("Hi, ") }
       <a href="/user/${ current_user.uid }">${ current_user.username }</a>
@@ -19,11 +19,11 @@
     </p>
     <p>
       <a class="btn" href="/">${ _("Home") }</a>
-      <a class="btn" href="${ reverse_url('user:signout') }?next_url=${ request.full_url() }">${ _("Sign Out & Sign In") }</a>
+      <a class="btn" href="${ reverse_url('auth:signout') }?next_url=${ request.full_url() }">${ _("Sign Out & Sign In") }</a>
     </p>
   </div>
 
-  <p id="copyright">&copy; Company Name - <a id="btnForgot">Forgot your password?</a></p>
+  <p id="copyright">&copy;&nbsp;2014 <a href="http://www.ylinux.org/">YLinux.org</a> - <a href="${ reverse_url('auth:password:reset') }">${ _("Forgot your password?") }</a></p>
 
 </div> <!-- /container -->
 
