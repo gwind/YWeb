@@ -4,7 +4,6 @@ import re
 import codecs
 
 from yweb.forms import Form
-from yweb.utils.i18n import ugettext as _
 from wtforms import BooleanField, StringField, \
     validators, DateTimeField, TextAreaField, IntegerField, \
     PasswordField, FileField, SelectField, HiddenField

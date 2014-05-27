@@ -5,6 +5,11 @@ import os
 import sys
 import datetime
 
+# 使用 __builtin__ 非常不好，但为了保持程序设计的一致性，
+# 我们需要更自然的翻译写法: _("String")
+# 所以要 hack __builtin__ ，提供 "_" 内置函数
+import __builtin__
+
 # Import third module
 from mako.exceptions import RichTraceback
 import tornado.web
@@ -25,6 +30,9 @@ class RequestHandler(tornado.web.RequestHandler):
         self.template_path = None
         self.title = None
         self.data = {}
+
+        # TODO: i18n is too ugly yet
+        __builtin__.__dict__['_'] = self.locale.translate
 
     def render_string(self, template_path, **kwargs):
         '''渲染模板，返回字符串

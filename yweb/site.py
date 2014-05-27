@@ -11,6 +11,10 @@ import signal
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'lib'))
 
+# TODO: i18n is too ugly yet
+import __builtin__
+__builtin__.__dict__['_'] = lambda s: s
+
 # 加载第三方库
 import tornado
 import tornado.httpserver

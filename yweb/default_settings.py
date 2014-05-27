@@ -13,7 +13,7 @@ STATIC_PATH = os.path.join(PROJECT_ROOT, 'static')
 DB = {
     'engine': 'sqlite',
     'host': '',
-    'path': '{0}/data.db'.format(os.environ.get('PROJECT_ROOT')),
+    'path': 'data.db',
     'database': '',
     'username': '',
     'password': '',

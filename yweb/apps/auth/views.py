@@ -14,7 +14,6 @@ from sqlalchemy import and_
 
 from tornado.web import authenticated
 from yweb.handler import RequestHandler as YwebRequestHandler
-from yweb.utils.i18n import ugettext as _
 from yweb.conf import settings
 from yweb.mail import sendmail
 

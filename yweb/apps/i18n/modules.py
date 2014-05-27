@@ -4,7 +4,6 @@ import os
 import logging
 
 from yweb.handler import UIModule
-from yweb.utils.i18n import ugettext as _
 from yweb.conf import settings
 
 

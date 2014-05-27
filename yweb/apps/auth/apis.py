@@ -9,7 +9,6 @@ import ImageFont
 import ImageDraw
 
 from yweb.handler import RequestHandler
-from yweb.utils.i18n import ugettext as _
 from yweb.conf import settings
 
 from .models import AuthCode

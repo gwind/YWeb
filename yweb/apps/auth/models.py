@@ -14,7 +14,6 @@ from sqlalchemy.orm import relationship, backref
 
 import yweb.utils.ydatetime
 from yweb.orm import ORMBase
-from yweb.utils.i18n import ugettext as _
 from yweb.utils.random_ import random_ascii
 from yweb.conf import settings
 
