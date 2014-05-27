@@ -1,6 +1,8 @@
 # coding: utf-8
 # 默认的全局变量
 
+import os
+
 # Default Django settings. Override these with settings in the module
 # pointed-to by the DJANGO_SETTINGS_MODULE environment variable.
 
@@ -610,7 +612,22 @@ STATICFILES_FINDERS = (
 ###########################
 
 # 数据库：默认使用 sqlite 文件型数据库
-DB_URI = 'sqlite:////tmp/data.db'
+#DB = {
+#    'engine': 'postgresql+psycopg2',
+#    'host': '127.0.0.1',
+#    'path': '',
+#    'database': 'yweb',
+#    'username': 'yweb',
+#    'password': 'yweb',
+#}
+DB = {
+    'engine': 'sqlite',
+    'host': '',
+    'path': 'data.db',
+    'database': '',
+    'username': '',
+    'password': '',
+}
 
 # 安装的 APPS
 INSTALLED_APPS = ()

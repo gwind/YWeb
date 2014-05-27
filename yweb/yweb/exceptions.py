@@ -13,3 +13,7 @@ class ImproperlyConfigured(Exception):
 
 class YwebUrlError(Exception):
     pass
+
+
+class YwebDBError(Exception):
+    pass

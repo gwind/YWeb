@@ -10,10 +10,14 @@ PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 STATIC_PATH = os.path.join(PROJECT_ROOT, 'static')
 
 # sqlite 数据库
-DB_URI = 'sqlite:///{0}'.format(
-    os.path.join( PROJECT_ROOT, 'data.db' ))
-# PostgreSQL 数据库
-#DB_URI = 'postgresql+psycopg2://yweb:yweb@127.0.0.1/yweb'
+DB = {
+    'engine': 'sqlite',
+    'host': '',
+    'path': '{0}/data.db'.format(os.environ.get('PROJECT_ROOT')),
+    'database': '',
+    'username': '',
+    'password': '',
+}
 
 # 启用的 apps
 INSTALLED_APPS = (
