@@ -8,4 +8,5 @@ yweb
 
    intro.rst
    wtforms.rst
+   i18n.rst
    nginx.rst

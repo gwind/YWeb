@@ -1,0 +1,24 @@
+国际化和本地化
+====================
+
+创建 po , mo
+-----------------
+
+所有操作在 PROJECT_ROOT 目录中进行，locale 子目录存放 i18n 相关文件。
+
+生成 po 文件 ::
+
+  xgettext --from-code=UTF-8 -L python -k=_ -o yweb.po *.py $(find yweb -name \*.py) $(find apps -name \*.py) $(find templates -name \*.html) $(find apps -name \*.html)
+
+合并旧 po ::
+
+  msgmerge locale/zh_CN/LC_MESSAGES/messages.po yweb.po > new.po
+
+翻译 new.po 文件，覆盖旧 po ::
+
+  mv new.po locale/zh_CN/LC_MESSAGES/messages.po
+
+生成新 mo 文件 ::
+
+  msgfmt locale/zh_CN/LC_MESSAGES/messages.po -o locale/zh_CN/LC_MESSAGES/messages.mo
+
