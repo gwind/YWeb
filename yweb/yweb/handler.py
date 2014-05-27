@@ -11,6 +11,7 @@ import tornado.web
 
 # Import yweb module
 from yweb.conf import settings
+from yweb.utils.i18n import ugettext as _
 
 # Import my module
 from apps.auth.models import User, Session, AuthCode
@@ -28,10 +29,9 @@ class RequestHandler(tornado.web.RequestHandler):
     def render_string(self, template_path, **kwargs):
         '''渲染模板，返回字符串
         '''
-
         if not template_path:
             # 模板未指定，出错
-            return u'模板名未指定！'
+            return _('No template!')
             
         args = dict(
             handler=self,
@@ -43,6 +43,7 @@ class RequestHandler(tornado.web.RequestHandler):
             xsrf_form_html=self.xsrf_form_html,
             reverse_url=self.reverse_url,
             module=self.load_module,
+            s=lambda x: u"\"{0}\"".format(x),
         )
 
         args.update(self.data)
@@ -128,7 +129,11 @@ class RequestHandler(tornado.web.RequestHandler):
 
         Python不太爱隐藏细节，但是程序员很懒。
         '''
-        self.render()
+        if self.template_path:
+            self.render()
+        else:
+            # 可能 Handler 没有提供 get 方法
+            raise tornado.web.HTTPError(405)
 
     def static_url(self, path, app=None):
         '''静态文件地址

@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-# coding: utf8
+# coding: UTF-8
 
 # 加载 Python 内置库
 import os
@@ -26,6 +26,7 @@ from yweb.template import get_template_lookup
 from yweb.utils.findapps import get_site_handlers, \
     get_static_urls, get_ui_modules
 import yweb.utils
+import yweb.utils.db
 
 
 class Application(tornado.web.Application):
@@ -84,26 +85,29 @@ def main():
     signal.signal(signal.SIGTERM, exit_handler)
 
     # 用户配置文件模块路径
+    # 重要： YWEB_SETTINGS_MODULE 变量设置后，才能使用 settings
     os.environ.setdefault("YWEB_SETTINGS_MODULE", "settings")
 
     # 设置 options
-    tornado.options.define("port", default=8888, help="listen on the give port", type=int)
+    tornado.options.define("port", default=8888, help="listen port", type=int)
     tornado.options.options.logging = "debug"
     tornado.options.parse_command_line()
 
     # 设置本地化语言
-#    tornado.locale.load_gettext_translations(settings.I18N_PATH, "site")
-#    tornado.locale.set_default_locale('zh_CN')
+    tornado.locale.load_gettext_translations(settings.I18N_PATH, "messages")
+    tornado.locale.set_default_locale('zh_CN')
 
     logging.info("starting torando web server")
 
-    logging.info('DB_URI = {0}'.format( settings.DB_URI ))
+    DB_URI = yweb.utils.db.get_db_uri()
+    logging.info('DB_URI = {0}'.format( DB_URI ))
 
     # 启动 Tornado
     app = Application()
     server = tornado.httpserver.HTTPServer(app, xheaders=True)
     sockets = tornado.netutil.bind_sockets(tornado.options.options.port)
     server.add_sockets(sockets)
+    logging.info("torando web server is running")
     tornado.ioloop.IOLoop.instance().start()
 
 

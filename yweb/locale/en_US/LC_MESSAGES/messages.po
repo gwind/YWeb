@@ -1,0 +1,379 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014
+# This file is distributed under the same license as the YWeb package.
+# Jian Li <lijian.gnu@gmail.com>, 2014.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: YWeb 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-27 17:16+0800\n"
+"PO-Revision-Date: 2014-05-27 15:33+0800\n"
+"Last-Translator: Jian Li <lijian.gnu@gmail.com>\n"
+"Language-Team: YLinux <contact@ylinux.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: yweb/handler.py:34
+msgid "No template!"
+msgstr ""
+
+#: apps/auth/views.py:83
+msgid "Login"
+msgstr ""
+
+#: apps/auth/views.py:133 apps/auth/templates/auth/signup_step1.html:19
+#: apps/auth/templates/auth/signup_step2.html:26
+msgid "Sign Up"
+msgstr ""
+
+#: apps/auth/views.py:153 apps/auth/templates/auth/signup_email.html:1
+#, python-format
+msgid "Welcome to register %s"
+msgstr ""
+
+#: apps/auth/views.py:186
+msgid "Registration key error."
+msgstr ""
+
+#: apps/auth/views.py:189
+msgid "Create User"
+msgstr ""
+
+#: apps/auth/views.py:231 apps/auth/views.py:288
+msgid "Password Reset"
+msgstr ""
+
+#: apps/auth/views.py:251
+#, python-format
+msgid "Password Reset For %s"
+msgstr ""
+
+#: apps/auth/views.py:285
+msgid "Key error."
+msgstr ""
+
+#: apps/auth/views.py:313
+#, python-format
+msgid "No such email: %s"
+msgstr ""
+
+#: apps/auth/forms.py:29 apps/auth/forms.py:186
+msgid "Password must be greater than 6 characters."
+msgstr ""
+
+#: apps/auth/forms.py:32 apps/auth/forms.py:189
+msgid "Password must be less than 64 characters."
+msgstr ""
+
+#: apps/auth/forms.py:38 apps/auth/forms.py:195
+msgid "Password is too simple"
+msgstr ""
+
+#: apps/auth/forms.py:47
+msgid "User"
+msgstr ""
+
+#: apps/auth/forms.py:48 apps/auth/forms.py:115 apps/auth/forms.py:130
+#: apps/auth/templates/auth/password_reset_step2.html:15
+#: apps/auth/templates/auth/signup_step2.html:18
+#: apps/auth/templates/auth/signin.html:17
+msgid "Password"
+msgstr ""
+
+#: apps/auth/forms.py:53
+msgid "Username is empty."
+msgstr ""
+
+#: apps/auth/forms.py:57
+msgid "The user does not exist."
+msgstr ""
+
+#: apps/auth/forms.py:60
+msgid "You have been locked."
+msgstr ""
+
+#: apps/auth/forms.py:63
+msgid "Password is incorrect."
+msgstr ""
+
+#: apps/auth/forms.py:66
+msgid "Your are inactive now."
+msgstr ""
+
+#: apps/auth/forms.py:72 apps/auth/forms.py:81 apps/auth/forms.py:96
+msgid "Email Address"
+msgstr ""
+
+#: apps/auth/forms.py:87
+msgid "Email address is exist."
+msgstr ""
+
+#: apps/auth/forms.py:104
+msgid "Email address is not exist."
+msgstr ""
+
+#: apps/auth/forms.py:118 apps/auth/forms.py:132
+msgid "Passwords must match"
+msgstr ""
+
+#: apps/auth/forms.py:120 apps/auth/forms.py:134
+#: apps/auth/templates/auth/password_reset_step2.html:18
+#: apps/auth/templates/auth/signup_step2.html:21
+msgid "Password Confirm"
+msgstr ""
+
+#: apps/auth/forms.py:129 apps/auth/templates/auth/signup_step2.html:15
+msgid "Username"
+msgstr ""
+
+#: apps/auth/forms.py:135
+msgid "I accept the TOS"
+msgstr ""
+
+#: apps/auth/forms.py:146
+msgid "Username can not be a number."
+msgstr ""
+
+#: apps/auth/forms.py:150
+msgid "Username less than 2 characters."
+msgstr ""
+
+#: apps/auth/forms.py:154
+msgid "Username greater than 16 characters."
+msgstr ""
+
+#: apps/auth/forms.py:163
+msgid "English username less than 4 characters."
+msgstr ""
+
+#: apps/auth/forms.py:167
+msgid "Chinese username greater than 6 characters."
+msgstr ""
+
+#: apps/auth/forms.py:172
+msgid "Username occupied."
+msgstr ""
+
+#: apps/auth/forms.py:179
+#, python-brace-format
+msgid "Illegal Chars: {0}"
+msgstr ""
+
+#: apps/auth/models.py:55
+#, python-format
+msgid "Group <%s>"
+msgstr ""
+
+#: apps/auth/models.py:142
+#, python-format
+msgid "Permission <%s>"
+msgstr ""
+
+#: apps/auth/models.py:366
+msgid "Username already exists"
+msgstr ""
+
+#: apps/auth/models.py:371
+msgid "E-mail address already exists"
+msgstr ""
+
+#: templates/default_index.html:6
+msgid "Welcome to use Y web framework!"
+msgstr ""
+
+#: templates/base.html:30 apps/auth/templates/auth/resignin.html:21
+msgid "Home"
+msgstr ""
+
+#: templates/base.html:34
+msgid "Item 1"
+msgstr ""
+
+#: templates/base.html:35
+msgid "Item 2"
+msgstr ""
+
+#: templates/base.html:36
+msgid "Item 3"
+msgstr ""
+
+#: templates/base.html:37
+msgid "FAQ"
+msgstr ""
+
+#: templates/base.html:74
+msgid "About"
+msgstr ""
+
+#: templates/base.html:75
+msgid "Contact"
+msgstr ""
+
+#: templates/404.html:5
+msgid "Page Not Found"
+msgstr ""
+
+#: templates/404.html:6
+msgid "Your request is "
+msgstr ""
+
+#: apps/i18n/templates/i18n/modules/setlang.html:3
+msgid "Select Language"
+msgstr ""
+
+#: apps/auth/templates/auth/signup_step2_failed.html:6
+msgid "Sign Up Step2 Faild!"
+msgstr ""
+
+#: apps/auth/templates/auth/signup_step2_failed.html:8
+#: apps/auth/templates/auth/password_reset_step2_failed.html:8
+#, python-format
+msgid "Your key: %s"
+msgstr ""
+
+#: apps/auth/templates/auth/signup_step2_failed.html:11
+#: apps/auth/templates/auth/password_reset_step2_failed.html:11
+#, python-format
+msgid "Error message: %s"
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_step2.html:22
+#: apps/auth/templates/auth/password_reset_step1.html:19
+msgid "Submit"
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_step2.html:28
+#: apps/auth/templates/auth/signup_step1.html:25
+#: apps/auth/templates/auth/signup_step2.html:32
+msgid "Have an account?"
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_step2.html:28
+#: apps/auth/templates/auth/password_reset_step1.html:27
+#: apps/auth/templates/auth/password_reset_step2_success.html:8
+#: apps/auth/templates/auth/signup_step1.html:25
+#: apps/auth/templates/auth/signup_step2.html:32
+#: apps/auth/templates/auth/signin.html:21
+msgid "Sign In"
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_step1_success.html:6
+#: apps/auth/templates/auth/signup_step1_success.html:6
+msgid "Verification email have send"
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_step1_success.html:7
+#: apps/auth/templates/auth/signup_step1_success.html:7
+#, python-format
+msgid "A verification email have send to %s, check it please."
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_step1_success.html:8
+#: apps/auth/templates/auth/signup_step1_success.html:8
+msgid "If you can not find email in your inbox, check the junk please."
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_email.html:1
+#, python-format
+msgid "Reset Password For %s"
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_email.html:2
+#: apps/auth/templates/auth/password_reset_step2_success.html:7
+#, python-format
+msgid "Hi, %s"
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_email.html:3
+#, python-format
+msgid "We have received a request from %s to reset password"
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_email.html:4
+msgid "If you does not do this, just ignore this email."
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_email.html:5
+#: apps/auth/templates/auth/signup_email.html:2
+msgid "Please click the following link to continue:"
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_step1.html:15
+#: apps/auth/templates/auth/signup_step1.html:15
+msgid "Email"
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_step1.html:25
+#: apps/auth/templates/auth/signin.html:27
+msgid "Don't have an account?"
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_step1.html:25
+#: apps/auth/templates/auth/signin.html:27
+msgid "Register now!"
+msgstr ""
+
+#: apps/auth/templates/auth/resignin.html:14
+msgid "Hi, "
+msgstr ""
+
+#: apps/auth/templates/auth/resignin.html:18
+msgid "You are signin already !"
+msgstr ""
+
+#: apps/auth/templates/auth/resignin.html:22
+msgid "Sign Out & Sign In"
+msgstr ""
+
+#: apps/auth/templates/auth/resignin.html:26
+#: apps/auth/templates/auth/signup_step1.html:27
+#: apps/auth/templates/auth/signup_step2.html:34
+#: apps/auth/templates/auth/signin.html:29
+msgid "Forgot your password?"
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_step2_success.html:6
+msgid "Reset Password Success !"
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_step2_success.html:8
+msgid "You can go to login system now: "
+msgstr ""
+
+#: apps/auth/templates/auth/modules/authcode.html:4
+msgid "Input Auth Code"
+msgstr ""
+
+#: apps/auth/templates/auth/modules/authcode.html:8
+msgid "Authcode does not match."
+msgstr ""
+
+#: apps/auth/templates/auth/signup_step1_failed.html:6
+msgid "Sign Up Failed"
+msgstr ""
+
+#: apps/auth/templates/auth/signup_step1_failed.html:7
+#: apps/auth/templates/auth/password_reset_step1_failed.html:7
+msgid "E-mail: "
+msgstr ""
+
+#: apps/auth/templates/auth/signup_step1_failed.html:8
+#: apps/auth/templates/auth/password_reset_step1_failed.html:8
+msgid "Sorry, report the following messages to admin please."
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_step2_failed.html:6
+msgid "Password Reset Step2 Faild!"
+msgstr ""
+
+#: apps/auth/templates/auth/password_reset_step1_failed.html:6
+msgid "Reset Your Password Failed"
+msgstr ""
+
+#: apps/auth/templates/auth/signin.html:15
+msgid "Username / Email / UID"
+msgstr ""
