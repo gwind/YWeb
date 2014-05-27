@@ -208,7 +208,7 @@ msgstr ""
 
 #: templates/base.html:40 templates/base.html:74
 msgid "About"
-msgstr "关于我们"
+msgstr "关于"
 
 #: templates/base.html:47
 msgid "My Home"
@@ -234,7 +234,7 @@ msgstr "登录"
 
 #: templates/base.html:75
 msgid "Contact"
-msgstr "联系我们"
+msgstr "联系"
 
 #: templates/404.html:5
 msgid "Page Not Found"
