@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>${ title } - YWEB</title>
-    <meta name="Description" content="YWEB开发框架" />
-    <meta name="Keywords" content="YLinux, Python Web 开发, YWEB" />
+    <meta name="Description" content="Y Web Framework" />
+    <meta name="Keywords" content="YLinux, Python Web, YWEB" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="${ static_url('reliance/bootstrap/css/bootstrap.min.css') }">
@@ -27,7 +27,7 @@
     <header id="site-nav-primary" class="navbar navbar-default" role="banner">
       <div class="container">
         <div class="navbar-header">
-          <a href="/" class="navbar-brand"><i class="fa fa-hacker-news fa-lg"></i> Home</a>
+          <a href="/" class="navbar-brand"><i class="fa fa-hacker-news fa-lg"></i> ${ _("Home") }</a>
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
           <ul class="nav navbar-nav">
@@ -37,24 +37,24 @@
             <li><a href="#"><i class="fa fa-support fa-lg"></i> ${ _("FAQ") }</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="/about"><i class="fa fa-lightbulb-o"></i> 关于</a></li>
+            <li><a href="/about"><i class="fa fa-lightbulb-o"></i> ${ _("About") }</a></li>
 
             % if current_user:
 
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${ current_user.nickname } <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="/user/${ current_user.uid }"><i class="fa fa-home"></i> 我的主页</a></li>
-                <li><a href="/console"><i class="fa fa-cogs"></i> 控制台</a></li>
+                <li><a href="/user/${ current_user.uid }"><i class="fa fa-home"></i> ${ _("My Home") }</a></li>
+                <li><a href="/console"><i class="fa fa-cogs"></i> ${ _("Console") }</a></li>
                 <li class="divider"></li>
-                <li><a href="${ reverse_url('auth:signout') }"><i class="fa fa-sign-out"></i> 退出</a></li>
+                <li><a href="${ reverse_url('auth:signout') }"><i class="fa fa-sign-out"></i> ${ _("Sign Out") }</a></li>
               </ul>
             </li>
 
             % else:
 
-            <li><a href="${ reverse_url('auth:signup') }"><i class="fa fa-graduation-cap"></i> 注册</a></li>
-            <li><a href="${ reverse_url('auth:signin') }"><i class="fa fa-sign-in"></i> 登录</a></li>
+            <li><a href="${ reverse_url('auth:signup') }"><i class="fa fa-graduation-cap"></i> ${ _("Sign Up") }</a></li>
+            <li><a href="${ reverse_url('auth:signin') }"><i class="fa fa-sign-in"></i> ${ _("Sign In") }</a></li>
 
             % endif
           </ul>
@@ -69,8 +69,15 @@
     <footer id="footer">
       <div id="footer-content">
         <div class="container">
-          <a href="/about">关于我们</a>
-          <a href="/contact">联系我们</a>
+          <div class="row">
+            <div class="col-md-6 text-left">
+              <a href="/about">${ _("About") }</a>
+              <a href="/contact">${ _("Contact") }</a>
+            </div>
+            <div class="col-md-6 text-right">
+              ${ module('setlang') }
+            </div>
+          </div>
         </div>
       </div>
       <div id="copyright">
