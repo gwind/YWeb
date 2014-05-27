@@ -633,7 +633,7 @@ DB = {
 INSTALLED_APPS = ()
 
 # 网站标题
-DEFAULT_HTML_TITLE = u'开发最高效的网站'
+DEFAULT_HTML_TITLE = 'Y Web Framework -- The First Choice For Your Great Site.'
 
 # 是否启用 tornado 的 static 服务
 # 生产环境中，通常由 nginx 等提供该服务
