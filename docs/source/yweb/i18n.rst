@@ -22,3 +22,15 @@
 
   msgfmt locale/zh_CN/LC_MESSAGES/messages.po -o locale/zh_CN/LC_MESSAGES/messages.mo
 
+
+Lazy translation 机制
+---------------------------
+
+从 Django 引入 Lazy translation 机制。
+
+如果字符显示为类似 "<yweb.utils.functional.__proxy__ object at 0x7f9f05173cd0>" 格式，可以用 unicode 显示一个对象。例如， mystr 是一个 lazy translation 字符串，显示其翻译值，需要使用 unicode ::
+
+  unicode( mystr )
+
+
+
