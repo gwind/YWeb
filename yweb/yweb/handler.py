@@ -301,3 +301,4 @@ class UIModule(object):
     def render_string(self, path, **kwargs):
         """Renders a template and returns it as a string."""
         return self.handler.render_string(path, **kwargs)
+

@@ -64,9 +64,6 @@ class Form(wtForm):
         super(Form, self).__init__(TornadoInputWrapper(formdata),
             obj=obj, prefix=prefix, **kwargs)
 
-    def _get_translations(self):
-        return TornadoLocaleWrapper(self._handler.locale)
-
     def html_errors(self, field):
         ''' Generate a HTML from a wtforms filed errors '''
 
@@ -76,11 +73,10 @@ class Form(wtForm):
         if not field.errors:
             return ''
 
-        HTML = '<ul class="form-item-error text-danger">'
+        HTML = u'<ul class="form-item-error text-danger">'
         for error in field.errors:
-            HTML += '<li>%s</li>' % error
-
-        HTML += '</ul>'
+            HTML += u'<li>{0}</li>'.format( unicode(error) )
+        HTML += u'</ul>'
 
         return HTML
 
@@ -102,14 +98,3 @@ class TornadoInputWrapper(object):
     def getlist(self, name):
         return self._handler.get_arguments(name)
 
-
-class TornadoLocaleWrapper(object):
-
-    def __init__(self, locale):
-        self.locale = locale
-
-    def gettext(self, message):
-        return self.locale.translate(message)
-
-    def ngettext(self, message, plural_message, count):
-        return self.locale.translate(message, plural_message, count)

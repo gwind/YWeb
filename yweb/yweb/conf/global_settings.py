@@ -648,6 +648,9 @@ SESSION_COOKIE_AGE = 14
 
 SUPPORTED_LANGUAGES = ('en_US', 'zh_CN')
 
+# 站点的 locale 目录 （除去 yweb 和 apps 的 locale）
+LOCALE_PATHS = ()
+
 SITE_TRANSLATION_FILES = (
     '*.py',
     'templates',
