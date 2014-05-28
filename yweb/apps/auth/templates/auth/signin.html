@@ -11,11 +11,15 @@
 
     <img class="site-logo" src="/static/img/logo.png">
 
-    <form method="POST">${ xsrf_form_html() }
-      ${ form.user(class_="form-control", placeholder=_("Username / Email / UID"), autofocus=true) }
-      ${ form.html_errors(form.user) }
-      ${ form.password(class_="form-control", placeholder=_("Password")) }
-      ${ form.html_errors(form.password) }
+    <form method="POST" role="form">${ xsrf_form_html() }
+
+      % for field in form:
+      <div class="form-group">
+        ${ field.label }
+        ${ field(class_="form-control") }
+        ${ form.html_errors(field) }
+      </div>
+      % endfor
 
       ${ module('authcode', authcode_failed) }
       <button class="btn btn-large btn-primary btn-block">${ _("Sign In") }</button>
@@ -29,10 +33,9 @@
   <p id="copyright">&copy;&nbsp;2014 <a href="http://www.ylinux.org/">YLinux.org</a> - <a href="${ reverse_url('auth:password:reset') }">${ _("Forgot your password?") }</a></p>
 
 </div> <!-- /container -->
-
 <script>
   $(document).ready(function () {
-    $('#username').focus();
+    $('#user').focus();
   });
 </script>
 </%block>

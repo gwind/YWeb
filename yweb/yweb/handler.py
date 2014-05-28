@@ -5,21 +5,18 @@ import os
 import sys
 import datetime
 
-# 使用 __builtin__ 非常不好，但为了保持程序设计的一致性，
-# 我们需要更自然的翻译写法: _("String")
-# 所以要 hack __builtin__ ，提供 "_" 内置函数
-import __builtin__
-
 # Import third module
 from mako.exceptions import RichTraceback
 import tornado.web
 
 # Import yweb module
 from yweb.conf import settings
-from yweb.utils.i18n import ugettext as _
 
 # Import my module
 from apps.auth.models import User, Session, AuthCode
+from yweb.utils.translation import trans_real
+from yweb.utils.translation import ugettext_lazy
+_ = ugettext_lazy
 
 
 class RequestHandler(tornado.web.RequestHandler):
@@ -31,8 +28,8 @@ class RequestHandler(tornado.web.RequestHandler):
         self.title = None
         self.data = {}
 
-        # TODO: i18n is too ugly yet
-        __builtin__.__dict__['_'] = self.locale.translate
+        # TODO: hack django 的 lazy translation 机制
+        trans_real._default = trans_real.translation(self.locale_code)
 
     def render_string(self, template_path, **kwargs):
         '''渲染模板，返回字符串
@@ -45,8 +42,9 @@ class RequestHandler(tornado.web.RequestHandler):
             handler=self,
             request=self.request,
             current_user=self.current_user,
-            locale=self.locale,
-            _=self.locale.translate,
+#            locale=self.locale,
+#            _=self.locale.translate,
+            _=ugettext_lazy,
             static_url=self.static_url,
             xsrf_form_html=self.xsrf_form_html,
             reverse_url=self.reverse_url,
@@ -124,6 +122,19 @@ class RequestHandler(tornado.web.RequestHandler):
         else:
             # Use the Accept-Language header
             return None
+
+    @property
+    def locale_code(self):
+        '''获取 language code
+
+        为了使用 Django 的翻译机制
+        '''
+
+        user_locale = self.get_cookie("user_locale")
+        if user_locale:
+            return user_locale
+        else:
+            return 'en_US'
 
     @property
     def db(self):

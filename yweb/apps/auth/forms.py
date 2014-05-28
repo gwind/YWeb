@@ -11,6 +11,7 @@ from wtforms.validators import ValidationError
 
 from apps.auth.models import User, AuthCode, guess_user
 
+from yweb.utils.translation import ugettext_lazy as _
 from yweb.conf import settings
 import yweb.utils.blacklist 
 import yweb.utils.password
@@ -43,7 +44,7 @@ class SignInForm(Form):
 
     '''
 
-    user = StringField( _('User'), default='' )
+    user = StringField( _("Username / Email / UID"), default='' )
     password = PasswordField( _('Password'), default='' )
 
     def validate_user(form, field):

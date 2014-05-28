@@ -1,0 +1,323 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014
+# This file is distributed under the same license as the YWeb package.
+# Jian Li <lijian.gnu@gmail.com>, 2014.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: YWeb 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-28 09:17-0500\n"
+"PO-Revision-Date: 2014-05-27 15:33+0800\n"
+"Last-Translator: Jian Li <lijian.gnu@gmail.com>\n"
+"Language-Team: YLinux <contact@ylinux.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: views.py:83
+msgid "Login"
+msgstr ""
+
+#: views.py:133 templates/auth/signup_step1.html:19
+#: templates/auth/signup_step2.html:26
+msgid "Sign Up"
+msgstr ""
+
+#: views.py:153 templates/auth/signup_email.html:1
+#, python-format
+msgid "Welcome to register %s"
+msgstr ""
+
+#: views.py:186
+msgid "Registration key error."
+msgstr ""
+
+#: views.py:189
+msgid "Create User"
+msgstr ""
+
+#: views.py:231 views.py:288
+msgid "Password Reset"
+msgstr ""
+
+#: views.py:251
+#, python-format
+msgid "Password Reset For %s"
+msgstr ""
+
+#: views.py:285
+msgid "Key error."
+msgstr ""
+
+#: views.py:313
+#, python-format
+msgid "No such email: %s"
+msgstr ""
+
+#: forms.py:29 forms.py:186
+msgid "Password must be greater than 6 characters."
+msgstr ""
+
+#: forms.py:32 forms.py:189
+msgid "Password must be less than 64 characters."
+msgstr ""
+
+#: forms.py:38 forms.py:195
+msgid "Password is too simple"
+msgstr ""
+
+#: forms.py:47
+msgid "Username / Email / UID"
+msgstr ""
+
+#: forms.py:48 forms.py:115 forms.py:130
+#: templates/auth/password_reset_step2.html:15
+#: templates/auth/signup_step2.html:18
+msgid "Password"
+msgstr ""
+
+#: forms.py:53
+msgid "Username is empty."
+msgstr ""
+
+#: forms.py:57
+msgid "The user does not exist."
+msgstr ""
+
+#: forms.py:60
+msgid "You have been locked."
+msgstr ""
+
+#: forms.py:63
+msgid "Password is incorrect."
+msgstr ""
+
+#: forms.py:66
+msgid "Your are inactive now."
+msgstr ""
+
+#: forms.py:72 forms.py:81 forms.py:96
+msgid "Email Address"
+msgstr ""
+
+#: forms.py:87
+msgid "Email address is exist."
+msgstr ""
+
+#: forms.py:104
+msgid "Email address is not exist."
+msgstr ""
+
+#: forms.py:118 forms.py:132
+msgid "Passwords must match"
+msgstr ""
+
+#: forms.py:120 forms.py:134 templates/auth/password_reset_step2.html:18
+#: templates/auth/signup_step2.html:21
+msgid "Password Confirm"
+msgstr ""
+
+#: forms.py:129 templates/auth/signup_step2.html:15
+msgid "Username"
+msgstr ""
+
+#: forms.py:135
+msgid "I accept the TOS"
+msgstr ""
+
+#: forms.py:146
+msgid "Username can not be a number."
+msgstr ""
+
+#: forms.py:150
+msgid "Username less than 2 characters."
+msgstr ""
+
+#: forms.py:154
+msgid "Username greater than 16 characters."
+msgstr ""
+
+#: forms.py:163
+msgid "English username less than 4 characters."
+msgstr ""
+
+#: forms.py:167
+msgid "Chinese username greater than 6 characters."
+msgstr ""
+
+#: forms.py:172
+msgid "Username occupied."
+msgstr ""
+
+#: forms.py:179
+#, python-brace-format
+msgid "Illegal Chars: {0}"
+msgstr ""
+
+#: models.py:54
+#, python-format
+msgid "Group <%s>"
+msgstr ""
+
+#: models.py:141
+#, python-format
+msgid "Permission <%s>"
+msgstr ""
+
+#: models.py:365
+msgid "Username already exists"
+msgstr ""
+
+#: models.py:370
+msgid "E-mail address already exists"
+msgstr ""
+
+#: templates/auth/signup_step2_failed.html:6
+msgid "Sign Up Step2 Faild!"
+msgstr ""
+
+#: templates/auth/signup_step2_failed.html:8
+#: templates/auth/password_reset_step2_failed.html:8
+#, python-format
+msgid "Your key: %s"
+msgstr ""
+
+#: templates/auth/signup_step2_failed.html:11
+#: templates/auth/password_reset_step2_failed.html:11
+#, python-format
+msgid "Error message: %s"
+msgstr ""
+
+#: templates/auth/password_reset_step2.html:22
+#: templates/auth/password_reset_step1.html:19
+msgid "Submit"
+msgstr ""
+
+#: templates/auth/password_reset_step2.html:28
+#: templates/auth/signup_step1.html:25 templates/auth/signup_step2.html:32
+msgid "Have an account?"
+msgstr ""
+
+#: templates/auth/password_reset_step2.html:28
+#: templates/auth/password_reset_step1.html:27
+#: templates/auth/password_reset_step2_success.html:8
+#: templates/auth/signup_step1.html:25 templates/auth/signup_step2.html:32
+#: templates/auth/signin.html:25
+msgid "Sign In"
+msgstr ""
+
+#: templates/auth/password_reset_step1_success.html:6
+#: templates/auth/signup_step1_success.html:6
+msgid "Verification email have send"
+msgstr ""
+
+#: templates/auth/password_reset_step1_success.html:7
+#: templates/auth/signup_step1_success.html:7
+#, python-format
+msgid "A verification email have send to %s, check it please."
+msgstr ""
+
+#: templates/auth/password_reset_step1_success.html:8
+#: templates/auth/signup_step1_success.html:8
+msgid "If you can not find email in your inbox, check the junk please."
+msgstr ""
+
+#: templates/auth/password_reset_email.html:1
+#, python-format
+msgid "Reset Password For %s"
+msgstr ""
+
+#: templates/auth/password_reset_email.html:2
+#: templates/auth/password_reset_step2_success.html:7
+#, python-format
+msgid "Hi, %s"
+msgstr ""
+
+#: templates/auth/password_reset_email.html:3
+#, python-format
+msgid "We have received a request from %s to reset password"
+msgstr ""
+
+#: templates/auth/password_reset_email.html:4
+msgid "If you does not do this, just ignore this email."
+msgstr ""
+
+#: templates/auth/password_reset_email.html:5
+#: templates/auth/signup_email.html:2
+msgid "Please click the following link to continue:"
+msgstr ""
+
+#: templates/auth/password_reset_step1.html:15
+#: templates/auth/signup_step1.html:15
+msgid "Email"
+msgstr ""
+
+#: templates/auth/password_reset_step1.html:25 templates/auth/signin.html:31
+msgid "Don't have an account?"
+msgstr ""
+
+#: templates/auth/password_reset_step1.html:25 templates/auth/signin.html:31
+msgid "Register now!"
+msgstr ""
+
+#: templates/auth/resignin.html:14
+msgid "Hi, "
+msgstr ""
+
+#: templates/auth/resignin.html:18
+msgid "You are signin already !"
+msgstr ""
+
+#: templates/auth/resignin.html:21
+msgid "Home"
+msgstr ""
+
+#: templates/auth/resignin.html:22
+msgid "Sign Out & Sign In"
+msgstr ""
+
+#: templates/auth/resignin.html:26 templates/auth/signup_step1.html:27
+#: templates/auth/signup_step2.html:34 templates/auth/signin.html:33
+msgid "Forgot your password?"
+msgstr ""
+
+#: templates/auth/password_reset_step2_success.html:6
+msgid "Reset Password Success !"
+msgstr ""
+
+#: templates/auth/password_reset_step2_success.html:8
+msgid "You can go to login system now: "
+msgstr ""
+
+#: templates/auth/modules/authcode.html:4
+msgid "Input Auth Code"
+msgstr ""
+
+#: templates/auth/modules/authcode.html:10
+msgid "Authcode does not match."
+msgstr ""
+
+#: templates/auth/signup_step1_failed.html:6
+msgid "Sign Up Failed"
+msgstr ""
+
+#: templates/auth/signup_step1_failed.html:7
+#: templates/auth/password_reset_step1_failed.html:7
+msgid "E-mail: "
+msgstr ""
+
+#: templates/auth/signup_step1_failed.html:8
+#: templates/auth/password_reset_step1_failed.html:8
+msgid "Sorry, report the following messages to admin please."
+msgstr ""
+
+#: templates/auth/password_reset_step2_failed.html:6
+msgid "Password Reset Step2 Faild!"
+msgstr ""
+
+#: templates/auth/password_reset_step1_failed.html:6
+msgid "Reset Your Password Failed"
+msgstr ""

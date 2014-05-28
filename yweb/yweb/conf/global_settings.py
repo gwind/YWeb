@@ -611,6 +611,8 @@ STATICFILES_FINDERS = (
 # Jian: 增加
 ###########################
 
+USE_I18N = True
+
 # 数据库：默认使用 sqlite 文件型数据库
 #DB = {
 #    'engine': 'postgresql+psycopg2',
@@ -643,3 +645,13 @@ ENABLE_STATIC_SERVE = True
 SESSION_COOKIE_SECRET = "not set now!"
 # session 默认有效期为2周（14天）
 SESSION_COOKIE_AGE = 14
+
+SUPPORTED_LANGUAGES = ('en_US', 'zh_CN')
+
+SITE_TRANSLATION_FILES = (
+    '*.py',
+    'templates',
+)
+
+PACKAGE_NAME = 'YWEB'
+PACKAGE_VERSION = '1.0'

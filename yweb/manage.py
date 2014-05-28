@@ -19,6 +19,7 @@ def main():
     syncdb
     dropdb
     adduser
+    translation
 '''
         sys.exit(1)
 
@@ -49,6 +50,10 @@ def main():
             email = sys.argv[4]
             import yweb.management.user
             yweb.management.user.adduser(username, password, email)
+
+    elif opt == 'translation':
+        import yweb.management.i18n
+        yweb.management.i18n.update_translation()
 
     else:
         print 'unknown opt: {0}'.format(opt)

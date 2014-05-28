@@ -1,0 +1,86 @@
+# English translations for YWEB package.
+# Copyright (C) 2014 THE YWEB'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the YWEB package.
+# Automatically generated, 2014.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: YWEB 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-28 09:17-0500\n"
+"PO-Revision-Date: 2014-05-28 07:15-0500\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: settings.py:75
+msgid "YWeb -- For Best!"
+msgstr "YWeb -- For Best!"
+
+#: templates/default_index.html:6
+msgid "Welcome to use Y web framework!"
+msgstr "Welcome to use Y web framework!"
+
+#: templates/base.html:30
+msgid "Home"
+msgstr "Home"
+
+#: templates/base.html:34
+msgid "Item 1"
+msgstr "Item 1"
+
+#: templates/base.html:35
+msgid "Item 2"
+msgstr "Item 2"
+
+#: templates/base.html:36
+msgid "Item 3"
+msgstr "Item 3"
+
+#: templates/base.html:37
+msgid "FAQ"
+msgstr "FAQ"
+
+#: templates/base.html:40
+msgid "About"
+msgstr "About"
+
+#: templates/base.html:47
+msgid "My Home"
+msgstr "My Home"
+
+#: templates/base.html:48
+msgid "Console"
+msgstr "Console"
+
+#: templates/base.html:50
+msgid "Sign Out"
+msgstr "Sign Out"
+
+#: templates/base.html:56
+msgid "Sign Up"
+msgstr "Sign Up"
+
+#: templates/base.html:57
+msgid "Sign In"
+msgstr "Sign In"
+
+#: templates/base.html:75
+msgid "About US"
+msgstr "About US"
+
+#: templates/base.html:76
+msgid "Contact US"
+msgstr "Contact US"
+
+#: templates/404.html:5
+msgid "Page Not Found"
+msgstr "Page Not Found"
+
+#: templates/404.html:6
+msgid "Your request is "
+msgstr "Your request is "

@@ -1,0 +1,292 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2014
+# This file is distributed under the same license as the YWeb package.
+# Jian Li <lijian.gnu@gmail.com>, 2014.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: YWeb 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-05-28 09:17-0500\n"
+"PO-Revision-Date: 2014-05-27 17:35+0800\n"
+"Last-Translator: Jian Li <lijian.gnu@gmail.com>\n"
+"Language-Team: YLinux <contact@ylinux.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: settings.py:75
+msgid "YWeb -- For Best!"
+msgstr ""
+
+#: templates/default_index.html:6
+msgid "Welcome to use Y web framework!"
+msgstr "欢迎使用 YWeb 网站开发框架！"
+
+#: templates/base.html:30
+msgid "Home"
+msgstr "首页"
+
+#: templates/base.html:34
+msgid "Item 1"
+msgstr "项目1"
+
+#: templates/base.html:35
+msgid "Item 2"
+msgstr "项目2"
+
+#: templates/base.html:36
+msgid "Item 3"
+msgstr "项目3"
+
+#: templates/base.html:37
+msgid "FAQ"
+msgstr ""
+
+#: templates/base.html:40
+msgid "About"
+msgstr "关于"
+
+#: templates/base.html:47
+msgid "My Home"
+msgstr "我的主页"
+
+#: templates/base.html:48
+msgid "Console"
+msgstr "控制台"
+
+#: templates/base.html:50
+msgid "Sign Out"
+msgstr "注消"
+
+#: templates/base.html:56
+msgid "Sign Up"
+msgstr "注册"
+
+#: templates/base.html:57
+msgid "Sign In"
+msgstr "登录"
+
+#: templates/base.html:75
+#, fuzzy
+msgid "About US"
+msgstr "关于"
+
+#: templates/base.html:76
+#, fuzzy
+msgid "Contact US"
+msgstr "联系"
+
+#: templates/404.html:5
+msgid "Page Not Found"
+msgstr "页面不存在"
+
+#: templates/404.html:6
+msgid "Your request is "
+msgstr "您的请求是"
+
+#~ msgid "No template!"
+#~ msgstr "无模板！"
+
+#~ msgid "Login"
+#~ msgstr "登录"
+
+#~ msgid "Welcome to register %s"
+#~ msgstr "欢迎注册 %s"
+
+#~ msgid "Registration key error."
+#~ msgstr "注册密钥错误"
+
+#~ msgid "Create User"
+#~ msgstr "创建新用户"
+
+#~ msgid "Password Reset"
+#~ msgstr "密码重置"
+
+#~ msgid "Password Reset For %s"
+#~ msgstr "为 \"%s\" 重置密码"
+
+#~ msgid "Key error."
+#~ msgstr "密钥错误"
+
+#~ msgid "No such email: %s"
+#~ msgstr "无此邮件地址：%s"
+
+#~ msgid "Password must be greater than 6 characters."
+#~ msgstr "密码长度不能小于6个字符"
+
+#~ msgid "Password must be less than 64 characters."
+#~ msgstr "密码长度不能大于64个字符"
+
+#~ msgid "Password is too simple"
+#~ msgstr "密码太简单"
+
+#~ msgid "User"
+#~ msgstr "用户"
+
+#~ msgid "Password"
+#~ msgstr "密码"
+
+#~ msgid "Username is empty."
+#~ msgstr "用户名是空的"
+
+#~ msgid "The user does not exist."
+#~ msgstr "此用户不存在"
+
+#~ msgid "You have been locked."
+#~ msgstr "您的帐号被锁定"
+
+#~ msgid "Password is incorrect."
+#~ msgstr "密码错误"
+
+#~ msgid "Your are inactive now."
+#~ msgstr "您的帐号还未激活"
+
+#~ msgid "Email Address"
+#~ msgstr "邮件地址"
+
+#~ msgid "Email address is exist."
+#~ msgstr "邮件地址已经存在"
+
+#~ msgid "Email address is not exist."
+#~ msgstr "邮件地址不存在"
+
+#~ msgid "Passwords must match"
+#~ msgstr "密码不匹配"
+
+#~ msgid "Password Confirm"
+#~ msgstr "密码确认"
+
+#~ msgid "Username"
+#~ msgstr "用户名"
+
+#~ msgid "I accept the TOS"
+#~ msgstr "我接受注册条款"
+
+#~ msgid "Username can not be a number."
+#~ msgstr "用户名不能是数字"
+
+#~ msgid "Username less than 2 characters."
+#~ msgstr "用户名长度不能小于2个字符"
+
+#~ msgid "Username greater than 16 characters."
+#~ msgstr "用户名长度不能大于16个字符"
+
+#~ msgid "English username less than 4 characters."
+#~ msgstr "英文用户名长度不能小于4个字符"
+
+#~ msgid "Chinese username greater than 6 characters."
+#~ msgstr "中文用户名长度不能大于6个字符"
+
+#~ msgid "Username occupied."
+#~ msgstr "用户名己被占用"
+
+#~ msgid "Illegal Chars: {0}"
+#~ msgstr "非法字符 ：{0}"
+
+#~ msgid "Group <%s>"
+#~ msgstr "组<%s>"
+
+#~ msgid "Permission <%s>"
+#~ msgstr "权限<%s>"
+
+#~ msgid "Username already exists"
+#~ msgstr "用户名己存在"
+
+#~ msgid "E-mail address already exists"
+#~ msgstr "邮件地址己存在"
+
+#~ msgid "Select Language"
+#~ msgstr "选择语言"
+
+#~ msgid "Sign Up Step2 Faild!"
+#~ msgstr "注册步骤二失败！"
+
+#~ msgid "Your key: %s"
+#~ msgstr "您的密钥：%s"
+
+#~ msgid "Error message: %s"
+#~ msgstr "错误信息：%s"
+
+#~ msgid "Submit"
+#~ msgstr "提交"
+
+#~ msgid "Have an account?"
+#~ msgstr "己有帐户?"
+
+#~ msgid "Verification email have send"
+#~ msgstr "验证邮件己经发出"
+
+#~ msgid "A verification email have send to %s, check it please."
+#~ msgstr "一封验证邮件己经发送到 %s ，请检查您的收件箱。"
+
+#~ msgid "If you can not find email in your inbox, check the junk please."
+#~ msgstr "如果您在收件箱中没有找到邮件，请检查下您的垃圾邮件。"
+
+#~ msgid "Reset Password For %s"
+#~ msgstr "为\"%s\"重置密码"
+
+#~ msgid "Hi, %s"
+#~ msgstr "您好，%s"
+
+#~ msgid "We have received a request from %s to reset password"
+#~ msgstr "我们收到来自 %s 的重置密码请求"
+
+#~ msgid "If you does not do this, just ignore this email."
+#~ msgstr "如果您没有做这个操作，直接忽略此封邮件即可。"
+
+#~ msgid "Please click the following link to continue:"
+#~ msgstr "请点击这个链接继续："
+
+#~ msgid "Email"
+#~ msgstr "邮件"
+
+#~ msgid "Don't have an account?"
+#~ msgstr "还没有帐户?"
+
+#~ msgid "Register now!"
+#~ msgstr "现在注册！"
+
+#~ msgid "Hi, "
+#~ msgstr "您好，"
+
+#~ msgid "You are signin already !"
+#~ msgstr "您己经登录！"
+
+#~ msgid "Sign Out & Sign In"
+#~ msgstr "注消&登录"
+
+#~ msgid "Forgot your password?"
+#~ msgstr "忘记密码?"
+
+#~ msgid "Reset Password Success !"
+#~ msgstr "重置密码成功！"
+
+#~ msgid "You can go to login system now: "
+#~ msgstr "您现在可以登录系统："
+
+#~ msgid "Input Auth Code"
+#~ msgstr "输入验证码"
+
+#~ msgid "Authcode does not match."
+#~ msgstr "验证码不匹配"
+
+#~ msgid "Sign Up Failed"
+#~ msgstr "注册失败"
+
+#~ msgid "E-mail: "
+#~ msgstr "邮件："
+
+#~ msgid "Sorry, report the following messages to admin please."
+#~ msgstr "非常抱歉，请报告下面的信息给管理员。"
+
+#~ msgid "Password Reset Step2 Faild!"
+#~ msgstr "密码重置失败！"
+
+#~ msgid "Reset Your Password Failed"
+#~ msgstr "重置您的密码失败"
+
+#~ msgid "Username / Email / UID"
+#~ msgstr "用户名/邮件/UID"

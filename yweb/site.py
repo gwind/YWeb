@@ -11,10 +11,6 @@ import signal
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'lib'))
 
-# TODO: i18n is too ugly yet
-import __builtin__
-__builtin__.__dict__['_'] = lambda s: s
-
 # 加载第三方库
 import tornado
 import tornado.httpserver
@@ -22,7 +18,6 @@ import tornado.ioloop
 import tornado.options
 import tornado.web
 import tornado.netutil
-import tornado.locale
 
 from yweb.conf import settings
 from yweb.orm import get_db_session
@@ -96,10 +91,6 @@ def main():
     tornado.options.define("port", default=8888, help="listen port", type=int)
     tornado.options.options.logging = "debug"
     tornado.options.parse_command_line()
-
-    # 设置本地化语言
-    tornado.locale.load_gettext_translations(settings.I18N_PATH, "messages")
-    tornado.locale.set_default_locale('zh_CN')
 
     logging.info("starting torando web server")
 

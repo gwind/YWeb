@@ -16,6 +16,7 @@ from tornado.web import authenticated
 from yweb.handler import RequestHandler as YwebRequestHandler
 from yweb.conf import settings
 from yweb.mail import sendmail
+from yweb.utils.translation import ugettext_lazy as _
 
 from apps.auth.models import User, Session, Group, \
     AuthKey, create_user, create_authkey

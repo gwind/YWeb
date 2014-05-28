@@ -1,12 +1,15 @@
 # coding: utf-8
 
 import os
+import logging
 
 import tornado.web
 
+import yweb.utils.cmd
 from yweb.conf import settings
 from yweb.utils.importlib import import_module
 from yweb.utils.module_loading import module_has_submodule
+from yweb.utils.translation.generate import update_locales
 
 
 def get_app_abspath(app_name):
@@ -136,6 +139,7 @@ class App(object):
             'APP_NAME': self.basename,
             'STATIC_PATH': 'static',
             'TEMPLATE_PATH': 'templates',
+            'LOCALE_PATH': 'locale',
         }
 
         self.init_attrs()
@@ -153,7 +157,7 @@ class App(object):
                 self.__app_settings[attr] = getattr(app_settings, attr)
 
         for attr in self.__app_settings:
-            if attr in ['STATIC_PATH', 'TEMPLATE_PATH']:
+            if attr in ['STATIC_PATH', 'TEMPLATE_PATH', 'LOCALE_PATH']:
                 v = self.__app_settings[attr]
                 self.__app_settings[attr] = v.strip('/')
 
@@ -193,3 +197,35 @@ def get_ui_modules():
                 ui_modules.update( app_urls.ui_modules )
 
     return ui_modules
+
+
+def update_apps_locale():
+
+    backdir = os.getcwd()
+
+    for app_name in settings.INSTALLED_APPS:
+        app = App(app_name)
+
+        root_path = app.abspath
+
+        logging.debug('GO=> {0}'.format(root_path))
+        os.chdir(root_path)
+
+        # 生成新 yweb.po 文件
+        files = yweb.utils.cmd.find_files('.', ['py', 'html'])
+        cmd = 'xgettext --from-code=UTF-8 -L python -k=_ ' + \
+              ' -o yweb.po ' + ' '.join(files)
+        yweb.utils.cmd.run_cmd(cmd)
+
+        # 测试文件是否正确生成
+        if not os.path.exists('yweb.po'):
+            logging.debug('pass {0}'.format(root_path))
+            continue
+
+        # 更新 locale 目录中所有语言的 po, mo 文件
+        update_locales('yweb.po', root_path)
+
+        # 删除 yweb.po
+        os.unlink('yweb.po')
+
+

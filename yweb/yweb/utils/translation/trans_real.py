@@ -129,7 +129,7 @@ def translation(language):
 
         def _translation(path):
             try:
-                t = gettext_module.translation('django', path, [loc], DjangoTranslation)
+                t = gettext_module.translation('yweb', path, [loc], DjangoTranslation)
                 t.set_language(lang)
                 return t
             except IOError:
@@ -251,7 +251,6 @@ def do_translate(message, translation_function):
     message will be run through the default translation object.
     """
     global _default
-
     # str() is allowing a bytestring message to remain bytestring on Python 2
     eol_message = message.replace(str('\r\n'), str('\n')).replace(str('\r'), str('\n'))
     t = getattr(_active, "value", None)
