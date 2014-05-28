@@ -248,7 +248,7 @@ class PasswordResetStep1(RequestHandler):
             authkey = create_authkey(self.db, type_='02', email=email)
 
             # 发送验证邮件
-            subject = _("Password Reset For %s") % settings.SITE_NAME
+            subject = _("[%s] Account Password Reset") % settings.SITE_NAME
             d = { 'step2_url': self.step2_url(authkey.key),
                   'settings': settings,
                   'user': form._user }

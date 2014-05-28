@@ -12,8 +12,13 @@
     <img class="site-logo" src="/static/img/logo.png">
 
     <form method="POST">${ xsrf_form_html() }
-      ${ form.email(class_="form-control", placeholder=_("Email")) }
-      ${ form.html_errors(form.email) }
+      % for field in form:
+      <div class="form-group">
+        ${ field.label }
+        ${ field(class_="form-control") }
+        ${ form.html_errors(field) }
+      </div>
+      % endfor
 
       ${ module('authcode', authcode_failed) }
       <button class="btn btn-large btn-primary btn-block">${ _("Sign Up") }</button>

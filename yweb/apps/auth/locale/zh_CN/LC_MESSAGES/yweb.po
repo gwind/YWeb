@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YWeb 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 10:11-0500\n"
+"POT-Creation-Date: 2014-05-28 17:54-0500\n"
 "PO-Revision-Date: 2014-05-27 17:35+0800\n"
 "Last-Translator: Jian Li <lijian.gnu@gmail.com>\n"
 "Language-Team: YLinux <contact@ylinux.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Login"
 msgstr "登录"
 
-#: views.py:133 templates/auth/signup_step1.html:19
+#: views.py:133 templates/auth/signup_step1.html:24
 #: templates/auth/signup_step2.html:26
 msgid "Sign Up"
 msgstr "注册"
@@ -45,8 +45,8 @@ msgstr "密码重置"
 
 #: views.py:251
 #, python-format
-msgid "Password Reset For %s"
-msgstr "为 \"%s\" 重置密码"
+msgid "[%s] Account Password Reset"
+msgstr "[%s] 重置您的帐户密码"
 
 #: views.py:285
 msgid "Key error."
@@ -73,9 +73,7 @@ msgstr "密码太简单"
 msgid "Username / Email / UID"
 msgstr "用户名/邮件/UID"
 
-#: forms.py:48 forms.py:115 forms.py:130
-#: templates/auth/password_reset_step2.html:15
-#: templates/auth/signup_step2.html:18
+#: forms.py:48 forms.py:115 forms.py:130 templates/auth/signup_step2.html:18
 msgid "Password"
 msgstr "密码"
 
@@ -115,8 +113,7 @@ msgstr "邮件地址不存在"
 msgid "Passwords must match"
 msgstr "密码不匹配"
 
-#: forms.py:120 forms.py:134 templates/auth/password_reset_step2.html:18
-#: templates/auth/signup_step2.html:21
+#: forms.py:120 forms.py:134 templates/auth/signup_step2.html:21
 msgid "Password Confirm"
 msgstr "密码确认"
 
@@ -191,20 +188,20 @@ msgstr "您的密钥：%s"
 msgid "Error message: %s"
 msgstr "错误信息：%s"
 
-#: templates/auth/password_reset_step2.html:22
-#: templates/auth/password_reset_step1.html:19
+#: templates/auth/password_reset_step2.html:24
+#: templates/auth/password_reset_step1.html:24
 msgid "Submit"
 msgstr "提交"
 
-#: templates/auth/password_reset_step2.html:28
-#: templates/auth/signup_step1.html:25 templates/auth/signup_step2.html:32
+#: templates/auth/password_reset_step2.html:30
+#: templates/auth/signup_step1.html:30 templates/auth/signup_step2.html:32
 msgid "Have an account?"
 msgstr "己有帐户?"
 
-#: templates/auth/password_reset_step2.html:28
-#: templates/auth/password_reset_step1.html:27
+#: templates/auth/password_reset_step2.html:30
+#: templates/auth/password_reset_step1.html:32
 #: templates/auth/password_reset_step2_success.html:8
-#: templates/auth/signup_step1.html:25 templates/auth/signup_step2.html:32
+#: templates/auth/signup_step1.html:30 templates/auth/signup_step2.html:32
 #: templates/auth/signin.html:25
 msgid "Sign In"
 msgstr "登录"
@@ -250,16 +247,11 @@ msgstr "如果您没有做这个操作，直接忽略此封邮件即可。"
 msgid "Please click the following link to continue:"
 msgstr "请点击这个链接继续："
 
-#: templates/auth/password_reset_step1.html:15
-#: templates/auth/signup_step1.html:15
-msgid "Email"
-msgstr "邮件"
-
-#: templates/auth/password_reset_step1.html:25 templates/auth/signin.html:31
+#: templates/auth/password_reset_step1.html:30 templates/auth/signin.html:31
 msgid "Don't have an account?"
 msgstr "还没有帐户?"
 
-#: templates/auth/password_reset_step1.html:25 templates/auth/signin.html:31
+#: templates/auth/password_reset_step1.html:30 templates/auth/signin.html:31
 msgid "Register now!"
 msgstr "现在注册！"
 
@@ -279,7 +271,7 @@ msgstr "首页"
 msgid "Sign Out & Sign In"
 msgstr "注消&登录"
 
-#: templates/auth/resignin.html:26 templates/auth/signup_step1.html:27
+#: templates/auth/resignin.html:26 templates/auth/signup_step1.html:32
 #: templates/auth/signup_step2.html:34 templates/auth/signin.html:33
 msgid "Forgot your password?"
 msgstr "忘记密码?"
@@ -321,45 +313,3 @@ msgstr "密码重置失败！"
 #: templates/auth/password_reset_step1_failed.html:6
 msgid "Reset Your Password Failed"
 msgstr "重置您的密码失败"
-
-#~ msgid "No template!"
-#~ msgstr "无模板！"
-
-#~ msgid "User"
-#~ msgstr "用户"
-
-#~ msgid "Welcome to use Y web framework!"
-#~ msgstr "欢迎使用 YWeb 网站开发框架！"
-
-#~ msgid "Item 1"
-#~ msgstr "项目1"
-
-#~ msgid "Item 2"
-#~ msgstr "项目2"
-
-#~ msgid "Item 3"
-#~ msgstr "项目3"
-
-#~ msgid "About"
-#~ msgstr "关于"
-
-#~ msgid "My Home"
-#~ msgstr "我的主页"
-
-#~ msgid "Console"
-#~ msgstr "控制台"
-
-#~ msgid "Sign Out"
-#~ msgstr "注消"
-
-#~ msgid "Contact"
-#~ msgstr "联系"
-
-#~ msgid "Page Not Found"
-#~ msgstr "页面不存在"
-
-#~ msgid "Your request is "
-#~ msgstr "您的请求是"
-
-#~ msgid "Select Language"
-#~ msgstr "选择语言"

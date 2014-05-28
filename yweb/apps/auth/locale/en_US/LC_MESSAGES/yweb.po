@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YWeb 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 10:11-0500\n"
+"POT-Creation-Date: 2014-05-28 17:54-0500\n"
 "PO-Revision-Date: 2014-05-27 15:33+0800\n"
 "Last-Translator: Jian Li <lijian.gnu@gmail.com>\n"
 "Language-Team: YLinux <contact@ylinux.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Login"
 msgstr ""
 
-#: views.py:133 templates/auth/signup_step1.html:19
+#: views.py:133 templates/auth/signup_step1.html:24
 #: templates/auth/signup_step2.html:26
 msgid "Sign Up"
 msgstr ""
@@ -45,7 +45,7 @@ msgstr ""
 
 #: views.py:251
 #, python-format
-msgid "Password Reset For %s"
+msgid "[%s] Account Password Reset"
 msgstr ""
 
 #: views.py:285
@@ -73,9 +73,7 @@ msgstr ""
 msgid "Username / Email / UID"
 msgstr ""
 
-#: forms.py:48 forms.py:115 forms.py:130
-#: templates/auth/password_reset_step2.html:15
-#: templates/auth/signup_step2.html:18
+#: forms.py:48 forms.py:115 forms.py:130 templates/auth/signup_step2.html:18
 msgid "Password"
 msgstr ""
 
@@ -115,8 +113,7 @@ msgstr ""
 msgid "Passwords must match"
 msgstr ""
 
-#: forms.py:120 forms.py:134 templates/auth/password_reset_step2.html:18
-#: templates/auth/signup_step2.html:21
+#: forms.py:120 forms.py:134 templates/auth/signup_step2.html:21
 msgid "Password Confirm"
 msgstr ""
 
@@ -191,20 +188,20 @@ msgstr ""
 msgid "Error message: %s"
 msgstr ""
 
-#: templates/auth/password_reset_step2.html:22
-#: templates/auth/password_reset_step1.html:19
+#: templates/auth/password_reset_step2.html:24
+#: templates/auth/password_reset_step1.html:24
 msgid "Submit"
 msgstr ""
 
-#: templates/auth/password_reset_step2.html:28
-#: templates/auth/signup_step1.html:25 templates/auth/signup_step2.html:32
+#: templates/auth/password_reset_step2.html:30
+#: templates/auth/signup_step1.html:30 templates/auth/signup_step2.html:32
 msgid "Have an account?"
 msgstr ""
 
-#: templates/auth/password_reset_step2.html:28
-#: templates/auth/password_reset_step1.html:27
+#: templates/auth/password_reset_step2.html:30
+#: templates/auth/password_reset_step1.html:32
 #: templates/auth/password_reset_step2_success.html:8
-#: templates/auth/signup_step1.html:25 templates/auth/signup_step2.html:32
+#: templates/auth/signup_step1.html:30 templates/auth/signup_step2.html:32
 #: templates/auth/signin.html:25
 msgid "Sign In"
 msgstr ""
@@ -250,16 +247,11 @@ msgstr ""
 msgid "Please click the following link to continue:"
 msgstr ""
 
-#: templates/auth/password_reset_step1.html:15
-#: templates/auth/signup_step1.html:15
-msgid "Email"
-msgstr ""
-
-#: templates/auth/password_reset_step1.html:25 templates/auth/signin.html:31
+#: templates/auth/password_reset_step1.html:30 templates/auth/signin.html:31
 msgid "Don't have an account?"
 msgstr ""
 
-#: templates/auth/password_reset_step1.html:25 templates/auth/signin.html:31
+#: templates/auth/password_reset_step1.html:30 templates/auth/signin.html:31
 msgid "Register now!"
 msgstr ""
 
@@ -279,7 +271,7 @@ msgstr ""
 msgid "Sign Out & Sign In"
 msgstr ""
 
-#: templates/auth/resignin.html:26 templates/auth/signup_step1.html:27
+#: templates/auth/resignin.html:26 templates/auth/signup_step1.html:32
 #: templates/auth/signup_step2.html:34 templates/auth/signin.html:33
 msgid "Forgot your password?"
 msgstr ""
