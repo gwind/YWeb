@@ -1,14 +1,43 @@
 @import "preboot.less";
 @import "pygments.less";
-@import "core.less";
+
+body {
+    color: #2F2F2F;
+/*
+    font-family: Georgia,"Times New Roman",Times,"Songti SC","SimSun",serif;
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 30px;
+*/
+    font-size: 16px;
+}
+
+#site-nav-primary {
+    border-radius: 0px;
+    border: none;
+}
+#site-nav-primary.navbar {
+    margin-bottom: 0px;
+}
+
+.big-center {
+    padding: 150px 0 500px;
+//    color: #FFF;
+//    background-color: @brand-info;
+    text-align: center;
+
+    p {
+        font-size: 20px;
+    }
+}
 
 #footer {
     padding-top: 60px;
     padding-bottom: 10px;
-    border-top: 1px solid @black-10;
+//    border-top: 1px solid @black-10;
     text-align: center;
     //    background-color: #F8F8F8;
-    background-color: #31302B;
+    background-color: #31302B; //#313640
     font: 13px/18px 'Courier New',Courier,monospace;
     overflow: hidden;
     position: relative;
@@ -53,6 +82,13 @@
 }
 
 #home-welcome {
+    background: radial-gradient(ellipse at center center , #A4D0D3 0px, #257FA1 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
     color: #FFFFFF;
-    padding: 150px 0 500px;
+    padding: 180px 0 500px;
+    text-align: center;
+
+    p {
+        padding: 15px;
+    }
 }
+

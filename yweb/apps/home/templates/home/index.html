@@ -2,13 +2,17 @@
 
 <%block name="subcontent">
 
-<div class="full-container" id="home-welcome">
+<div id="home-welcome">
 
   <div class="container">
 
-    <h1>欢迎来到晓风学习</h1>
+    <h1>${ _("Y Web Framework") }</h1>
+    <p><strong>${ _("No Best, Just Better!") }</strong></p>
 
-    <p>让我们一起使用计算机发现有趣的事情！</p>
+    <p><a href="https://github.com/jianlee/YWeb" target="_blank"><img alt="YWeb on Github" src="${ static_url('img/socialGitHub.png') }"/></a></p>
+
+    <p><small>${ _("Supported by ") }</small><br/>
+      <a class="btn btn-default" href="http://www.ylinux.org" target="_blank">YLinux.org</a></p>
 
   </div>
 </div>
