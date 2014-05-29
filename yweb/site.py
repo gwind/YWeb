@@ -23,7 +23,7 @@ from yweb.conf import settings
 from yweb.orm import get_db_session
 from yweb.template import get_template_lookup
 from yweb.utils.findapps import get_site_handlers, \
-    get_static_urls, get_ui_modules
+    get_static_urls, get_console_urls, get_ui_modules
 import yweb.utils
 import yweb.utils.db
 
@@ -48,11 +48,12 @@ class Application(tornado.web.Application):
         tornado_settings = {
             'cookie_secret': 'MTyNwNDc3OC40MjaexynagfeA3NjgKCg==',
             'xsrf_cookies': True,
-            'login_url': '/user/signin',
+            'login_url': '/auth/signin',
             'gzip': True,
             'debug': True,
             'static_path': settings.STATIC_PATH,
             'app_static_urls': get_static_urls(),
+            'app_console_urls': get_console_urls(),
             # 为了避免与 tornado application 的 ui_modules 冲突，
             # 此处命名为 y_ui_modules
             'y_ui_modules': ui_modules,

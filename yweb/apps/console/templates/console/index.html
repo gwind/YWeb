@@ -1,0 +1,10 @@
+<%inherit file="console_base.html"/>
+
+<%block name="subcontent">
+
+<div class="big-center">
+  <% import random; hi=random.choice(['img/hi.gif', 'img/hi-logo.png', 'img/Hello_logo_sm.gif', 'img/nihao.gif', 'img/nihao2.png']) %>
+  <div><img src="${ static_url(hi) }" alt="${ _("Hi") }" /></div>
+</div>
+
+</%block>

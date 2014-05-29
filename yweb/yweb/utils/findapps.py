@@ -64,6 +64,8 @@ def get_site_handlers():
                 handlers.extend( app_urls.admin_handlers )
             if hasattr(app_urls, 'api_handlers'):
                 handlers.extend( app_urls.api_handlers )
+            if hasattr(app_urls, 'console_handlers'):
+                handlers.extend( app_urls.console_handlers )
 
         # 是否启动 static 服务。生产环境中，通常由 nginx 等提供该服务
         if settings.ENABLE_STATIC_SERVE:
@@ -140,6 +142,8 @@ class App(object):
             'STATIC_PATH': 'static',
             'TEMPLATE_PATH': 'templates',
             'LOCALE_PATH': 'locale',
+            'DEFAULT_CONSOLE_NAME': self.basename.title(),
+            'DEFAULT_CONSOLE_URL': '/console/{0}'.format(self.basename),
         }
 
         self.init_attrs()
@@ -156,6 +160,7 @@ class App(object):
                     continue
                 self.__app_settings[attr] = getattr(app_settings, attr)
 
+        # Unix 路径去掉前后缀 '/'
         for attr in self.__app_settings:
             if attr in ['STATIC_PATH', 'TEMPLATE_PATH', 'LOCALE_PATH']:
                 v = self.__app_settings[attr]
@@ -182,6 +187,21 @@ def get_static_urls():
 
     return static_urls
 
+def get_console_urls():
+    '''发现所有的己安装 APP 的 console URL
+
+    '''
+
+    console_urls = {}
+
+    for app_name in settings.INSTALLED_APPS:
+        consoles = get_app_submodule( app_name, 'consoles' )
+        if consoles:
+            app = App(app_name)
+            console_urls[app.basename] = (
+                app.DEFAULT_CONSOLE_NAME, app.DEFAULT_CONSOLE_URL )
+
+    return console_urls
 
 def get_ui_modules():
     '''发现所有的己安装 APP 的 ui modules
