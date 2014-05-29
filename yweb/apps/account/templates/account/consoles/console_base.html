@@ -1,0 +1,33 @@
+<%inherit file="/console/console_base.html"/>
+
+<%block name="exthead">
+    <link rel="stylesheet" href="${ static_url('css/console.css', 'account') }">
+</%block>
+
+<%block name="content">
+<div class="container console-container">
+
+  <div class="row">
+    <div class="col-md-3">
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="user-avatar text-center">
+            <img class="user-logo-img" src="${ current_user.avatar_lg_url }" alt="Avatar" />
+            <p class="username">${ current_user.username }</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="list-group">
+        <a href="${ reverse_url('console:account') }" class="list-group-item active">${ _("My Account") }</a>
+        <a href="${ reverse_url('console:account:avatar:edit') }" class="list-group-item">${ _("Edit My Avatar") }</a>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      <%block name="subcontent"></%block>
+    </div>
+  </div>
+</div>
+</%block>

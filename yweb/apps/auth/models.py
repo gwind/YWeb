@@ -20,6 +20,8 @@ from yweb.conf import settings
 from .utils import enc_login_passwd, check_login_passwd, \
     encode_data, decode_data
 
+from . import settings as auth_settings
+
 
 user_groups = Table('user_groups', ORMBase.metadata,
     Column('id', Integer, Sequence('user_groups_id_seq'), primary_key=True),
@@ -119,6 +121,90 @@ class User(ORMBase):
         """
 
         return check_login_passwd(raw_password, self.password)
+
+    @property
+    def storage_path(self):
+
+        '''获取用户个人存储路径
+
+        '''
+
+        if hasattr(auth_settings, 'STATIC_PATH'):
+            static_path = auth_settings.STATIC_PATH
+        else:
+            static_path = 'static'
+
+        # 用户个人存储路径
+        storage_path = os.path.join(
+            settings.PROJECT_ROOT, 'apps/auth', static_path,
+            'data', str(self.uid))
+
+        if not os.path.exists( storage_path ):
+            try:
+                os.makedirs( storage_path )
+            except Exception, emsg:
+                logging.error('Create storage path (%s) failed: %s' % (
+                    storage_path, emsg))
+                return None
+
+        return storage_path
+
+    @property
+    def avatar_path(self):
+        avatar_path = os.path.join(self.storage_path, 'avatar')
+        if not os.path.exists( avatar_path ):
+            try:
+                os.makedirs( avatar_path )
+            except Exception, emsg:
+                logging.error('Create avatar path (%s) failed: %s' % (
+                    avatar, emsg))
+                return None
+
+        return avatar_path
+
+    @property
+    def avatar_orig_path(self):
+        return os.path.join( self.avatar_path,
+                             '{0}-orig.png'.format(self.uid) )
+
+    @property
+    def avatar_lg_path(self):
+        return os.path.join( self.avatar_path,
+                             '{0}-lg.png'.format(self.uid) )
+    @property
+    def avatar_xs_path(self):
+        return os.path.join( self.avatar_path,
+                             '{0}-xs.png'.format(self.uid) )
+
+    @property
+    def avatar_sm_path(self):
+        return os.path.join( self.avatar_path,
+                             '{0}-sm.png'.format(self.uid) )
+
+    @property
+    def avatar_md_path(self):
+        return os.path.join( self.avatar_path,
+                             '{0}-md.png'.format(self.uid) )
+
+    @property
+    def avatar_url_prefix(self):
+        prefix = os.path.join('/auth/static', 'data',
+                              str(self.uid), 'avatar')
+        return prefix
+
+    @property
+    def avatar_default_url(self):
+        return '/static/img/icon-user-default.png'
+
+    @property
+    def avatar_lg_url(self):
+        if os.path.exists(self.avatar_lg_path):
+            url = os.path.join( self.avatar_url_prefix,
+                                '{0}-lg.png'.format(self.uid) )
+        else:
+            url = self.avatar_default_url
+
+        return url
 
 
 class Permission(ORMBase):

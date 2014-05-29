@@ -1,7 +1,4 @@
-# coding: utf-8
-
-import re
-import codecs
+# coding: UTF-8
 
 from yweb.forms import Form
 from wtforms import BooleanField, StringField, \
