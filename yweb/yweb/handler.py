@@ -134,7 +134,7 @@ class RequestHandler(tornado.web.RequestHandler):
         if user_locale:
             return user_locale
         else:
-            return 'en_US'
+            return 'zh_CN'
 
     @property
     def db(self):
