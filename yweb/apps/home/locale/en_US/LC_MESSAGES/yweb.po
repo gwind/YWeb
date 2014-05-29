@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-29 10:32-0500\n"
-"PO-Revision-Date: 2014-05-28 09:16-0500\n"
+"PO-Revision-Date: 2014-05-29 10:27-0500\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en_US\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: templates/i18n/modules/setlang.html:3
-msgid "Select Language"
-msgstr "Select Language"
+#: templates/home/index.html:10
+msgid "Y Web Framework"
+msgstr "Y Web Framework"
+
+#: templates/home/index.html:11
+msgid "No Best, Just Better!"
+msgstr "No Best, Just Better!"

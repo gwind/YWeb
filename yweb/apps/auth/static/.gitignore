@@ -1,0 +1,4 @@
+*.db
+*.mo
+settings.py*
+data*

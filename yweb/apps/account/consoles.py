@@ -12,6 +12,7 @@ from yweb.conf import settings
 from yweb.mail import sendmail
 from yweb.utils.translation import ugettext_lazy as _
 from yweb.utils.filesize import size as human_size
+from yweb.utils.ydatetime import ftime
 
 from .forms import AvatarForm
 from . import settings as opts
@@ -22,11 +23,9 @@ class Index(RequestHandler):
     @authenticated
     def get(self):
 
-        user = self.current_user
-        now = datetime.datetime.now()
+        self.data = {'ftime': ftime}
 
-        d = {'user': user, 'now': now}
-        self.render('account/consoles/index.html', **d)
+        self.render('account/consoles/index.html')
 
 
 class AvatarEdit(RequestHandler):

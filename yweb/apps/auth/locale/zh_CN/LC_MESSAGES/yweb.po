@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YWeb 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 17:54-0500\n"
+"POT-Creation-Date: 2014-05-29 10:32-0500\n"
 "PO-Revision-Date: 2014-05-27 17:35+0800\n"
 "Last-Translator: Jian Li <lijian.gnu@gmail.com>\n"
 "Language-Team: YLinux <contact@ylinux.org>\n"
@@ -57,118 +57,118 @@ msgstr "密钥错误"
 msgid "No such email: %s"
 msgstr "无此邮件地址：%s"
 
-#: forms.py:29 forms.py:186
+#: forms.py:26 forms.py:183
 msgid "Password must be greater than 6 characters."
 msgstr "密码长度不能小于6个字符"
 
-#: forms.py:32 forms.py:189
+#: forms.py:29 forms.py:186
 msgid "Password must be less than 64 characters."
 msgstr "密码长度不能大于64个字符"
 
-#: forms.py:38 forms.py:195
+#: forms.py:35 forms.py:192
 msgid "Password is too simple"
 msgstr "密码太简单"
 
-#: forms.py:47
+#: forms.py:44
 msgid "Username / Email / UID"
 msgstr "用户名/邮件/UID"
 
-#: forms.py:48 forms.py:115 forms.py:130 templates/auth/signup_step2.html:18
+#: forms.py:45 forms.py:112 forms.py:127 templates/auth/signup_step2.html:18
 msgid "Password"
 msgstr "密码"
 
-#: forms.py:53
+#: forms.py:50
 msgid "Username is empty."
 msgstr "用户名是空的"
 
-#: forms.py:57
+#: forms.py:54
 msgid "The user does not exist."
 msgstr "此用户不存在"
 
-#: forms.py:60
+#: forms.py:57
 msgid "You have been locked."
 msgstr "您的帐号被锁定"
 
-#: forms.py:63
+#: forms.py:60
 msgid "Password is incorrect."
 msgstr "密码错误"
 
-#: forms.py:66
+#: forms.py:63
 msgid "Your are inactive now."
 msgstr "您的帐号还未激活"
 
-#: forms.py:72 forms.py:81 forms.py:96
+#: forms.py:69 forms.py:78 forms.py:93
 msgid "Email Address"
 msgstr "邮件地址"
 
-#: forms.py:87
+#: forms.py:84
 msgid "Email address is exist."
 msgstr "邮件地址已经存在"
 
-#: forms.py:104
+#: forms.py:101
 msgid "Email address is not exist."
 msgstr "邮件地址不存在"
 
-#: forms.py:118 forms.py:132
+#: forms.py:115 forms.py:129
 msgid "Passwords must match"
 msgstr "密码不匹配"
 
-#: forms.py:120 forms.py:134 templates/auth/signup_step2.html:21
+#: forms.py:117 forms.py:131 templates/auth/signup_step2.html:21
 msgid "Password Confirm"
 msgstr "密码确认"
 
-#: forms.py:129 templates/auth/signup_step2.html:15
+#: forms.py:126 templates/auth/signup_step2.html:15
 msgid "Username"
 msgstr "用户名"
 
-#: forms.py:135
+#: forms.py:132
 msgid "I accept the TOS"
 msgstr "我接受注册条款"
 
-#: forms.py:146
+#: forms.py:143
 msgid "Username can not be a number."
 msgstr "用户名不能是数字"
 
-#: forms.py:150
+#: forms.py:147
 msgid "Username less than 2 characters."
 msgstr "用户名长度不能小于2个字符"
 
-#: forms.py:154
+#: forms.py:151
 msgid "Username greater than 16 characters."
 msgstr "用户名长度不能大于16个字符"
 
-#: forms.py:163
+#: forms.py:160
 msgid "English username less than 4 characters."
 msgstr "英文用户名长度不能小于4个字符"
 
-#: forms.py:167
+#: forms.py:164
 msgid "Chinese username greater than 6 characters."
 msgstr "中文用户名长度不能大于6个字符"
 
-#: forms.py:172
+#: forms.py:169
 msgid "Username occupied."
 msgstr "用户名己被占用"
 
-#: forms.py:179
+#: forms.py:176
 #, python-brace-format
 msgid "Illegal Chars: {0}"
 msgstr "非法字符 ：{0}"
 
-#: models.py:54
+#: models.py:56
 #, python-format
 msgid "Group <%s>"
 msgstr "组<%s>"
 
-#: models.py:141
+#: models.py:227
 #, python-format
 msgid "Permission <%s>"
 msgstr "权限<%s>"
 
-#: models.py:365
+#: models.py:451
 msgid "Username already exists"
 msgstr "用户名己存在"
 
-#: models.py:370
+#: models.py:456
 msgid "E-mail address already exists"
 msgstr "邮件地址己存在"
 

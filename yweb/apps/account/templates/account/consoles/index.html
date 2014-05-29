@@ -6,27 +6,27 @@
   <div class="panel-body">
     <dl class="dl-horizontal">
       <dt>${ _("UID") }</dt>
-      <dd>${ user.uid }</dd>
+      <dd>${ current_user.uid }</dd>
       <dt>${ _("E-mail") }</dt>
-      <dd>${ user.email }</dd>
+      <dd>${ current_user.email }</dd>
       <dt>${ _("Username") }</dt>
-      <dd>${ user.username }</dd>
+      <dd>${ current_user.username }</dd>
       <dt>${ _("Gender") }</dt>
-      <dd>${ user.gender }</dd>
+      <dd>${ current_user.gender }</dd>
       <dt>${ _("Nickname") }</dt>
-      <dd>${ user.nickname }</dd>
+      <dd>${ current_user.nickname }</dd>
       <dt>${ _("First Name") }</dt>
-      <dd>${ user.first_name }</dd>
+      <dd>${ current_user.first_name }</dd>
       <dt>${ _("Last Name") }</dt>
-      <dd>${ user.last_name }</dd>
+      <dd>${ current_user.last_name }</dd>
       <dt>${ _("Language") }</dt>
-      <dd>${ user.language }</dd>
+      <dd>${ current_user.language }</dd>
       <dt>${ _("Last Active") }</dt>
-      <dd>${ user.last_active }</dd>
+      <dd>${ ftime(current_user.last_active) }</dd>
       <dt>${ _("Last Login") }</dt>
-      <dd>${ user.last_login }</dd>
+      <dd>${ ftime(current_user.last_login) }</dd>
       <dt>${ _("Date Joined") }</dt>
-      <dd>${ user.date_joined }</dd>
+      <dd>${ ftime(current_user.date_joined) }</dd>
     </dl>
   </div>
 </div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: YWeb 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-28 17:54-0500\n"
+"POT-Creation-Date: 2014-05-29 10:32-0500\n"
 "PO-Revision-Date: 2014-05-27 15:33+0800\n"
 "Last-Translator: Jian Li <lijian.gnu@gmail.com>\n"
 "Language-Team: YLinux <contact@ylinux.org>\n"
@@ -57,118 +57,118 @@ msgstr ""
 msgid "No such email: %s"
 msgstr ""
 
-#: forms.py:29 forms.py:186
+#: forms.py:26 forms.py:183
 msgid "Password must be greater than 6 characters."
 msgstr ""
 
-#: forms.py:32 forms.py:189
+#: forms.py:29 forms.py:186
 msgid "Password must be less than 64 characters."
 msgstr ""
 
-#: forms.py:38 forms.py:195
+#: forms.py:35 forms.py:192
 msgid "Password is too simple"
 msgstr ""
 
-#: forms.py:47
+#: forms.py:44
 msgid "Username / Email / UID"
 msgstr ""
 
-#: forms.py:48 forms.py:115 forms.py:130 templates/auth/signup_step2.html:18
+#: forms.py:45 forms.py:112 forms.py:127 templates/auth/signup_step2.html:18
 msgid "Password"
 msgstr ""
 
-#: forms.py:53
+#: forms.py:50
 msgid "Username is empty."
 msgstr ""
 
-#: forms.py:57
+#: forms.py:54
 msgid "The user does not exist."
 msgstr ""
 
-#: forms.py:60
+#: forms.py:57
 msgid "You have been locked."
 msgstr ""
 
-#: forms.py:63
+#: forms.py:60
 msgid "Password is incorrect."
 msgstr ""
 
-#: forms.py:66
+#: forms.py:63
 msgid "Your are inactive now."
 msgstr ""
 
-#: forms.py:72 forms.py:81 forms.py:96
+#: forms.py:69 forms.py:78 forms.py:93
 msgid "Email Address"
 msgstr ""
 
-#: forms.py:87
+#: forms.py:84
 msgid "Email address is exist."
 msgstr ""
 
-#: forms.py:104
+#: forms.py:101
 msgid "Email address is not exist."
 msgstr ""
 
-#: forms.py:118 forms.py:132
+#: forms.py:115 forms.py:129
 msgid "Passwords must match"
 msgstr ""
 
-#: forms.py:120 forms.py:134 templates/auth/signup_step2.html:21
+#: forms.py:117 forms.py:131 templates/auth/signup_step2.html:21
 msgid "Password Confirm"
 msgstr ""
 
-#: forms.py:129 templates/auth/signup_step2.html:15
+#: forms.py:126 templates/auth/signup_step2.html:15
 msgid "Username"
 msgstr ""
 
-#: forms.py:135
+#: forms.py:132
 msgid "I accept the TOS"
 msgstr ""
 
-#: forms.py:146
+#: forms.py:143
 msgid "Username can not be a number."
 msgstr ""
 
-#: forms.py:150
+#: forms.py:147
 msgid "Username less than 2 characters."
 msgstr ""
 
-#: forms.py:154
+#: forms.py:151
 msgid "Username greater than 16 characters."
 msgstr ""
 
-#: forms.py:163
+#: forms.py:160
 msgid "English username less than 4 characters."
 msgstr ""
 
-#: forms.py:167
+#: forms.py:164
 msgid "Chinese username greater than 6 characters."
 msgstr ""
 
-#: forms.py:172
+#: forms.py:169
 msgid "Username occupied."
 msgstr ""
 
-#: forms.py:179
+#: forms.py:176
 #, python-brace-format
 msgid "Illegal Chars: {0}"
 msgstr ""
 
-#: models.py:54
+#: models.py:56
 #, python-format
 msgid "Group <%s>"
 msgstr ""
 
-#: models.py:141
+#: models.py:227
 #, python-format
 msgid "Permission <%s>"
 msgstr ""
 
-#: models.py:365
+#: models.py:451
 msgid "Username already exists"
 msgstr ""
 
-#: models.py:370
+#: models.py:456
 msgid "E-mail address already exists"
 msgstr ""
 
