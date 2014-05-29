@@ -2,17 +2,17 @@
 
 <%block name="subcontent">
 
-<div id="home-welcome">
+##id="home-welcome" 
+<div id="home-welcome" class="jumbotron">
 
   <div class="container">
 
     <h1>${ _("Y Web Framework") }</h1>
-    <p><strong>${ _("No Best, Just Better!") }</strong></p>
+    <p><strong>${ _("No Best, Just Better!") }</strong>
+      <a href="https://github.com/jianlee/YWeb" target="_blank"><img alt="YWeb on Github" src="${ static_url('img/socialGitHub.png') }"/></a>
+    </p>
 
-    <p><a href="https://github.com/jianlee/YWeb" target="_blank"><img alt="YWeb on Github" src="${ static_url('img/socialGitHub.png') }"/></a></p>
-
-    <p><small>${ _("Supported by ") }</small><br/>
-      <a class="btn btn-default" href="http://www.ylinux.org" target="_blank">YLinux.org</a></p>
+    <p><a class="btn btn-lg btn-link supported-link" href="http://www.ylinux.org" target="_blank"><img src="${ static_url('img/logo.png') }" alt="YLinux.org" /></a></p>
 
   </div>
 </div>
