@@ -66,7 +66,7 @@ class User(ORMBase):
     用户的ID给用户有几点不好：
     
     1. 网站内部信息过多暴露给他人
-    2. 根据《影响力》，一开始ID的低，容易让跟随着却步
+    2. 根据《影响力》，一开始ID的低，容易让跟随者却步
 
     '''
 
@@ -81,7 +81,7 @@ class User(ORMBase):
     first_name = Column( String(30) )
     last_name  = Column( String(30) )
     nickname   = Column( String(30) )
-    gender     = Column( Boolean )
+    gender     = Column( Integer )
 
     is_active    = Column( Boolean, default = True )
     is_staff     = Column( Boolean, default = False )
@@ -122,6 +122,14 @@ class User(ORMBase):
         """
 
         return check_login_passwd(raw_password, self.password)
+
+    @property
+    def gender_display(self):
+        for code, name in settings.GENDER_CHOICES:
+            if code == self.gender:
+                return name
+
+        return _('Unknown')
 
     @property
     def storage_path(self):

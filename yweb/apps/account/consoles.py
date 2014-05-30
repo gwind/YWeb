@@ -18,7 +18,7 @@ from apps.auth.utils import enc_login_passwd
 from apps.auth.models import User, AuthKey, create_authkey
 
 from .forms import AvatarChangeForm, PasswordChangeForm, \
-    EmailChangeStep1Form
+    EmailChangeStep1Form, BasicInfoEditForm
 from . import settings as opts
 
 
@@ -38,7 +38,7 @@ class AvatarChange(RequestHandler):
     def prepare(self):
 
         self.title = _('Change My Avatar')
-        self.template_path = 'account/consoles/avatar_change.html'
+        self.template_path = 'account/consoles/basic_edit.html'
         self.data = { 'form': AvatarChangeForm(self) }
 
     def post(self):
@@ -104,8 +104,9 @@ class PasswordChange(RequestHandler):
     @authenticated
     def prepare(self):
         self.title = _('Change My Password')
-        self.template_path = 'account/consoles/password_change.html'
-        self.data = {'form': PasswordChangeForm(self)}
+        self.template_path = 'account/consoles/basic_edit.html'
+        self.data = {'form': PasswordChangeForm(self),
+                     'authcode_needed': True}
 
     def post(self):
 
@@ -133,8 +134,9 @@ class EmailChangeStep1(RequestHandler):
     @authenticated
     def prepare(self):
         self.title = _('Change My E-mail')
-        self.template_path = 'account/consoles/email_change_step1.html'
-        self.data = {'form': EmailChangeStep1Form(self)}
+        self.template_path = 'account/consoles/basic_edit.html'
+        self.data = {'form': EmailChangeStep1Form(self),
+                     'authcode_needed': True}
 
     def post(self):
 
@@ -158,7 +160,7 @@ class EmailChangeStep1(RequestHandler):
                 settings=settings)
             emsg = sendmail(adr_to=email, subject=subject, text=text)
             if emsg:
-                self.data['message'] = emsg
+                self.data['message'] = _('Send mail failed, please try again later.')
                 return self.render('account/consoles/failed.html')
             else:
                 self.data['message'] = _('A email have send to %(email)s, please check you inbox.') % {'email': email }
@@ -227,3 +229,63 @@ class EmailChangeStep2(RequestHandler):
 
         self.db.commit()
         return True, None
+
+
+class BasicInfoEdit(RequestHandler):
+
+    '''用户基本信息编辑
+
+    '''
+
+    @authenticated
+    def prepare(self):
+
+        self.title = _('Edit My Basic Information')
+        self.template_path = 'account/consoles/basic_edit.html'
+        from tornado.locale import LOCALE_NAMES
+        self.L = []
+        for codename in settings.SUPPORTED_LANGUAGES:
+            if codename in LOCALE_NAMES:
+                self.L.append( (
+                    codename,
+                    LOCALE_NAMES.get(codename).get('name') ) )
+
+        self.data = {'form': BasicInfoEditForm(self)}
+
+    def get(self):
+
+        form = self.data['form']
+        form.language.choices = self.L
+        form.language.default = self.current_user.language
+        form.gender.choices = settings.GENDER_CHOICES
+        form.gender.default = self.current_user.gender
+        form.process()
+
+        form.nickname.data = self.current_user.nickname
+        form.first_name.data = self.current_user.first_name
+        form.last_name.data = self.current_user.last_name
+
+        self.render()
+
+
+    def post(self):
+        form = self.data['form']
+        form.language.choices = self.L
+        form.gender.data = int(form.gender.data)
+        form.gender.choices = settings.GENDER_CHOICES
+
+
+        if form.validate():
+            user = self.current_user
+            user.nickname   = form.nickname.data
+            user.first_name = form.first_name.data
+            user.last_name  = form.last_name.data
+            user.language   = form.language.data
+            user.gender     = form.gender.data
+            self.db.commit()
+
+            self.data['message'] = _('Save basic information success !')
+            return self.render('account/consoles/success.html')
+
+        self.render()
+

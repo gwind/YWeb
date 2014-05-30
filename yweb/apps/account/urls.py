@@ -22,6 +22,9 @@ console_handlers = [
 
     url( r'/console/account/email/change/step2', consoles.EmailChangeStep2,
          name='console:account:email:change:step2' ),
+
+    url( r'/console/account/basicinfo/edit', consoles.BasicInfoEdit,
+         name='console:account:basicinfo:edit' ),
     
 ]
 

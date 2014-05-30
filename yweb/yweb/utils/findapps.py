@@ -199,7 +199,7 @@ def get_console_urls():
         if consoles:
             app = App(app_name)
             console_urls[app.basename] = (
-                app.DEFAULT_CONSOLE_NAME, app.DEFAULT_CONSOLE_URL )
+                app.basename, app.DEFAULT_CONSOLE_NAME, app.DEFAULT_CONSOLE_URL )
 
     return console_urls
 

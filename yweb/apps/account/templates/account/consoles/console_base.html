@@ -10,16 +10,22 @@
   <div class="row">
     <div class="col-md-3">
 
-      <div class="user-avatar text-center">
-        <img class="user-logo-img" src="${ current_user.avatar_lg_url }" alt="Avatar" />
-        <p class="username">${ current_user.username }</p>
-      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">${ _("My Account") }</div>
+        <div class="panel-body">
+          <div class="user-avatar text-center">
+            <a href="${ reverse_url('console:account') }"><img class="user-logo-img" src="${ current_user.avatar_lg_url }" alt="Avatar" /></a>
+            <p class="username">${ current_user.nickname }</p>
+          </div>
+        </div>
 
-      <div class="list-group">
-        <a href="${ reverse_url('console:account') }" class="list-group-item active">${ _("My Account") }</a>
-        <a href="${ reverse_url('console:account:password:change') }" class="list-group-item">${ _("Change My Password") }</a>
-        <a href="${ reverse_url('console:account:avatar:change') }" class="list-group-item">${ _("Change My Avatar") }</a>
-        <a href="${ reverse_url('console:account:email:change') }" class="list-group-item">${ _("Change My E-mail") }</a>
+        <div class="list-group">
+          <a href="${ reverse_url('console:account') }" class="list-group-item">${ _("Basic Information") }</a>
+          <a href="${ reverse_url('console:account:basicinfo:edit') }" class="list-group-item">${ _("Basic Information Edit") }</a>
+          <a href="${ reverse_url('console:account:password:change') }" class="list-group-item">${ _("Change My Password") }</a>
+          <a href="${ reverse_url('console:account:avatar:change') }" class="list-group-item">${ _("Change My Avatar") }</a>
+          <a href="${ reverse_url('console:account:email:change') }" class="list-group-item">${ _("Change My E-mail") }</a>
+        </div>
       </div>
     </div>
 
@@ -28,4 +34,19 @@
     </div>
   </div>
 </div>
+
+<script>
+// active main menu
+$('#console-entry-account').addClass('active');
+
+var url = window.location;
+// Will only work if string in href matches with location
+$('.list-group a[href="'+ url +'"]').addClass('active');
+
+// Will also work for relative and absolute hrefs
+$('.list-group a').filter(function() {
+    return this.href == url;
+}).addClass('active');
+</script>
+
 </%block>

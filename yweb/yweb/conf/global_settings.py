@@ -658,3 +658,10 @@ SITE_TRANSLATION_FILES = (
 
 PACKAGE_NAME = 'YWEB'
 PACKAGE_VERSION = '1.0'
+
+from yweb.utils.translation import ugettext_lazy as _
+GENDER_CHOICES = (
+    (1, _('Male')),
+    (2, _('Female')),
+    (0, _('Secret'))
+)

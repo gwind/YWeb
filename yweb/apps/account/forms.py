@@ -54,3 +54,15 @@ class EmailChangeStep1Form(Form):
         if user and user.email != current_email:
             raise ValidationError(_('Email address is exist.'))
 
+
+class BasicInfoEditForm(Form):
+
+    nickname = StringField( _('Nickname'), [
+        validators.Length(min=1, max=64) ] )
+    first_name = StringField( _('First Name'), [
+        validators.Length(max=32) ] )
+    last_name = StringField( _('Last Name'), [
+        validators.Length(max=32) ] )
+    gender = SelectField( _('Gender') )
+    language = SelectField( _('Language') )
+

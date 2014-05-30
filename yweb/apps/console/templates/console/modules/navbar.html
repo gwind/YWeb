@@ -5,8 +5,8 @@
     </div>
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
-        % for console_name, console_url in console_urls.values():
-        <li id="console-entry-${ console_name.lower() }"><a href="${ console_url }"><i class="fa fa-circle-thin fa-lg"></i> ${ console_name }</a></li>
+        % for appname, console_name, console_url in console_urls.values():
+        <li id="console-entry-${ appname.lower() }"><a href="${ console_url }"><i class="fa fa-circle-thin fa-lg"></i> ${ console_name }</a></li>
         % endfor
       </ul>
       <ul class="nav navbar-nav navbar-right">

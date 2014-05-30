@@ -95,6 +95,9 @@ def sendmail(adr_to, subject, text, mime_type='html'):
         emsg = e
     finally:
         if smtp:
-            smtp.quit()
+            try:
+                smtp.quit()
+            except Exception, e:
+                return e
 
     return emsg
