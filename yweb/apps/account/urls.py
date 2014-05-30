@@ -2,6 +2,7 @@
 
 from tornado.web import url
 from . import consoles
+from . import admins
 
 console_handlers = [
 
@@ -28,3 +29,18 @@ console_handlers = [
     
 ]
 
+admin_handlers = [
+
+    url( r'/admin/account', admins.Index,
+         name='admin:account' ),
+
+    url( r'/admin/account/list', admins.AccountList,
+         name='admin:account:list' ),
+
+    url( r'/admin/account/user/([0-9]+)', admins.UserView,
+         name='admin:account:user:view' ),
+
+    url( r'/admin/account/user/([0-9]+)/basic/edit', admins.UserBasicEdit,
+         name='admin:account:user:basic:edit' ),
+
+]

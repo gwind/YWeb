@@ -66,3 +66,16 @@ class BasicInfoEditForm(Form):
     gender = SelectField( _('Gender') )
     language = SelectField( _('Language') )
 
+
+class AdminUserBasicEditForm(BasicInfoEditForm):
+
+    email = StringField(_('Email Address'), [
+        validators.Length(min=6, max=35), validators.Email()])
+
+    avatar = FileField( _('My Avatar') )
+
+    password = PasswordField( _('New Password'), [
+        validators.EqualTo('confirm', message=_('Passwords must match'))
+    ], default='' )
+
+    confirm = PasswordField( _('Confirm New Password'), default='' )

@@ -17,6 +17,7 @@ from yweb.orm import ORMBase
 from yweb.utils import file_md5
 from yweb.utils.random_ import random_ascii
 from yweb.conf import settings
+from yweb.utils.translation import ugettext_lazy as _
 
 from .utils import enc_login_passwd, check_login_passwd, \
     encode_data, decode_data

@@ -665,3 +665,6 @@ GENDER_CHOICES = (
     (2, _('Female')),
     (0, _('Secret'))
 )
+
+DEFAULT_PAGE_SIZE = 12
+

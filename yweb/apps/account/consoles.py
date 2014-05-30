@@ -1,7 +1,5 @@
 # coding: utf-8
 
-import tempfile
-import Image
 import datetime
 
 from sqlalchemy import and_, desc
@@ -19,7 +17,7 @@ from apps.auth.models import User, AuthKey, create_authkey
 
 from .forms import AvatarChangeForm, PasswordChangeForm, \
     EmailChangeStep1Form, BasicInfoEditForm
-from . import settings as opts
+from .utils import save_avatar
 
 
 class Index(RequestHandler):
@@ -45,7 +43,8 @@ class AvatarChange(RequestHandler):
         form = self.data['form']
 
         if self.request.files and form.validate():
-            ret, emsg = self.save_avatar()
+            ret, emsg = save_avatar(self.request.files['avatar'],
+                                    self.current_user)
             if ret:
                 self.data['message'] = _('Change Avatar Success !')
                 return self.render('account/consoles/success.html')
@@ -55,48 +54,6 @@ class AvatarChange(RequestHandler):
 
         self.render()
 
-    def save_avatar(self):
-
-        homedir = self.current_user.storage_path
-        if not homedir:
-            return False, _('User storage path is unavailable.')
-
-        for f in self.request.files['avatar']:
-
-            if len(f['body']) > opts.AVATAR_MAXSIZE:
-                return False, _('Picture can not be greater than %s') % (
-                    human_size(opts.AVATAR_MAXSIZE))
-
-            tf = tempfile.NamedTemporaryFile()
-            tf.write(f['body'])
-            tf.seek(0)
-
-            try:
-                img = Image.open( tf.name )
-            except Exception, emsg:
-                return False, _(
-                    'Process %(filename)s failed, ' + \
-                    'make sure that you provide the ' + \
-                    'correct image format: %(emsg)s') % {
-                        'filename': f.get('filename'), 'emsg': emsg }
-
-            try:
-                U = self.current_user
-                img.save(U.avatar_orig_path)
-                for thumsize, path in  [
-                        (opts.AVATAR_LG_SIZE, U.avatar_lg_path),
-                        (opts.AVATAR_MD_SIZE, U.avatar_md_path),
-                        (opts.AVATAR_SM_SIZE, U.avatar_sm_path),
-                        (opts.AVATAR_XS_SIZE, U.avatar_xs_path),
-                ]:
-                    img.save(path)
-                    img.thumbnail(thumsize, resample=1)
-                tf.close()
-
-            except Exception, emsg:
-                return False, _('Save failed: %(emsg)s') % emsg
-
-            return True, ''
 
 
 class PasswordChange(RequestHandler):

@@ -1,7 +1,7 @@
 <header id="site-nav-primary" class="navbar navbar-inverse" role="banner">
   <div class="container">
     <div class="navbar-header">
-      <a href="${ reverse_url('console') }" class="navbar-brand"><i class="fa fa-cogs fa-lg"></i> ${ _("Console") }</a>
+      <a href="${ reverse_url('console') }" class="navbar-brand"><i class="fa fa-cog fa-lg"></i> ${ _("My Console") }</a>
     </div>
     <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
@@ -14,8 +14,10 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> ${ current_user.nickname } <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#"><i class="fa fa-user"></i> ${ _("My Account") }</a></li>
             <li><a href="/user/${ current_user.uid }"><i class="fa fa-home"></i> ${ _("My Home") }</a></li>
+            % if current_user.is_superuser:
+            <li><a href="${ reverse_url('admin') }"><i class="fa fa-wrench"></i> ${ _("Admin Console") }</a></li>
+            % endif
             <li class="divider"></li>
             <li><a href="${ reverse_url('auth:signout') }"><i class="fa fa-sign-out"></i> ${ _("Sign Out") }</a></li>
           </ul>

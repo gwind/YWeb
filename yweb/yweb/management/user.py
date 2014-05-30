@@ -19,7 +19,7 @@ def adduser(username, password, email):
     if user:
         print 'Create user "{0}" success.'.format(username)
     else:
-        print 'Create user failed: {0}'.format(emsg)
+        print 'Create user failed: {0}'.format(unicode(emsg))
 
     db.remove()
 
