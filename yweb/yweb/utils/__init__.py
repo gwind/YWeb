@@ -1,7 +1,29 @@
-# -*- coding: utf-8 -*-
+# coding: UTF-8
 # yweb.utils 模块
 
+import hashlib
 import pprint
+
+try:
+    import fcntl
+    HAS_FCNTL = True
+except ImportError:
+    # fcntl is not available on windows
+    HAS_FCNTL = False
+
+
+def is_fcntl_available(check_sunos=False):
+    '''
+    Simple function to check if the `fcntl` module is available or not.
+
+    If `check_sunos` is passed as `True` an additional check to see if host is
+    SunOS is also made. For additional information check commit:
+    http://goo.gl/159FF8
+    '''
+    if HAS_FCNTL is False:
+        return False
+    return HAS_FCNTL
+
 
 # fopen 参考 salt.utils.fopen
 def fopen(*args, **kwargs):
@@ -34,8 +56,32 @@ def fopen(*args, **kwargs):
     return fhandle
 
 
+def file_md5(path):
+
+    '''计算指定文件的 md5 值
+
+    '''
+
+    chunk_size = 4096 * 1024 * 1024
+
+    try:
+        fp_ = fopen(path)
+        hasher = hashlib.md5()
+        while True:
+            chunk = fp_.read(chunk_size)
+            if chunk:
+                hasher.update(chunk)
+            else:
+                break
+
+        return hasher.hexdigest()
+    except:
+        return None
+
+
 def yprint(obj):
     return pprint.PrettyPrinter().pformat( obj )
+
 
 def yprint_dict( d ):
 

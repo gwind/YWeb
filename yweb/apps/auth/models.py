@@ -14,6 +14,7 @@ from sqlalchemy.orm import relationship, backref
 
 import yweb.utils.ydatetime
 from yweb.orm import ORMBase
+from yweb.utils import file_md5
 from yweb.utils.random_ import random_ascii
 from yweb.conf import settings
 
@@ -197,10 +198,15 @@ class User(ORMBase):
         return '/static/img/icon-user-default.png'
 
     @property
-    def avatar_lg_url(self):
+    def avatar_lg_url(self, version=True):
         if os.path.exists(self.avatar_lg_path):
+
             url = os.path.join( self.avatar_url_prefix,
                                 '{0}-lg.png'.format(self.uid) )
+
+            if version:
+                url += '?v=%s' % file_md5(self.avatar_lg_path)
+
         else:
             url = self.avatar_default_url
 
