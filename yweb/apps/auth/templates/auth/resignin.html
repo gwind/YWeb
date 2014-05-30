@@ -19,7 +19,7 @@
     </p>
     <p>
       <a class="btn" href="/">${ _("Home") }</a>
-      <a class="btn" href="${ reverse_url('auth:signout') }?next_url=${ request.full_url() }">${ _("Sign Out & Sign In") }</a>
+      <a class="btn" href="${ reverse_url('auth:signout') }?next=${ request.full_url() }">${ _("Sign Out & Sign In") }</a>
     </p>
   </div>
 

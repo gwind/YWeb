@@ -96,7 +96,7 @@ class SignIn(RequestHandler):
             user.last_login = datetime.datetime.now()
             self.db.commit()
             
-            next_url = self.get_argument('next_url', '/')
+            next_url = self.get_argument('next', '/')
             return self.redirect( next_url )
 
         self.render()
@@ -111,7 +111,7 @@ class SignOut(RequestHandler):
     def get(self):
         if self.current_user:
             self.clear_session()
-        next_url = self.get_argument('next_url', '/')
+        next_url = self.get_argument('next', '/')
         self.redirect(next_url)
 
 

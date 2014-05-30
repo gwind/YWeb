@@ -14,5 +14,5 @@ class SetLocale(RequestHandler):
         # 设置 cookie
         self.set_cookie("user_locale", locale)
 
-        url = self.get_argument('next_url', '/')
+        url = self.get_argument('next', '/')
         self.redirect(url)

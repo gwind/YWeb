@@ -3,7 +3,7 @@
     ${ _('Select Language') } <span class="caret"></span>
   </button>
   <ul class="dropdown-menu pull-right" role="menu">
-    <li><a href="${ reverse_url('i18n:setlang', 'zh_CN') }?next_url=${ request.uri }">简体中文</a></li>
-    <li><a href="${ reverse_url('i18n:setlang', 'en_US') }?next_url=${ request.uri }">English</a></li>
+    <li><a href="${ reverse_url('i18n:setlang', 'zh_CN') }?next=${ request.uri }">简体中文</a></li>
+    <li><a href="${ reverse_url('i18n:setlang', 'en_US') }?next=${ request.uri }">English</a></li>
   </ul>
 </div>
