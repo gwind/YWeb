@@ -1,0 +1,46 @@
+<%inherit file="admin_base.html"/>
+
+<%block name="subcontent">
+<div class="panel panel-default account-pannel">
+  <div class="panel-heading">${ _("Account information for <strong>%s</strong>") % user.username }</div>
+  <div class="panel-body">
+    <p>
+      <a class="btn btn-primary" href="${ reverse_url('admin:account:user:basic:edit', user.id) }">${ _("Edit") }</a>
+    </p>
+    <dl class="dl-horizontal">
+      <dt>${ _("UID") }</dt>
+      <dd>${ user.uid }</dd>
+      <dt>${ _("E-mail") }</dt>
+      <dd>${ user.email }</dd>
+      <dt>${ _("Username") }</dt>
+      <dd>${ user.username }</dd>
+      <dt>${ _("Gender") }</dt>
+      <dd>${ user.gender_display }</dd>
+      <dt>${ _("Nickname") }</dt>
+      <dd>${ user.nickname }</dd>
+      <dt>${ _("First Name") }</dt>
+      <dd>${ user.first_name }</dd>
+      <dt>${ _("Last Name") }</dt>
+      <dd>${ user.last_name }</dd>
+      <dt>${ _("Language") }</dt>
+      <dd>${ user.language }</dd>
+      <dt>${ _("Last Active") }</dt>
+      <dd>${ ftime(user.last_active) }</dd>
+      <dt>${ _("Last Login") }</dt>
+      <dd>${ ftime(user.last_login) }</dd>
+      <dt>${ _("Date Joined") }</dt>
+      <dd>${ ftime(user.date_joined) }</dd>
+
+      <dt>${ _("Is Active?") }</dt>
+      <dd>${ user.is_active }</dd>
+      <dt>${ _("Is Staff?") }</dt>
+      <dd>${ user.is_staff }</dd>
+      <dt>${ _("Is Superuser?") }</dt>
+      <dd>${ user.is_superuser }</dd>
+      <dt>${ _("Is Locked?") }</dt>
+      <dd>${ user.is_locked }</dd>
+    </dl>
+  </div>
+</div>
+
+</%block>

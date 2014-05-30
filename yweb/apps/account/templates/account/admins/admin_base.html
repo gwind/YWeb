@@ -1,0 +1,45 @@
+<%inherit file="/admin/admin_base.html"/>
+
+<%block name="exthead">
+    <link rel="stylesheet" href="${ static_url('css/admin.css', 'account') }">
+</%block>
+
+<%block name="content">
+<div class="container admin-container">
+
+  <div class="row">
+    <div class="col-md-3">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">${ _("Account Management") }</div>
+        <div class="panel-body">
+          <p>${ _("Manage accounts in this site.") }</p>
+        </div>
+        <div class="list-group">
+          <a href="${ reverse_url('admin:account') }" class="list-group-item">${ _("Basic Information") }</a>
+          <a href="${ reverse_url('admin:account:list') }" class="list-group-item">${ _("Account List") }</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      <%block name="subcontent"></%block>
+    </div>
+  </div>
+</div>
+
+<script>
+// active main menu
+$('#admin-entry-account').addClass('active');
+
+var url = window.location;
+// Will only work if string in href matches with location
+$('.list-group a[href="'+ url +'"]').addClass('active');
+
+// Will also work for relative and absolute hrefs
+$('.list-group a').filter(function() {
+    return this.href == url;
+}).addClass('active');
+</script>
+
+</%block>

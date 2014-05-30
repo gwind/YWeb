@@ -1,0 +1,14 @@
+<%inherit file="admin_base.html"/>
+
+<%block name="subcontent">
+<div class="panel panel-default account-pannel">
+  <div class="panel-heading">${ _("Basic Information") }</div>
+  <div class="panel-body">
+    <dl class="dl-horizontal">
+      <dt>${ _("Account Total") }</dt>
+      <dd><a href="${ reverse_url('admin:account:list') }">${ account_total }</a></dd>
+    </dl>
+  </div>
+</div>
+
+</%block>

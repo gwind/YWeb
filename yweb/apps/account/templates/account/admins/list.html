@@ -1,0 +1,37 @@
+<%inherit file="admin_base.html"/>
+
+<%block name="subcontent">
+<div class="panel panel-default account-pannel">
+  <div class="panel-heading">${ _("Account List") }</div>
+  <div class="panel-body">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>${ _("ID") }</th>
+          <th>${ _("UID") }</th>
+          <th>${ _("Username") }</th>
+          <th>${ _("E-mail") }</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        % for user in account_list:
+        <tr>
+          <td>${ user.id }</td>
+          <td>${ user.uid }</td>
+          <td>${ user.username }</td>
+          <td>${ user.email }</td>
+          <td>
+            <a href="${ reverse_url('admin:account:user:view', user.id) }">${ _("View") }</a>
+            <a href="${ reverse_url('admin:account:user:basic:edit', user.id) }">${ _("Edit") }</a>
+          </td>
+        </tr>
+        % endfor
+      </tbody>
+    </table>
+  </div>
+</div>
+
+${ module('pagination', account_total) }
+
+</%block>

@@ -1,0 +1,16 @@
+<%inherit file="admin_base.html"/>
+
+<%block name="subcontent">
+
+<div class="operation-result">
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h2 class="panel-title">${ _("Operation Failed") }</h2>
+    </div>
+    <div class="panel-body">
+      ${ message }
+    </div>
+  </div>
+</div>
+
+</%block>
