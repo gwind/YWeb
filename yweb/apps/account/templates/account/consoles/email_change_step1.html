@@ -1,0 +1,25 @@
+<%inherit file="console_base.html"/>
+
+<%block name="subcontent">
+<div>
+
+  <div class="col-md-4">
+    <fieldset>
+      <legend>${_("Change My E-mail")}</legend>
+      <form method="POST" role="form">${ xsrf_form_html() }
+        % for field in form:
+        <div class="form-group">
+          ${ field.label }
+          ${ field(class_="form-control") }
+          ${ form.html_errors(field) }
+        </div>
+        % endfor
+
+        ${ module('authcode', authcode_failed) }
+        <button class="btn btn-primary">${ _("Save") }</button>
+    </fieldset>
+    </form>
+  </div>
+
+</div>
+</%block>

@@ -10,18 +10,16 @@
   <div class="row">
     <div class="col-md-3">
 
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <div class="user-avatar text-center">
-            <img class="user-logo-img" src="${ current_user.avatar_lg_url }" alt="Avatar" />
-            <p class="username">${ current_user.username }</p>
-          </div>
-        </div>
+      <div class="user-avatar text-center">
+        <img class="user-logo-img" src="${ current_user.avatar_lg_url }" alt="Avatar" />
+        <p class="username">${ current_user.username }</p>
       </div>
 
       <div class="list-group">
         <a href="${ reverse_url('console:account') }" class="list-group-item active">${ _("My Account") }</a>
-        <a href="${ reverse_url('console:account:avatar:edit') }" class="list-group-item">${ _("Edit My Avatar") }</a>
+        <a href="${ reverse_url('console:account:password:change') }" class="list-group-item">${ _("Change My Password") }</a>
+        <a href="${ reverse_url('console:account:avatar:change') }" class="list-group-item">${ _("Change My Avatar") }</a>
+        <a href="${ reverse_url('console:account:email:change') }" class="list-group-item">${ _("Change My E-mail") }</a>
       </div>
     </div>
 

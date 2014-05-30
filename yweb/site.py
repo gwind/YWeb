@@ -38,12 +38,12 @@ class Application(tornado.web.Application):
         self.template_lookup = get_template_lookup()
 
         site_handlers = get_site_handlers()
-        logging.debug('Find Handlers:\n{0}'.format(
-            yweb.utils.yprint(site_handlers)))
+#        logging.debug('Find Handlers:\n{0}'.format(
+#            yweb.utils.yprint(site_handlers)))
 
         ui_modules = get_ui_modules()
-        logging.debug('Find UI Modules:\n{0}'.format(
-            yweb.utils.yprint(ui_modules)))
+#        logging.debug('Find UI Modules:\n{0}'.format(
+#            yweb.utils.yprint(ui_modules)))
 
         tornado_settings = {
             'cookie_secret': 'MTyNwNDc3OC40MjaexynagfeA3NjgKCg==',

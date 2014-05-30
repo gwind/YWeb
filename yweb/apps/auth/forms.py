@@ -65,10 +65,6 @@ class SignInForm(Form):
         form.__dict__['_user'] = user
 
 
-class EmailValidationForm(Form):
-    email = StringField( _('Email Address'), [validators.Length(min=6, max=35), validators.Email()])
-
-
 class SignUpForm(Form):
 
     '''用户注册表单
@@ -125,6 +121,7 @@ class UserCreateForm(Form):
 
     username = StringField(_('Username'))
     password = PasswordField(_('Password'), [
+        validate_password,
         validators.Required(),
         validators.EqualTo('confirm', message=_('Passwords must match'))
     ], default='')
@@ -174,20 +171,4 @@ class UserCreateForm(Form):
                 username, settings.USERNAME_BLACKLIST_FILE)
             if r:
                 raise ValidationError(_('Illegal Chars: {0}'.format(ics)))
-
-    def validate_password(form, field):
-
-        password = field.data
-
-        if len(password) < 6:
-            raise ValidationError(_('Password must be greater than 6 characters.'))
-
-        if len(password) > 64:
-            raise ValidationError(_('Password must be less than 64 characters.'))
-
-        # 如果密码太简单，不容许通过
-        if settings.PASSWORD_BLACKLIST_FILE:
-            if yweb.utils.password.is_too_simple(
-                    password, settings.PASSWORD_BLACKLIST_FILE):
-                raise ValidationError(_("Password is too simple"))
 
