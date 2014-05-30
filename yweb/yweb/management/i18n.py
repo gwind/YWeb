@@ -22,6 +22,7 @@ def update_site_locales():
 
     root_path = settings.PROJECT_ROOT
 
+    backdir = os.getcwd()
     os.chdir(root_path)
 
     files = []
@@ -49,3 +50,4 @@ def update_site_locales():
 
     # 删除 yweb.po
     os.unlink('yweb.po')
+    os.chdir(backdir)

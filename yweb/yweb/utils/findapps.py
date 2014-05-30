@@ -269,4 +269,7 @@ def update_apps_locale():
         # 删除 yweb.po
         os.unlink('yweb.po')
 
+    os.chdir(backdir)
+
+
 
