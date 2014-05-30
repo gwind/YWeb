@@ -144,6 +144,8 @@ class App(object):
             'LOCALE_PATH': 'locale',
             'DEFAULT_CONSOLE_NAME': self.basename.title(),
             'DEFAULT_CONSOLE_URL': '/console/{0}'.format(self.basename),
+            'DEFAULT_ADMIN_NAME': self.basename.title(),
+            'DEFAULT_ADMIN_URL': '/admin/{0}'.format(self.basename),
         }
 
         self.init_attrs()
@@ -187,6 +189,7 @@ def get_static_urls():
 
     return static_urls
 
+
 def get_console_urls():
     '''发现所有的己安装 APP 的 console URL
 
@@ -202,6 +205,24 @@ def get_console_urls():
                 app.basename, app.DEFAULT_CONSOLE_NAME, app.DEFAULT_CONSOLE_URL )
 
     return console_urls
+
+
+def get_admin_urls():
+    '''发现所有的己安装 APP 的 admin URL
+
+    '''
+
+    admin_urls = {}
+
+    for app_name in settings.INSTALLED_APPS:
+        admins = get_app_submodule( app_name, 'admins' )
+        if admins:
+            app = App(app_name)
+            admin_urls[app.basename] = (
+                app.basename, app.DEFAULT_ADMIN_NAME, app.DEFAULT_ADMIN_URL )
+
+    return admin_urls
+
 
 def get_ui_modules():
     '''发现所有的己安装 APP 的 ui modules

@@ -302,3 +302,37 @@ class UIModule(object):
         """Renders a template and returns it as a string."""
         return self.handler.render_string(path, **kwargs)
 
+import functools
+import urlparse
+from urllib import urlencode
+
+def administrator(method):
+    """需要管理权限的装饰器
+    """
+    @functools.wraps(method)
+    def wrapper(self, *args, **kwargs):
+        if self.current_user:
+            if self.current_user.is_superuser:
+                return method(self, *args, **kwargs)
+
+            # 用户不是管理员
+            self.write('No Permissions!')
+            return
+
+        # 用户没有登录,且请求为 GET, HEAD
+        if self.request.method in ("GET", "HEAD"):
+            url = self.get_login_url()
+            if "?" not in url:
+                if urlparse.urlsplit(url).scheme:
+                    # if login url is absolute, make next absolute too
+                    next_url = self.request.full_url()
+                else:
+                    next_url = self.request.uri
+                url += "?" + urlencode(dict(next=next_url))
+            self.redirect(url)
+            return
+
+        # 出错
+        raise HTTPError(403)
+
+    return wrapper
