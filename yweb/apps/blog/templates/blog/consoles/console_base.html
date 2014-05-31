@@ -1,0 +1,62 @@
+<%inherit file="/console/console_base.html"/>
+
+<%block name="exthead">
+    <link rel="stylesheet" href="${ static_url('css/console.css', 'blog') }">
+</%block>
+
+<%block name="content">
+<div class="container console-container">
+
+  <div class="row">
+
+    <div class="col-md-9">
+
+      <ul class="nav nav-tabs">
+        <li><a href="${ reverse_url('console:blog') }">${ _("My Blog Console") }</a></li>
+        <li><a href="${ reverse_url('console:blog:article:all') }">${ _("Articles") }</a></li>
+        <li><a href="#">${ _("Posts") }</a></li>
+        <li><a href="#">${ _("Comments") }</a></li>
+      </ul>
+
+      <%block name="subcontent"></%block>
+    </div><!-- End col-md-9-->
+
+    <div class="col-md-3">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">${ _("My Blog") }</div>
+        <div class="panel-body">
+          <div class="user-avatar text-center">
+            <a href="${ reverse_url('console:blog') }"><img class="user-logo-img" src="${ current_user.avatar_lg_url }" alt="Avatar" /></a>
+            <p class="username">${ current_user.nickname }</p>
+          </div>
+        </div>
+
+        <div class="list-group">
+          <a href="${ reverse_url('console:blog:article:new') }" class="list-group-item">${ _("New Article") }</a>
+          <a href="#" class="list-group-item">${ _("Item 1") }</a>
+          <a href="#" class="list-group-item">${ _("Item 1") }</a>
+          <a href="#" class="list-group-item">${ _("Item 1") }</a>
+          <a href="#" class="list-group-item">${ _("Item 1") }</a>
+        </div>
+      </div>
+    </div><!-- End col-md-3-->
+
+  </div>
+</div>
+
+<script>
+// active main menu
+$('#console-entry-blog').addClass('active');
+
+var url = window.location;
+// Will only work if string in href matches with location
+$('.nav-tabs a[href="'+ url +'"]').parent().addClass('active');
+
+// Will also work for relative and absolute hrefs
+$('.nav-tabs a').filter(function() {
+    return this.href == url;
+}).parent().addClass('active');
+</script>
+
+</%block>

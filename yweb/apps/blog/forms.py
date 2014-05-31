@@ -1,14 +1,16 @@
 # coding: utf-8
 
-from yweb.forms import Form
 from wtforms import BooleanField, StringField, \
     validators, DateTimeField, TextAreaField, IntegerField, \
     PasswordField, FileField, SelectField
 
 from wtforms.validators import ValidationError
 
+from yweb.forms import Form
+from yweb.utils.translation import ugettext_lazy as _
 
-class ImindEditForm(Form):
+
+class ArticleEditForm(Form):
 
     title = StringField( _('Title'), [
         validators.Length(min=2, max=256) ] )

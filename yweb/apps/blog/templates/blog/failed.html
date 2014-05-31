@@ -1,0 +1,20 @@
+<%inherit file="/base.html"/>
+
+<%block name="exthead">
+    <link rel="stylesheet" href="${ static_url('css/styles.css', 'user') }">
+</%block>
+
+<%block name="content">
+
+<div class="operation-result big-center">
+  <div class="panel panel-danger">
+    <div class="panel-heading">
+      <h2 class="panel-title">${ _("Operation Failed") }</h2>
+    </div>
+    <div class="panel-body">
+      ${ message }
+    </div>
+  </div>
+</div>
+
+</%block>

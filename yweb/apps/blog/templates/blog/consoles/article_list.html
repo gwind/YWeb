@@ -1,0 +1,29 @@
+<%inherit file="console_base.html"/>
+
+<%block name="subcontent">
+
+% if article_total:
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>${ _("ID") }</th>
+      <th>${ _("Title") }</th>
+    </tr>
+  </thead>
+  <tbody>
+    % for article in article_list:
+    <tr>
+      <td>${ article.id }</td>
+      <td><a href="${ reverse_url('blog:article:view', article.id) }" target="_blank">${ article.title }</a></td>
+    </tr>
+    % endfor
+  </tbody>
+</table>
+% else:
+<div class="big-center">
+  <h1>No articles yet.</h1>
+</div>
+% endif
+
+</%block>

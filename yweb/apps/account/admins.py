@@ -37,10 +37,12 @@ class AccountAll(RequestHandler):
 
         cur_page, page_size, start, stop = pagination(self)
         total = self.db.query(User).count()
-        accounts = self.db.query(User).slice(start, stop)
+        accounts = self.db.query(User).order_by(
+            desc(User.id)).slice(start, stop)
 
         self.data = {'account_list': accounts,
-                     'account_total': total}
+                     'account_total': total,
+                     'ftime': ftime}
 
         self.render('account/admins/list.html')
 

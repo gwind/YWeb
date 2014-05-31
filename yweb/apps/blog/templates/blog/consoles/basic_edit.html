@@ -1,0 +1,31 @@
+<%inherit file="console_base.html"/>
+
+<%block name="subcontent">
+<div class="basic-edit-form ${ css_class }">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2 class="panel-title">${ title }</h2>
+    </div>
+    <div class="panel-body">
+      <form method="POST" enctype="multipart/form-data" role="form">${ xsrf_form_html() }
+        % for field in form:
+        <div class="form-group">
+          ${ field.label }
+          % if field.type == "BooleanField":
+          ${ field }
+          % else:
+          ${ field(class_="form-control") }
+          % endif
+          ${ form.html_errors(field) }
+        </div>
+        % endfor
+
+        % if authcode_needed:
+        ${ module('authcode', authcode_failed) }
+        % endif
+        <button class="btn btn-primary">${ _("Save") }</button>
+      </form>
+    </div><!-- End panel-body -->
+  </div><!-- End panel -->
+</div><!-- End basic-edit-form -->
+</%block>

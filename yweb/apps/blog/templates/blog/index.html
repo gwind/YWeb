@@ -1,0 +1,26 @@
+<%inherit file="blog_base.html"/>
+
+<%block name="subcontent">
+
+% if article_total:
+
+% for article in article_list:
+<div class="panel panel-default user-pannel">
+  <div class="panel-heading">
+    <a href="${ reverse_url('blog:article:view', article.id) }">${ article.title }</a>
+  </div>
+  <div class="panel-body">
+    ${ article.abstract }
+  </div>
+</div>
+% endfor
+
+${ module('pagination', article_total) }
+
+% else:
+<div class="big-center">
+  <h1>No articles yet.</h1>
+</div>
+% endif
+
+</%block>

@@ -3,41 +3,43 @@
 import datetime
 
 from sqlalchemy import and_, desc
-
 from tornado.web import authenticated
+
 from yweb.handler import RequestHandler
-
-from apps.imind.models import Imind
-from apps.post.models import Post
-
 from yweb.utils.pagination import pagination
 from yweb.utils.url import urlupdate
+from yweb.utils.translation import ugettext_lazy as _
 
-from apps.imind.forms import ImindEditForm
+from .models import BlogArticle, BlogPost, BlogComment, \
+    BlogTag
+from .forms import ArticleEditForm
 
 
 class Index(RequestHandler):
 
+    '''Blog 控制台首页
+    '''
+
     @authenticated
     def get(self):
 
-        iminds = self.db.query( Imind ).filter_by(
+        article_q = self.db.query(BlogArticle).filter_by(
             user_id = self.current_user.id )
 
         now = datetime.datetime.now()
 
         # this week
         dt_week = now - datetime.timedelta(days=now.isoweekday())
-        this_week = self.db.query( Imind ).filter(
-            and_( Imind.updated > dt_week )).count()
+        this_week = article_q.filter(
+            and_( BlogArticle.updated > dt_week )).count()
 
         dt_month = datetime.datetime( now.year, now.month, 1 )
-        this_month = self.db.query( Imind ).filter(
-            and_( Imind.updated > dt_month )).count()
+        this_month = article_q.filter(
+            and_( BlogArticle.updated > dt_month )).count()
 
         dt_year = datetime.datetime( now.year, 1, 1 )
-        this_year = self.db.query( Imind ).filter(
-            and_( Imind.updated > dt_year )).count()
+        this_year = article_q.filter(
+            and_( BlogArticle.updated > dt_year )).count()
 
         def get_months( current, how_many ):
 
@@ -63,61 +65,55 @@ class Index(RequestHandler):
         end_dt = now
         for start_dt in get_months(now, 6):
 
-            c = self.db.query(Imind).filter(
-                and_( Imind.updated > start_dt,
-                      Imind.updated < end_dt ) ).count()
+            c = article_q.filter(
+                and_( BlogArticle.updated > start_dt,
+                      BlogArticle.updated < end_dt ) ).count()
 
             js_dt = u'%s/%s' % (start_dt.year, start_dt.month)
 
             months_count.insert(0, (js_dt, c))
             end_dt = start_dt
 
-        d = { 'imind_count': iminds.count(),
-              'this_week': this_week,
-              'this_month': this_month,
-              'this_year': this_year,
-              'months_count': months_count }
+        d = dict(article_total = article_q.count(),
+                 this_week = this_week,
+                 this_month = this_month,
+                 this_year = this_year,
+                 months_count = months_count)
 
-        self.render('imind/console/index.html', **d)
+        self.render('blog/consoles/index.html', **d)
 
 
-
-class ImindList(RequestHandler):
+class ArticleAll(RequestHandler):
 
     @authenticated
     def get(self):
 
-        p = self.get_argument_int('p', 1)
-        s = self.get_argument_int('s', 12)
+        cur_page, page_size, start, stop = pagination(self)
 
-        i_start = (p - 1) * s
-        i_end = i_start + s
-
-        iminds = self.db.query( Imind ).filter_by(
+        article_q = self.db.query(BlogArticle).filter_by(
             user_id = self.current_user.id )
 
         # 选择本周、本月、本年？
-        iminds, time = self.do_time_select( iminds )
+        article_q, time = self.do_time_select( article_q )
 
-        count = iminds.count()
+        count = article_q.count()
 
         # 排序
-        iminds, sortby = self.do_sort( iminds )
+        article_q, sortby = self.do_sort( article_q )
 
-        iminds = iminds.slice(i_start, i_end)
+        article_q = article_q.slice(start, stop)
 
-        d = { 'iminds': iminds,
-              'imind_total': count,
-              'pagination': pagination(self.request.uri, count, s, p),
+        d = { 'article_list': article_q,
+              'article_total': count,
               'sortby': sortby,
               'time': time,
               'urlupdate': lambda k, v: urlupdate(self.request.uri, k, v),
         }
 
-        self.render('imind/console/imind_list.html', **d)
+        self.render('blog/consoles/article_list.html', **d)
 
 
-    def do_time_select(self, iminds):
+    def do_time_select(self, article_q):
 
         select = self.get_argument('time', 'all')
 
@@ -127,23 +123,23 @@ class ImindList(RequestHandler):
 
             if select == 'this_week':
                 dt_week = now - datetime.timedelta(days=now.isoweekday())
-                iminds = iminds.filter(
-                    and_( Imind.updated > dt_week ))
+                article_q = article_q.filter(
+                    and_(BlogArticle.updated > dt_week))
 
             elif select == 'this_month':
                 dt_month = datetime.datetime( now.year, now.month, 1 )
-                iminds = iminds.filter(
-                    and_( Imind.updated > dt_month ))
+                article_q = article_q.filter(
+                    and_(BlogArticle.updated > dt_month))
 
             elif select == 'this_year':
                 dt_year = datetime.datetime( now.year, 1, 1 )
-                iminds = iminds.filter(
-                    and_( Imind.updated > dt_year ))
+                article_q = article_q.filter(
+                    and_(BlogArticle.updated > dt_year))
 
             else:
                 select = 'all'
 
-        return iminds, select
+        return article_q, select
 
 
     def do_sort(self, iminds):
@@ -157,6 +153,47 @@ class ImindList(RequestHandler):
 
         return iminds, sortby
 
+
+class ArticleNew(RequestHandler):
+
+    @authenticated
+    def prepare(self):
+
+        self.title = _('Create an new article')
+        self.template_path = 'blog/consoles/basic_edit.html'
+
+        markup = self.get_argument('markup', 1)
+        try:
+            markup = int(markup)
+        except:
+            markup = 1
+
+        self.data = dict(markup = markup,
+                         css_class = 'article-edit',
+                         form = ArticleEditForm(self))
+
+    def post(self):
+
+        form = self.data['form']
+
+        if form.validate():
+
+            article = BlogArticle(
+                user = self.current_user,
+                title = form.title.data,
+                body = form.body.data,
+#                markup = form.markup.data,
+                abstract = form.abstract.data,
+                is_public = form.ispublic.data)
+
+            self.db.add(article)
+            self.db.commit()
+
+            # TODO
+            url = self.reverse_url('console:blog:article:all')
+            return self.redirect( url )
+
+        self.render()
 
 
 class ImindEdit(RequestHandler):
@@ -221,37 +258,3 @@ class ImindEdit(RequestHandler):
         return I
 
 
-class ImindNew(RequestHandler):
-
-    @authenticated
-    def prepare(self):
-        self.markup = self.get_argument_int('markup', 0)
-
-    def get(self):
-
-        form = ImindEditForm( self )
-        d = { 'form': form }
-        self.render('imind/console/imind_new.html', **d)
-
-    def post(self):
-
-        form = ImindEditForm( self )
-
-        if form.validate():
-
-            I = Imind( user        = self.current_user,
-                       body        = form.body.data,
-                       body_markup = 1,
-                       title       = form.title.data,
-                       abstract    = form.abstract.data )
-
-            I.is_public = form.ispublic.data
-
-            self.db.add(I)
-            self.db.commit()
-
-            url = self.reverse_url('imind:view', I.id)
-            return self.redirect( url )
-
-        d = { 'form': form }
-        self.render('imind/console/imind_new.html', **d)

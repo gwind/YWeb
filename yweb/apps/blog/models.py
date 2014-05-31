@@ -1,4 +1,4 @@
-# coding: utf-8
+# coding: UTF-8
 
 import datetime
 
@@ -8,101 +8,175 @@ from sqlalchemy import Column, Integer, String, Unicode, \
     Sequence, DateTime, Table, ForeignKey, Boolean, Text
 from sqlalchemy.orm import relationship, backref
 
-from apps.post.models import Post
-from apps.tag.models import UTag
-
 from yweb.utils.markup import generate_html
 
-imind__utag_table = Table(
-    'imind__utag', ORMBase.metadata,
-    Column('imind_id', Integer, ForeignKey('imind.id')),
-    Column('utag_id', Integer, ForeignKey('utag.id')),
+
+article__tag_table = Table(
+    'blog_article__blog_tag', ORMBase.metadata,
+    Column('article_id', Integer, ForeignKey('blog_article.id')),
+    Column('tag_id', Integer, ForeignKey('blog_tag.id')),
     Column('user_id', Integer, ForeignKey('auth_user.id')),
     Column('created', DateTime, default=datetime.datetime.now)
 )
 
-imind__post_table = Table(
-    'imind__post', ORMBase.metadata,
-    Column('imind_id', Integer, ForeignKey('imind.id')),
-    Column('post_id', Integer, ForeignKey('post.id')),
-    Column('user_id', Integer, ForeignKey('auth_user.id')),
-    Column('created', DateTime, default=datetime.datetime.now)
-)
+class BlogArticle(ORMBase):
 
-
-class Imind(ORMBase):
-
-    ''' 我思 - 自由地记录自己的想法、笔记等
-
-    1. 短的内容，只用 body。
-    2. 长的内容，用 title, abstract, body
+    ''' Blog 文章
 
     '''
 
-    __tablename__ = 'imind'
+    __tablename__ = 'blog_article'
 
-    id = Column( Integer, Sequence('imind_id_seq'), primary_key=True )
+    id = Column( Integer, Sequence('blog_article_id_seq'), primary_key=True )
 
     user_id = Column( Integer, ForeignKey('auth_user.id') )
     user = relationship("User")
 
-    title       = Column( String(128), nullable=False )
-    abstract    = Column( String(1024) )
-    body        = Column( Text )
-    body_markup = Column( Integer, default=1 )
+    title    = Column( String(128), nullable=False )
+    abstract = Column( String(1024) )
+    body     = Column( Text )
+    markup   = Column( Integer, default=1 )
 
     status = Column( Integer, default=0 )
 
     # 是否公开
     is_public = Column( Boolean, default=False )
 
-    # 是否为短文章
-    is_short = Column( Boolean, default=True )
+    vote_up    = Column( Integer, default=0 )
+    vote_down  = Column( Integer, default=0 )
 
-    vote_up     = Column( Integer, default=0 )
-    vote_down   = Column( Integer, default=0 )
+    view_count = Column( Integer, default=0 )
+    post_count = Column( Integer, default=0 )
 
-    visit_count = Column( Integer, default=0 )
-    post_count  = Column( Integer, default=0 )
-
-    posts = relationship( 'Post', secondary=imind__post_table,
-                          backref='iminds',
-                          order_by = "Post.vote_up" )
-
-    utags = relationship( 'UTag', secondary=imind__utag_table,
-                           order_by = "UTag.id" )
+    tags = relationship( 'BlogTag', secondary=article__tag_table,
+                           order_by="BlogTag.id" )
 
     created = Column( DateTime, default=datetime.datetime.now )
     updated = Column( DateTime, default=datetime.datetime.now )
 
 
-    def __init__(self, user, body, body_markup=1, title=None, abstract=None):
+    def __init__(self, user, title, body, markup=1, abstract=None, is_public=True):
 
         self.user_id = user.id
+        self.title = title
         self.body = body
-        self.body_markup = body_markup
-
-        if title:
-            self.title = title
-            self.is_short = False
-
+        self.markup = markup
         if abstract:
             self.abstract = abstract
+        else:
+            # TODO: 生成 article 的摘要
+            self.abstract = title
+
+        self.is_public = is_public
 
     @property
     def body_html(self):
-        return generate_html( self.body, self.body_markup )
+        return generate_html( self.body, self.markup )
 
-    def visited(self):
-        if self.visit_count:
-            self.visit_count += 1
+
+class BlogPost(ORMBase):
+
+    ''' Blog 回复
+
+    '''
+
+    __tablename__ = 'blog_post'
+
+    id = Column( Integer, Sequence('blog_post_id_seq'), primary_key=True )
+
+    article_id = Column( Integer, ForeignKey('blog_article.id') )
+    article = relationship("BlogArticle", backref="posts")
+
+    user_id = Column( Integer, ForeignKey('auth_user.id') )
+    user = relationship("User")
+
+    body = Column( Text )
+    markup = Column( Integer, default=1 )
+
+    status = Column( Integer, default=0 )
+
+    vote_up     = Column( Integer, default=0 )
+    vote_down   = Column( Integer, default=0 )
+
+    comment_count = Column( Integer, default=0 )
+
+    created = Column( DateTime, default=datetime.datetime.now )
+    updated = Column( DateTime, default=datetime.datetime.now )
+
+    def __init__(self, article, user, body, markup=1):
+
+        self.article_id = article.id
+
+        # 增加 article 的 post 统计
+        if article.post_count:
+            article.post_count += 1
         else:
-            self.visit_count = 1
+            article.post_count = 1
+
+        self.user_id = user.id
+        self.body = body
+        self.markup = markup
+
+    @property
+    def body_html(self):
+        return generate_html( self.body, self.markup )
 
 
-class ImindVote(ORMBase):
+class BlogComment(ORMBase):
 
-    ''' 我思投票
+    ''' Blog 注释, 对 BlogPost 的回复
+
+    1. 某回复的注释
+    2. 适当降低 comment 的“价值鼓励”，引导用户少做 comment
+
+    '''
+
+    __tablename__ = 'blog_comment'
+
+    id = Column( Integer, Sequence('blog_comment_id_seq'), primary_key=True )
+
+    post_id = Column( Integer, ForeignKey('blog_post.id') )
+    post = relationship("BlogPost", backref="comments")
+
+    parent_id = Column( Integer, ForeignKey('blog_comment.id') )
+    parent = relationship("BlogComment", backref="children", remote_side=[id])
+
+    user_id = Column( Integer, ForeignKey('auth_user.id') )
+    user = relationship("User")
+
+    body = Column( Text )
+    markup = Column( Integer, default=1 )
+
+    status = Column( Integer, default=0 )
+
+    created = Column( DateTime, default=datetime.datetime.now )
+    updated = Column( DateTime, default=datetime.datetime.now )
+
+    def __init__(self, post, user, body, markup=1, parent=None):
+
+        self.post_id = post.id
+
+        # 增加 post 的 comment 计数
+        if post.comment_count:
+            post.comment_count += 1
+        else:
+            post.comment_count = 1
+
+        self.user_id = user.id
+        self.body = body
+        self.markup = markup
+
+        if parent:
+            self.parent_id = parent.id
+
+    @property
+    def body_html(self):
+        return generate_html( self.body, self.markup )
+
+
+class ArticleVote(ORMBase):
+
+    ''' 对 Blog 文章投票
 
     1. 针对本文章的投票
     2. 每个用户只能投票一次
@@ -110,22 +184,121 @@ class ImindVote(ORMBase):
 
     '''
 
-    __tablename__ = 'imind_vote'
+    __tablename__ = 'blog_article_vote'
 
-    id = Column( Integer, Sequence('imind_vote_id_seq'), primary_key=True )
+    id = Column( Integer, Sequence('blog_article_vote_id_seq'), primary_key=True )
 
-    oid = Column( Integer ) # 投票对象 ID
-    uid = Column( Integer ) # 投票用户 ID
+    article_id = Column( Integer ) # 投票对象 ID
+    user_id = Column( Integer ) # 投票用户 ID
 
-    v = Column( Integer, nullable=False )
+    # 投票值 [-1, 1]
+    vote = Column( Integer, nullable=False )
+
+    created = Column( DateTime, default=datetime.datetime.now )
+    updated = Column( DateTime, default=datetime.datetime.now )
+
+    def __init__(self, article, user, vote):
+
+        self.article_id = article.id
+        self.user_id = user.id
+        self.vote = vote
+
+        # 更新 article 的 vote_up, vote_down
+        if vote > 0:
+            article.vote_up += vote
+        else:
+            article.vote_down += vote
+
+
+class PostVote(ORMBase):
+
+    ''' 回复的投票
+
+    1. 针对本回复的投票
+    2. 每个用户只能投票一次
+    3. 自己不能投自己
+
+    '''
+
+    __tablename__ = 'blog_post_vote'
+
+    id = Column( Integer, Sequence('blog_post_vote_id_seq'), primary_key=True )
+
+    post_id = Column( Integer ) # 投票对象 ID
+    user_id = Column( Integer ) # 投票用户 ID
+
+    # 投票值： 1, -1
+    vote = Column( Integer, nullable=False )
+
+    created = Column( DateTime, default=datetime.datetime.now )
+    updated = Column( DateTime, default=datetime.datetime.now )
+
+    def __init__(self, post, user, vote):
+
+        self.post_id = post.id
+        self.user_id = user.id
+        self.vote = vote
+
+        # 更新 post 的 vote_up, vote_down
+        if vote > 0:
+            post.vote_up += vote
+        else:
+            post.vote_down += vote
+
+
+class BlogTag(ORMBase):
+
+    ''' Blog 标签
+
+    '''
+
+    __tablename__ = 'blog_tag'
+
+    id = Column( Integer, Sequence('blog_tag_id_seq'), primary_key=True )
+
+    name   = Column( String(64), nullable=False, unique=True )
+    brief  = Column( String(1024) )
+    detail = Column( Text )
+    markup = Column( Integer, default=1 )
+
+    # 索引值
+    index = Column( Integer, default = 0 )
 
     created = Column( DateTime, default=datetime.datetime.now )
     updated = Column( DateTime, default=datetime.datetime.now )
 
 
-    def __init__(self, oid, uid, v):
+    def __init__(self, name, brief='', detail='', markup=1):
 
-        self.oid = oid
-        self.uid = uid
-        self.v = v
+        self.name   = name
+        self.brief  = brief
+        self.detail = detail
+        self.markup = markup
 
+
+class TagDiff(ORMBase):
+
+    ''' Blog 标签编辑历史
+
+    允许其他用户修改 tag 的介绍
+
+    '''
+
+    __tablename__ = 'blog_tag_diff'
+
+    id = Column( Integer, Sequence('blog_tag_diff_id_seq'), primary_key=True )
+
+    user_id = Column( Integer, ForeignKey('auth_user.id') )
+    user = relationship("User")
+
+    # brief, detail 与上一次版本的差异
+    diff_brief  = Column( Text )
+    diff_detail = Column( Text )
+
+    created = Column( DateTime, default=datetime.datetime.now )
+
+    def __init__(self, user, diff_brief, diff_detail):
+
+        self.user_id = user.id
+        self.diff_brief = diff_brief
+        self.diff_detail = diff_detail

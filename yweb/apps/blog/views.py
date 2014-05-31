@@ -4,93 +4,79 @@ from sqlalchemy import and_, desc
 
 from tornado.web import authenticated
 from yweb.handler import RequestHandler
-
-from apps.imind.models import Imind
-from apps.post.models import Post
-
 from yweb.utils.pagination import pagination
+from yweb.utils.translation import ugettext_lazy as _
+
+from .models import BlogArticle, BlogPost, BlogComment, \
+    BlogTag
+
+
+def page_404(handler, msg=None):
+    '''查找的对象不存在
+    '''
+    handler.set_status(404)
+    handler.render("blog/404.html", msg=msg)
 
 
 class Index(RequestHandler):
 
+    '''Blog 首页
+    '''
+
     def get(self):
 
-        p = self.get_argument_int('p', 1)
-        s = self.get_argument_int('s', 12)
+        cur_page, page_size, start, stop = pagination(self)
 
-        i_start = (p - 1) * s
-        i_end = i_start + s
-
-        iminds = self.db.query(Imind).filter_by(
+        articles = self.db.query(BlogArticle).filter_by(
             is_public = True )
 
-        count = iminds.count()
+        articles = articles.order_by( desc(BlogArticle.id) )
 
-        # sort
-        sortby = self.get_argument('sortby', 'updated')
-        if sortby not in ['vote_up', 'visit_count', 'updated']:
-            sortby = 'updated'
+        total = articles.count()
 
-        iminds = iminds.order_by( desc(sortby) )
+        articles = articles.slice(start, stop)
 
-        iminds = iminds.slice(i_start, i_end)
+        d = dict(article_list = articles,
+                 article_total = total)
 
-        d = { 'iminds': iminds,
-              'imind_total': count,
-              'pagination': pagination(self.request.uri, count, s, p),
-              'sortby': sortby,
-        }
-
-        self.render('imind/index.html', **d)
+        self.render('blog/index.html', **d)
 
 
+class ArticleView(RequestHandler):
 
-class ImindView(RequestHandler):
+    '''查看 Blog 文章
+    '''
 
     def get(self, ID):
 
         cur_uid = self.current_user.id if self.current_user else 0
 
-        I = self.db.query(Imind).get( ID )
+        article = self.db.query(BlogArticle).get( ID )
 
-        if not I:
-            return self.page_not_found( _('Can not find imind %s') % ID )
+        if not article:
+            return page_404(self, _('Can not find article %s') % ID)
 
-        if not I.is_public:
-            if cur_uid != I.user_id:
-                return self.page_not_found( _('Mind %s is not public.') % ID )
+        if not article.is_public:
+            if cur_uid != article.user_id:
+                return page_404(_('Article %s is not public.') % ID)
 
-        # get the hotest posts (12)
-        posts = self.db.query(Post).filter(Post.iminds.any( id=I.id )).order_by(
-            desc('vote_up'))
+        posts = article.posts
 
-        post_total = posts.count()
-
-        posts = posts.limit(12).all()
-
-        # add visit_count
-        I.visited()
+        # 增加查看次数
+        article.view_count += 1
         self.db.commit()
 
-        self.render('imind/view.html', imind=I, posts=posts, post_total=post_total)
+        self.data = dict(article = article,
+                         posts = article.posts)
 
-
-class ImindNew(RequestHandler):
-
-    def get(self):
-
-        d = {}
-        self.render('imind/new.html', **d)
-
-
-
+        self.render('blog/article_view.html')
 
 
 class TempRedirect1(RequestHandler):
 
     def get(self, ID):
 
-        url = self.reverse_url('imind:view', ID)
+        url = self.reverse_url('blog:article:view', ID)
 
         self.redirect( url , status = 301 )
 
@@ -99,4 +85,4 @@ class TempRedirect2(RequestHandler):
 
     def get(self):
 
-        self.redirect( '/imind' , status = 301 )
+        self.redirect( '/blog' , status = 301 )

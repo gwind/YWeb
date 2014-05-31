@@ -2,16 +2,16 @@
 
 from tornado.web import url
 from . import views
-from . import console
+from . import consoles
 
 
 handlers = [
 
-    url('/imind', views.Index, name='imind:index'),
+    url('/blog', views.Index, name='blog:index'),
 
-    url('/imind/([0-9]+)', views.ImindView, name='imind:view'),
+    url('/blog/article/([0-9]+)', views.ArticleView, name='blog:article:view'),
 
-    url('/imind/new', views.ImindNew, name='imind:new'),
+#    url('/blog/article/new', views.ImindNew, name='imind:new'),
 
 
     # 重定向旧文章路径
@@ -27,13 +27,24 @@ handlers = [
 
     # console
 
-    url( '/console/imind', console.Index,
-         name='console:imind:index' ),
-    url( '/console/imind/list', console.ImindList,
-         name='console:imind:list' ),
-    url( '/console/imind/new', console.ImindNew,
-         name='console:imind:new' ),
-    url( '/console/imind/([0-9]+)/edit', console.ImindEdit,
-         name='console:imind:edit' ),
+#    url( '/console/imind/list', console.ImindList,
+#         name='console:imind:list' ),
+#    url( '/console/imind/new', console.ImindNew,
+#         name='console:imind:new' ),
+#    url( '/console/imind/([0-9]+)/edit', console.ImindEdit,
+#         name='console:imind:edit' ),
+
+]
+
+console_handlers = [
+
+    url( '/console/blog', consoles.Index,
+         name='console:blog' ),
+
+    url( '/console/blog/article/all', consoles.ArticleAll,
+         name='console:blog:article:all' ),
+
+    url( '/console/blog/article/new', consoles.ArticleNew,
+         name='console:blog:article:new' ),
 
 ]

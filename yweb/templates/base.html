@@ -31,7 +31,7 @@
         </div>
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
           <ul class="nav navbar-nav">
-            <li><a href="#"><i class="fa fa-circle-thin fa-lg"></i> ${ _("Item 1") }</a></li>
+            <li id="site-entry-blog"><a href="${ reverse_url('blog:index') }"><i class="fa fa-circle-thin fa-lg"></i> ${ _("Blog") }</a></li>
             <li><a href="#"><i class="fa fa-circle-thin fa-lg"></i> ${ _("Item 2") }</a></li>
             <li><a href="#"><i class="fa fa-circle-thin fa-lg"></i> ${ _("Item 3") }</a></li>
             <li><a href="#"><i class="fa fa-support fa-lg"></i> ${ _("FAQ") }</a></li>
@@ -63,7 +63,7 @@
           </ul>
         </nav>
       </div>
-    </header>
+    </header> <!-- End header-->
 
     <div id="content">
       <%block name="content"></%block>
@@ -100,5 +100,16 @@
       </div>
     </footer>
 
+    <script>
+    var url = window.location;
+    // Will only work if string in href matches with location
+    $('.navbar-nav a[href="'+ url +'"]').parent().addClass('active');
+    
+    // Will also work for relative and absolute hrefs
+    $('.navbar-nav a').filter(function() {
+        return this.href == url;
+    }).parent().addClass('active');
+    </script>
+    
   </body>
 </html>

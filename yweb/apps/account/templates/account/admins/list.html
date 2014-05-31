@@ -11,6 +11,7 @@
           <th>${ _("UID") }</th>
           <th>${ _("Username") }</th>
           <th>${ _("E-mail") }</th>
+          <th>${ _("Date Joined") }</th>
           <th></th>
         </tr>
       </thead>
@@ -21,6 +22,7 @@
           <td>${ user.uid }</td>
           <td>${ user.username }</td>
           <td>${ user.email }</td>
+          <td>${ ftime(user.date_joined) }</td>
           <td>
             <a href="${ reverse_url('admin:account:user:view', user.id) }">${ _("View") }</a>
             <a href="${ reverse_url('admin:account:user:basic:edit', user.id) }">${ _("Edit") }</a>
