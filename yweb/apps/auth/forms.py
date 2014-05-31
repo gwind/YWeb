@@ -107,7 +107,7 @@ class PasswordResetStep2Form(Form):
 
     password = PasswordField(_('Password'), [
         validate_password,
-        validators.Required(),
+        validators.DataRequired(),
         validators.EqualTo('confirm', message=_('Passwords must match'))
     ], default='')
     confirm = PasswordField(_('Password Confirm'), default='')
@@ -122,12 +122,12 @@ class UserCreateForm(Form):
     username = StringField(_('Username'))
     password = PasswordField(_('Password'), [
         validate_password,
-        validators.Required(),
+        validators.DataRequired(),
         validators.EqualTo('confirm', message=_('Passwords must match'))
     ], default='')
     confirm = PasswordField(_('Password Confirm'), default='')
     accept_tos = BooleanField(_('I accept the TOS'), [
-        validators.Required()])
+        validators.DataRequired()])
 
     def validate_username(form, field):
 
