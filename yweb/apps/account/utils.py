@@ -39,8 +39,8 @@ def save_avatar(filedata, user):
                     (opts.AVATAR_SM_SIZE, user.avatar_sm_path),
                     (opts.AVATAR_XS_SIZE, user.avatar_xs_path),
             ]:
-                img.save(path)
                 img.thumbnail(thumsize, resample=1)
+                img.save(path)
             tf.close()
 
         except Exception, emsg:

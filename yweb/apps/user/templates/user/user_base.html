@@ -1,0 +1,43 @@
+<%inherit file="/base.html"/>
+
+<%block name="exthead">
+    <link rel="stylesheet" href="${ static_url('css/styles.css', 'user') }">
+    <%block name="subhead"></%block>
+</%block>
+
+<%block name="content">
+<div class="container user-container">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="user-avatar text-center">
+            <a href="${ reverse_url('user', user.uid) }"><img class="user-logo-img" src="${ user.avatar_lg_url }" /></a>
+            <p class="username">${ user.username }</p>
+          </div>
+        </div>
+
+        <div class="list-group">
+          <a href="${ reverse_url('user', user.uid) }" class="list-group-item"><i class="fa fa-bars"></i> ${ _("Basic Information") }</a>
+          <a href="#" class="list-group-item"><i class="fa fa-envelope-o"></i> ${ _("Contact Me") }</a>
+        </div>
+      </div>
+    </div><!-- End col-md-3 -->
+
+    <div class="col-md-9">
+      <%block name="subcontent"></%block>
+    </div><!-- End col-md-9 -->
+  </div><!-- End row -->
+</div><!-- End user-container-->
+
+<script>
+var url = window.location;
+// Will only work if string in href matches with location
+$('.list-group a[href="'+ url +'"]').addClass('active');
+
+// Will also work for relative and absolute hrefs
+$('.list-group a').filter(function() {
+    return this.href == url;
+}).addClass('active');
+</script>
+</%block>

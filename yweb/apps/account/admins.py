@@ -30,7 +30,7 @@ class Index(RequestHandler):
         self.render('account/admins/index.html')
 
 
-class AccountList(RequestHandler):
+class AccountAll(RequestHandler):
 
     @administrator
     def get(self):

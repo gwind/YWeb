@@ -95,11 +95,6 @@ def main():
     tornado.options.options.logging = "debug"
     tornado.options.parse_command_line()
 
-    logging.info("starting torando web server")
-
-    DB_URI = yweb.utils.db.get_db_uri()
-    logging.info('DB_URI = {0}'.format( DB_URI ))
-
     # 启动 Tornado
     app = Application()
     server = tornado.httpserver.HTTPServer(app, xheaders=True)

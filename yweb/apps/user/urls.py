@@ -1,5 +1,9 @@
 # coding: utf-8
 
+from tornado.web import url
+from . import views
+
+
 handlers = [
 
     # user access
@@ -7,5 +11,7 @@ handlers = [
 
     # /u/ID
     # /user/USERNAME（或 slug）
+
+    url( r'/user/([0-9]+)', views.Index, name='user' ),
 
 ]

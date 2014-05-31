@@ -1,3 +1,5 @@
+# coding: UTF-8
+
 from tornado.web import url
 from . import views
 from . import modules

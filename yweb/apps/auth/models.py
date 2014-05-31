@@ -207,6 +207,10 @@ class User(ORMBase):
         return '/static/img/icon-user-default.png'
 
     @property
+    def avatar_xs_default_url(self):
+        return '/static/img/icon-user-mini-default.png'
+
+    @property
     def avatar_lg_url(self, version=True):
         if os.path.exists(self.avatar_lg_path):
 
@@ -218,6 +222,21 @@ class User(ORMBase):
 
         else:
             url = self.avatar_default_url
+
+        return url
+
+    @property
+    def avatar_xs_url(self, version=True):
+        if os.path.exists(self.avatar_xs_path):
+
+            url = os.path.join( self.avatar_url_prefix,
+                                '{0}-xs.png'.format(self.uid) )
+
+            if version:
+                url += '?v=%s' % file_md5(self.avatar_xs_path)
+
+        else:
+            url = self.avatar_xs_default_url
 
         return url
 

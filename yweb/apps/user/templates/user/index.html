@@ -1,0 +1,29 @@
+<%inherit file="user_base.html"/>
+
+<%block name="subcontent">
+<div class="panel panel-default user-pannel">
+  <div class="panel-heading">${ _("Basic Information") }</div>
+  <div class="panel-body">
+    <dl class="dl-horizontal">
+      <dt>${ _("UID") }</dt>
+      <dd>${ user.uid }</dd>
+      <dt>${ _("Username") }</dt>
+      <dd>${ user.username }</dd>
+      <dt>${ _("Gender") }</dt>
+      <dd>${ user.gender_display }</dd>
+      <dt>${ _("Nickname") }</dt>
+      <dd>${ user.nickname }</dd>
+      <dt>${ _("First Name") }</dt>
+      <dd>${ user.first_name }</dd>
+      <dt>${ _("Last Name") }</dt>
+      <dd>${ user.last_name }</dd>
+      <dt>${ _("Last Active") }</dt>
+      <dd>${ ftime(current_user.last_active) }</dd>
+      <dt>${ _("Last Login") }</dt>
+      <dd>${ ftime(current_user.last_login) }</dd>
+      <dt>${ _("Date Joined") }</dt>
+      <dd>${ ftime(current_user.date_joined) }</dd>
+    </dl>
+  </div>
+</div>
+</%block>
