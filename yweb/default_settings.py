@@ -3,11 +3,14 @@
 import os
 import sys
 
+from yweb.utils.translation import ugettext_lazy as _
+
 DEBUG = True
 
 # 相关路径
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__))
 STATIC_PATH = os.path.join(PROJECT_ROOT, 'static')
+I18N_PATH = os.path.join(PROJECT_ROOT, 'locale')
 
 # sqlite 数据库
 DB = {
@@ -21,10 +24,16 @@ DB = {
 
 # 启用的 apps
 INSTALLED_APPS = (
+    'apps.common',
     'apps.auth',
     'apps.siteconf',
+    'apps.console',
+    'apps.admin',
+    'apps.account',
     'apps.user',
+    'apps.i18n',
     'apps.home',
+    'apps.blog',
 )
 
 # 系统模板路径
@@ -55,4 +64,15 @@ EMAIL = {
 }
 
 SITE_NAME = u"YWebDevSite"
+DEFAULT_HTML_TITLE = _('YWeb -- For Best!')
 AUTHCODE_IMG_FONT = os.path.join(PROJECT_ROOT, 'data/wqy-microhei.ttc')
+
+SITE_TRANSLATION_FILES = (
+    '*.py',
+    'templates',
+)
+
+# 站点的 locale 目录 （除去 yweb 和 apps 的 locale）
+LOCALE_PATHS = (
+    os.path.join(PROJECT_ROOT, 'locale'),
+)
