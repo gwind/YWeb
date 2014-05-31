@@ -9,10 +9,11 @@ handlers = [
 
     url('/blog', views.Index, name='blog:index'),
 
-    url('/blog/article/([0-9]+)', views.ArticleView, name='blog:article:view'),
+    url('/blog/article/([0-9]+)', views.ArticleView,
+        name='blog:article:view'),
 
-#    url('/blog/article/new', views.ImindNew, name='imind:new'),
-
+    url('/blog/article/([0-9]+)/post/all', views.ArticlePostAll,
+        name='blog:article:post:all'),
 
     # 重定向旧文章路径
     url('/imind/([0-9]+)', views.TempRedirect1),

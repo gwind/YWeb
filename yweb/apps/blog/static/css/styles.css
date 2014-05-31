@@ -2,3 +2,8 @@
 .blog-container{padding-top:30px;padding-bottom:60px}
 .user-avatar{margin-top:20px}
 img.user-logo-img{width:100px;height:100px;border-radius:100px;border:1px solid #ddd;-webkit-box-shadow:2px 2px 2px #888;box-shadow:2px 2px 2px #888}
+.blog-post-container{margin-top:60px}.blog-post-container .nav-pills{margin-bottom:20px}
+.blog-post-item .panel-heading{background-color:#fff}
+.username{margin-top:5px;margin-left:5px}
+.datetime{color:#999;font-size:.9em}
+.article-post-all .nav-pills{margin-bottom:20px}

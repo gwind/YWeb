@@ -250,6 +250,10 @@ class BlogTag(ORMBase):
 
     ''' Blog 标签
 
+    可以参考下：http://sitetag.us/
+
+    我认为网站标签自动生成有可取的地方。
+
     '''
 
     __tablename__ = 'blog_tag'
