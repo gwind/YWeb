@@ -46,19 +46,41 @@ Python 下优秀的 ORM 、数据库操作绑定库，可以很方便地与其�
 - 分享我们造的“轮子”（我们称之为app），希望今后能做到通过用这些 app 搭积木，就可以“开发”一个 Web 平台。
 
 
-# 资源
+# 如何在本地部署 YWeb 开发
 
-## 截图
+太简单了！
 
-http://pan.baidu.com/s/1c01TAFY#dir/path=%2FYWeb%2Fscreeshots
+## 准备工作
 
-## 安装文档
+### Debian/Ubuntu/Linux Mint 系统
 
-https://github.com/jianlee/YWeb/blob/master/INSTALL.md
+安装软件包：
+
+    sudo apt-get install git python-dateutil python-imaging
+
+### CentOS/RHEL/Fedora 系统
+
+安装软件包：
+
+    yum install git python-backports
+
+## 部署 YWeb
+
+    git clone https://github.com/jianlee/YWeb.git
+    cd YWeb/yweb/
+    wget http://dl.ylinux.org/yweb/tools/YWeb_dev_third_lib-20140531.tar.bz2
+    tar xf YWeb_dev_third_lib-20140531.tar.bz2
+    cp default_settings.py settings.py
+    python manage.py syncdb
+    python manage.py adduser admin 123456 XXX@163.com
+    python site.py
+
+访问 http://127.0.0.1:8888 即可 ！
 
 
 # 联系我们
 
-- 邮件： ooctechs@gmail.com
-- QQ群1： 中国云计算交流 232629450 
-- QQ群2： YLinux 社区群 371582154 
+- 社区： http://www.ylinux.org
+- 邮件： admin@ooctech.com
+- QQ群1： 中国云计算交流 232629450
+- QQ群2： YLinux 社区群 371582154
