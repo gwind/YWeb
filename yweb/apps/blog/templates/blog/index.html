@@ -1,21 +1,39 @@
 <%inherit file="blog_base.html"/>
 
 <%block name="subcontent">
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-9">
 
 % if article_total:
 
 % for article in article_list:
-<div class="panel panel-default user-pannel">
-  <div class="panel-heading">
-    <a href="${ reverse_url('blog:article:view', article.id) }">${ article.title }</a>
-  </div>
-  <div class="panel-body">
-    ${ article.abstract }
-  </div>
+<div class="row index-article-list">
+  <div class="col-md-2 text-right">
+    <div class="aritile-side-info">
+      <img src="${ article.user.avatar_lg_url }" />
+      <p class="username">${ article.user.nickname }</p>
+    </div>
+  </div><!-- End col-md-2 -->
+
+  <div class="col-md-10">
+    <div class="panel panel-default user-pannel">
+      <div class="panel-heading">
+        <a href="${ reverse_url('blog:article:view', article.id) }">${ article.title }</a>
+        <span class="right datetime">${ ftime(article.updated) }</span>
+      </div>
+      <div class="panel-body">
+        ${ article.abstract }
+      </div>
+    </div>
+  </div><!-- End col-md-10-->
 </div>
 % endfor
 
-${ module('pagination', article_total) }
+<div class="text-right">
+    ${ module('pagination', article_total) }
+</div>
 
 % else:
 <div class="big-center">
@@ -23,4 +41,26 @@ ${ module('pagination', article_total) }
 </div>
 % endif
 
+    </div><!-- End col-md-9 -->
+
+    <div class="col-md-3">
+      <div class="panel panel-default blog-sidebar-container">
+        <div class="panel-heading">
+          <h2 class="title">${ _("YLinux Blog") }</h2>
+        </div>
+        <div class="panel-body">
+          <div class="side-banner">
+            <img src="${ static_url('img/people-thinking.jpeg', 'blog') }" />
+            <p>${ _("Stop thinking! Writing it.") }</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <a class="btn btn-primary btn-lg" href="${ reverse_url('console:blog:article:new') }"><i class="fa fa-edit"></i> ${ _("Write Blog") }</a>
+      </div>
+    </div><!-- End col-md-3 -->
+
+  </div><!-- End row -->
+</div><!-- End container-->
 </%block>

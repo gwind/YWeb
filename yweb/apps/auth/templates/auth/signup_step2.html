@@ -12,17 +12,19 @@
     <img class="site-logo" src="/static/img/logo.png">
 
     <form method="POST">${ xsrf_form_html() }
-      ${ form.username(class_="form-control", placeholder=_("Username"), autofocus=true) }
-      ${ form.html_errors(form.username) }
+      % for field in form:
+      <div class="form-group">
+        ${ field.label }
+        % if field.type == "BooleanField":
+        ${ field }
+        % else:
+        ${ field(class_="form-control") }
+        % endif
+        ${ form.html_errors(field) }
+      </div>
+      % endfor
 
-      ${ form.password(class_="form-control", placeholder=_("Password")) }
-      ${ form.html_errors(form.password) }
-
-      ${ form.confirm(class_="form-control", placeholder=_("Password Confirm")) }
-      ${ form.html_errors(form.confirm) }
-
-      ${ form.accept_tos } ${ form.accept_tos.label }
-      ${ form.html_errors(form.accept_tos) }
+      ${ module('authcode', authcode_failed) }
       <button class="btn btn-large btn-primary btn-block">${ _("Sign Up") }</button>
     </form>
 

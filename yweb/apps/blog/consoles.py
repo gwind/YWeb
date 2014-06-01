@@ -13,6 +13,7 @@ from yweb.utils.translation import ugettext_lazy as _
 from .models import BlogArticle, BlogPost, BlogComment, \
     BlogTag
 from .forms import ArticleEditForm
+from .utils import page_404
 
 
 class Index(RequestHandler):
@@ -184,16 +185,76 @@ class ArticleNew(RequestHandler):
                 body = form.body.data,
 #                markup = form.markup.data,
                 abstract = form.abstract.data,
-                is_public = form.ispublic.data)
+                is_public = form.is_public.data)
 
             self.db.add(article)
             self.db.commit()
 
-            # TODO
-            url = self.reverse_url('console:blog:article:all')
+            url = self.reverse_url('blog:article:view', article.id)
             return self.redirect( url )
 
         self.render()
+
+
+class ArticleEdit(RequestHandler):
+
+    @authenticated
+    def prepare(self):
+
+        self.title = _('Edit article')
+        self.template_path = 'blog/consoles/basic_edit.html'
+
+        markup = self.get_argument('markup', 1)
+        try:
+            markup = int(markup)
+        except:
+            markup = 1
+
+        self.data = dict(markup = markup,
+                         css_class = 'article-edit',
+                         form = ArticleEditForm(self))
+
+    def get_article(self, ID):
+
+        article = self.db.query(BlogArticle).get(ID)
+        if not article:
+            page_404(self, _('Can not find article %s') % ID)
+
+        return article
+
+    def get(self, ID):
+
+        article = self.get_article(ID)
+        if not article: return
+
+        form = self.data['form']
+        form.title.data = article.title
+        form.body.data = article.body
+        form.abstract.data = article.abstract
+        form.is_public.data = article.is_public
+
+        self.render(article=article)
+
+    def post(self, ID):
+
+        article = self.get_article(ID)
+        if not article: return
+
+        form = self.data['form']
+
+        if form.validate():
+
+            article.title = form.title.data
+            article.body = form.body.data
+            article.abstract = form.abstract.data
+            article.is_public = form.is_public.data
+
+            self.db.commit()
+
+            url = self.reverse_url('blog:article:view', article.id)
+            return self.redirect( url )
+
+        self.render(article=article)
 
 
 class ImindEdit(RequestHandler):

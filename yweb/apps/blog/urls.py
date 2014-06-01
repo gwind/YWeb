@@ -48,4 +48,7 @@ console_handlers = [
     url( '/console/blog/article/new', consoles.ArticleNew,
          name='console:blog:article:new' ),
 
+    url( '/console/blog/article/([0-9]+)/edit', consoles.ArticleEdit,
+         name='console:blog:article:edit'),
+
 ]

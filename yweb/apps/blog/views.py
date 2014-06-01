@@ -10,14 +10,10 @@ from yweb.utils.ydatetime import ftime
 from yweb.utils.url import urlupdate, urlupdate2
 
 from .models import BlogArticle, BlogPost, BlogComment, \
-    BlogTag
+    BlogTag, Article_Tag
 
+from .utils import page_404
 
-def page_404(handler, msg=None):
-    '''查找的对象不存在
-    '''
-    handler.set_status(404)
-    handler.render("blog/404.html", msg=msg)
 
 def get_post_order(handler):
 
@@ -38,40 +34,53 @@ class Index(RequestHandler):
 
     def get(self):
 
-        from apps.auth.models import get_available_uid, User
-        for user in self.db.query(User).all():
-            if not user.uid:
-                user.uid = get_available_uid(self.db)
-            if user.nickname:
-                L = user.nickname.split('@')
-                if len(L) > 1:
-                    user.nickname = L[0]
+        def update_ylinux_db():
+            from apps.auth.models import get_available_uid, User
+            for user in self.db.query(User).all():
+                if not user.uid:
+                    user.uid = get_available_uid(self.db)
+                if user.nickname:
+                    L = user.nickname.split('@')
+                    if len(L) > 1:
+                        user.nickname = L[0]
+    
+            self.db.commit()
+    
+            from yweb.utils import fopen
+            with fopen('/tmp/imind__post.sql', 'r') as fp_:
+                for line in fp_:
+                    article_id, post_id = line.split()
+                    article = self.db.query(BlogArticle).get(article_id)
+                    post = self.db.query(BlogPost).get(post_id)
+                    if article and post:
+                        if post.article_id != article_id:
+                            post.article_id = article_id
+    
+            self.db.commit()
+    
+            with fopen('/tmp/imind__utag.sql', 'r') as fp_:
+                for line in fp_:
+                    article_id, tag_id = line.split()
+                    article = self.db.query(BlogArticle).get(article_id)
+                    tag = self.db.query(BlogTag).get(tag_id)
+                    if article and tag:
+                        a = Article_Tag()
+                        a.article_id = article_id
+                        a.tag = tag
+                        a.user = self.current_user
+                        print 'article.tags = ', article.tags
+                        if a not in article.tags:
+                            article.tags.append(a)
+    
+            self.db.commit()
 
-        self.db.commit()
+        # 更新 ylinux 数据库
+#        update_ylinux_db()
+        a = self.db.query(BlogArticle).get(407)
+        print 'a.tags = ', a.tags
+        print 'dir(a.tags) = ', dir(a.tags)
 
-        from yweb.utils import fopen
-        with fopen('/tmp/imind__post.sql', 'r') as fp_:
-            for line in fp_:
-                article_id, post_id = line.split()
-                article = self.db.query(BlogArticle).get(article_id)
-                post = self.db.query(BlogPost).get(post_id)
-                if article and post:
-                    if post.article_id != article_id:
-                        post.article_id = article_id
-
-        self.db.commit()
-
-        with fopen('/tmp/imind__utag.sql', 'r') as fp_:
-            for line in fp_:
-                article_id, tag_id = line.split()
-                article = self.db.query(BlogArticle).get(article_id)
-                tag = self.db.query(BlogTag).get(tag_id)
-                if article and tag:
-                    if tag not in article.tags:
-                        article.tags.append( tag )
-
-        self.db.commit()
-
+    
         cur_page, page_size, start, stop = pagination(self)
 
         articles = self.db.query(BlogArticle).filter_by(
@@ -84,7 +93,8 @@ class Index(RequestHandler):
         articles = articles.slice(start, stop)
 
         d = dict(article_list = articles,
-                 article_total = total)
+                 article_total = total,
+                 ftime = ftime)
 
         self.render('blog/index.html', **d)
 

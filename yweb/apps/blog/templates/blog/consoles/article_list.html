@@ -9,13 +9,18 @@
     <tr>
       <th>${ _("ID") }</th>
       <th>${ _("Title") }</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     % for article in article_list:
     <tr>
       <td>${ article.id }</td>
-      <td><a href="${ reverse_url('blog:article:view', article.id) }" target="_blank">${ article.title }</a></td>
+      <td>${ article.title }</td>
+      <td>
+        <a class="btn btn-xs btn-default" href="${ reverse_url('blog:article:view', article.id) }" target="_blank">${ _("View") }</a>
+        <a class="btn btn-xs btn-primary" href="${ reverse_url('console:blog:article:edit', article.id) }" target="_blank">${ _("Edit") }</a>
+      </td>
     </tr>
     % endfor
   </tbody>

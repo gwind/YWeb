@@ -1,12 +1,7 @@
-<%inherit file="/base.html"/>
+<%inherit file="blog_base.html"/>
 
-<%block name="exthead">
-    <link rel="stylesheet" href="${ static_url('css/styles.css', 'blog') }">
-    <%block name="subhead"></%block>
-</%block>
-
-<%block name="content">
-<div class="container blog-container">
+<%block name="subcontent">
+<div class="container">
   <div class="row">
 
     <div class="col-md-9">
@@ -17,6 +12,59 @@
             <strong class="article-title">${ article.title }</strong>
           </div>
           <div class="panel-body">
+
+            <div>
+              % for tag in article.tags:
+              <span class="tag">${ tag.tag.name }</span>
+              % endfor
+            </div>
+            <div class="article-view-baseinfo row">
+              <div class="col-md-6">
+                <table>
+                  <tbody>
+                    <tr>
+                      <th>${ _("ID") }</th>
+                      <td>${ article.id }</td>
+                    </tr>
+                    <tr>
+                      <th>${ _("Status") }</th>
+                      <td>${ article.status }</td>
+                    </tr>
+                    <tr>
+                      <th>${ _("Created") }</th>
+                      <td>${ ftime(article.created) }</td>
+                    </tr>
+                    <tr>
+                      <th>${ _("Updated") }</th>
+                      <td>${ ftime(article.updated) }</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="col-md-6">
+                <table>
+                  <tbody>
+                    <tr>
+                      <th>${ _("Vote Up") }</th>
+                      <td>${ article.vote_up }</td>
+                    </tr>
+                    <tr>
+                      <th>${ _("Vote Down") }</th>
+                      <td>${ article.vote_down }</td>
+                    </tr>
+                    <tr>
+                      <th>${ _("View Count") }</th>
+                      <td>${ article.view_count }</td>
+                    </tr>
+                    <tr>
+                      <th>${ _("Post Count") }</th>
+                      <td>${ article.post_count }</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
             ${ article.body_html }
           </div>
         </div>
@@ -55,10 +103,11 @@
       </div>
     </div><!-- End col-md-9 -->
 
-    <div class="col-md-3">
+    <div class="col-md-3 blog-sidebar-container">
+
       <div class="panel panel-default">
         <div class="panel-heading">
-          <strong class="text-center">${ _("Author") }</strong>
+          <h2 class="title">${ _("About Author") }</h2>
         </div>
         <div class="panel-body">
           <div class="user-avatar text-center">
@@ -72,6 +121,7 @@
           <a href="#" class="list-group-item"><i class="fa fa-envelope-o"></i> ${ _("Contact Me") }</a>
         </div>
       </div>
+
     </div><!-- End col-md-3 -->
 
   </div><!-- End row -->

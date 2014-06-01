@@ -194,6 +194,10 @@ class SignUpStep2(RequestHandler):
 
     def post(self):
 
+        # 检查 authcode
+        if not self.check_authcode():
+            return self.render(authcode_failed=True)
+
         form = self.data['form']
         authkey = self.data['authkey']
 

@@ -25,15 +25,13 @@ from .utils import enc_login_passwd, check_login_passwd, \
 from . import settings as auth_settings
 
 
-user_groups = Table('user_groups', ORMBase.metadata,
-    Column('id', Integer, Sequence('user_groups_id_seq'), primary_key=True),
+user_groups = Table('auth_user__group', ORMBase.metadata,
     Column('user_id', Integer, ForeignKey('auth_user.id')),
     Column('group_id', Integer, ForeignKey('auth_group.id'))
 )
 
 
-group_permissions = Table('group_permissions', ORMBase.metadata,
-    Column('id', Integer, Sequence('group_permissions_id_seq'), primary_key=True),
+group_permissions = Table('auth_group__permission', ORMBase.metadata,
     Column('group_id', Integer, ForeignKey('auth_group.id')),
     Column('permission_id', Integer, ForeignKey('auth_permission.id')),
 )
@@ -421,7 +419,7 @@ class UserID(ORMBase):
 
     __tablename__ = 'auth_uid'
 
-    id = Column(Integer, Sequence('auth_uid_seq'), primary_key=True)
+    id = Column(Integer, Sequence('auth_uid_id_seq'), primary_key=True)
     uid = Column( Integer )
 
     def __init__(self, uid):

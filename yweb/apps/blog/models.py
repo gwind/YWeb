@@ -11,13 +11,22 @@ from sqlalchemy.orm import relationship, backref
 from yweb.utils.markup import generate_html
 
 
-article__tag_table = Table(
-    'blog_article__blog_tag', ORMBase.metadata,
-    Column('article_id', Integer, ForeignKey('blog_article.id')),
-    Column('tag_id', Integer, ForeignKey('blog_tag.id')),
-    Column('user_id', Integer, ForeignKey('auth_user.id')),
-    Column('created', DateTime, default=datetime.datetime.now)
-)
+class Article_Tag(ORMBase):
+
+    '''BlogArticle 与 BlogTag 的关联表
+    '''
+
+    __tablename__ = 'blog_article__tag'
+
+    article_id = Column( Integer, ForeignKey('blog_article.id'), primary_key=True )
+    tag_id = Column( Integer, ForeignKey('blog_tag.id'), primary_key=True )
+    tag = relationship( "BlogTag", backref="article_assocs" )
+
+    user_id = Column( Integer, ForeignKey('auth_user.id') )
+    user = relationship( "User" )
+
+    created = Column( DateTime, default=datetime.datetime.now )
+
 
 class BlogArticle(ORMBase):
 
@@ -48,8 +57,7 @@ class BlogArticle(ORMBase):
     view_count = Column( Integer, default=0 )
     post_count = Column( Integer, default=0 )
 
-    tags = relationship( 'BlogTag', secondary=article__tag_table,
-                           order_by="BlogTag.id" )
+    tags = relationship("Article_Tag", backref="articles")
 
     created = Column( DateTime, default=datetime.datetime.now )
     updated = Column( DateTime, default=datetime.datetime.now )
