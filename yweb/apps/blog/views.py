@@ -34,55 +34,6 @@ class Index(RequestHandler):
 
     def get(self):
 
-        def update_ylinux_db():
-            from apps.auth.models import get_available_uid, User
-            for user in self.db.query(User).all():
-                if not user.uid:
-                    user.uid = get_available_uid(self.db)
-                if user.nickname:
-                    L = user.nickname.split('@')
-                    if len(L) > 1:
-                        user.nickname = L[0]
-                else:
-                    user.nickname = user.username
-    
-            self.db.commit()
-    
-            from yweb.utils import fopen
-            with fopen('/tmp/imind__post.sql', 'r') as fp_:
-                for line in fp_:
-                    article_id, post_id = line.split()
-                    article = self.db.query(BlogArticle).get(article_id)
-                    post = self.db.query(BlogPost).get(post_id)
-                    if article and post:
-                        if post.article_id != article_id:
-                            post.article_id = article_id
-    
-            self.db.commit()
-    
-            with fopen('/tmp/imind__utag.sql', 'r') as fp_:
-                for line in fp_:
-                    article_id, tag_id = line.split()
-                    article = self.db.query(BlogArticle).get(article_id)
-                    tag = self.db.query(BlogTag).get(tag_id)
-                    if article and tag:
-                        a = Article_Tag()
-                        a.article_id = article_id
-                        a.tag = tag
-                        a.user = self.current_user
-                        print 'article.tags = ', article.tags
-                        if a not in article.tags:
-                            article.tags.append(a)
-    
-            self.db.commit()
-
-        # 更新 ylinux 数据库
-#        update_ylinux_db()
-        a = self.db.query(BlogArticle).get(407)
-        print 'a.tags = ', a.tags
-        print 'dir(a.tags) = ', dir(a.tags)
-
-    
         cur_page, page_size, start, stop = pagination(self)
 
         articles = self.db.query(BlogArticle).filter_by(
