@@ -196,7 +196,7 @@ class User(ORMBase):
 
     @property
     def avatar_url_prefix(self):
-        prefix = os.path.join('/auth/static', 'data',
+        prefix = os.path.join('/static/auth', 'data',
                               str(self.uid), 'avatar')
         return prefix
 

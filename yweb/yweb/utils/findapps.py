@@ -173,7 +173,7 @@ class App(object):
 
     @property
     def static_url(self):
-        return '/{0}/{1}/'.format(self.basename, self.STATIC_PATH)
+        return '/{0}/{1}/'.format(self.STATIC_PATH, self.basename)
 
 
 def get_static_urls():

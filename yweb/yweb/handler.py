@@ -170,7 +170,7 @@ class RequestHandler(tornado.web.RequestHandler):
 
             # 默认 url
             if not url:
-                url = '/{0}/static/'.format(app)
+                url = '/static/{0}/'.format(app)
 
             url += path
         else:

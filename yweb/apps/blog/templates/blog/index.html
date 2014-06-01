@@ -10,10 +10,12 @@
 
 % for article in article_list:
 <div class="row index-article-list">
-  <div class="col-md-2 text-right">
+  <div class="col-md-2 text-center">
     <div class="aritile-side-info">
       <img src="${ article.user.avatar_lg_url }" />
-      <p class="username">${ article.user.nickname }</p>
+      <p class="username">
+        <a href="${ reverse_url('user', article.user.uid) }">${ article.user.nickname }</a>
+      </p>
     </div>
   </div><!-- End col-md-2 -->
 

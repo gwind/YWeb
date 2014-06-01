@@ -43,6 +43,8 @@ class Index(RequestHandler):
                     L = user.nickname.split('@')
                     if len(L) > 1:
                         user.nickname = L[0]
+                else:
+                    user.nickname = user.username
     
             self.db.commit()
     
