@@ -278,8 +278,10 @@ class Session(ORMBase):
         return 'Session <%s>' % self.session_key
 
     def get_uid(self):
+        uid = 0
         data = decode_data(self.data, settings.SESSION_COOKIE_SECRET)
-        uid = data.get('user_id', 0)
+        if data:
+            uid = data.get('user_id', 0)
         return uid
 
 
