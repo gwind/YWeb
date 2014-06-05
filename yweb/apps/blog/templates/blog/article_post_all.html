@@ -30,7 +30,7 @@
 
       <div class="article-post-all">
         <ul class="nav nav-pills">
-          <li class="active"><a href="${ reverse_url('blog:article:post:all', article.id) }">${ _("The hottest Reply") }</a></li>
+          <li><a href="${ reverse_url('blog:article:post:all', article.id) }">${ _("The hottest Reply") }</a></li>
           <li><a href="${ urlupdate(request.uri, 'order_by', 'updated') }">${ _("Latest reply") }</a></li>
           <li><a href="${ urlupdate2(request.uri, {'order_by':'created', 'asc': 1}) }">${ _("The earliest Reply") }</a></li>
         </ul>
@@ -88,16 +88,13 @@
 </div><!-- End user-container-->
 
 <script>
-// active main menu
-$('#site-entry-blog').addClass('active');
-
 var url = window.location;
 // Will only work if string in href matches with location
-$('.list-group a[href="'+ url +'"]').addClass('active');
+$('.nav-pills a[href="'+ url +'"]').parent().addClass('active');
 
 // Will also work for relative and absolute hrefs
-$('.list-group a').filter(function() {
+$('.nav-pills a').filter(function() {
     return this.href == url;
-}).addClass('active');
+}).parent().addClass('active');
 </script>
 </%block>

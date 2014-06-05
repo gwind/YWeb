@@ -39,17 +39,35 @@ class Index(RequestHandler):
         articles = self.db.query(BlogArticle).filter_by(
             is_public = True )
 
-        articles = articles.order_by( desc(BlogArticle.id) )
-
         total = articles.count()
 
-        articles = articles.slice(start, stop)
+        articles = articles.order_by(
+            self.get_order() ).slice(start, stop)
 
         d = dict(article_list = articles,
                  article_total = total,
                  ftime = ftime)
 
         self.render('blog/index.html', **d)
+
+    def get_order(self):
+        order = self.get_argument('order', 'id')
+        if order not in [
+                'vote_up', 'vote_down', 'view_count', 'post_count',
+                'created', 'updated']:
+            order = 'id'
+
+        if self.get_argument('asc', False):
+            return asc(order)
+        else:
+            return desc(order)
+
+    def order_url(self, order, asc=False):
+        url = self.reverse_url('blog:index')
+        url = '{0}?order={1}'.format(url, order)
+        if asc:
+            url += '&asc=true'
+        return url
 
 
 class ArticleView(RequestHandler):

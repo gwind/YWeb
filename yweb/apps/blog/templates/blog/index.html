@@ -8,6 +8,16 @@
 
 % if article_total:
 
+<ul class="nav nav-pills">
+  <li><a href="${ reverse_url('blog:index') }">${ _("Newest") }</a></li>
+  <li><a href="${ handler.order_url('post_count') }">${ _("Hotest") }</a></li>
+  <li><a href="${ handler.order_url('vote_up') }">${ _("Favorite") }</a></li>
+  <li><a href="${ handler.order_url('view_count') }">${ _("Most View") }</a></li>
+  <li><a href="${ handler.order_url('created', True) }">${ _("Earliest") }</a></li>
+</ul>
+
+<br/>
+
 % for article in article_list:
 <div class="row index-article-list">
   <div class="col-md-2 text-center">
@@ -22,6 +32,7 @@
   <div class="col-md-10">
     <div class="panel panel-default user-pannel">
       <div class="panel-heading">
+        <span class="badge">${ article.post_count }</span>
         <a href="${ reverse_url('blog:article:view', article.id) }">${ article.title }</a>
         <span class="right datetime">${ ftime(article.updated) }</span>
       </div>
@@ -65,4 +76,14 @@
 
   </div><!-- End row -->
 </div><!-- End container-->
+<script>
+var url = window.location;
+// Will only work if string in href matches with location
+$('.nav-pills a[href="'+ url +'"]').parent().addClass('active');
+
+// Will also work for relative and absolute hrefs
+$('.nav-pills a').filter(function() {
+    return this.href == url;
+}).parent().addClass('active');
+</script>
 </%block>
