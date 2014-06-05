@@ -22,10 +22,3 @@ def restore_diff(diff, obj=1):
     orig = difflib.restore(diff, obj)
     return '\n'.join(orig)
 
-
-def page_404(handler, msg=None):
-    '''查找的对象不存在
-    '''
-    handler.set_status(404)
-    handler.render("blog/404.html", msg=msg)
-

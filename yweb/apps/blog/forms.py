@@ -23,3 +23,9 @@ class ArticleEditForm(Form):
 
     is_public = BooleanField( _('Is Public ?') )
 
+
+class PostEditForm(Form):
+
+    body = TextAreaField( _('Body'), [
+        validators.Length(min=6, max=1024*1024) ] )
+

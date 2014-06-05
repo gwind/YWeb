@@ -13,7 +13,15 @@
 
       <div class="panel panel-default">
         <div class="panel-heading">
-          <strong class="article-title"><a href="${ reverse_url('blog:article:view', article.id) }">${ article.title }</a></strong>
+          <strong class="article-title">
+            <a href="${ reverse_url('blog:article:view', article.id) }">${ article.title }</a>
+          </strong>
+          % if not article.is_public:
+          <button type="button" class="btn btn-warning btn-xs">${ _("Not Public") }</button>
+          % endif
+          % if current_user and (current_user.id == article.user_id or current_user.is_superuser):
+          <a class="btn btn-info btn-xs" href="${ reverse_url('console:blog:article:edit', article.id) }">${ _("Edit") }</a>
+          % endif
         </div>
         <div class="panel-body">
           ${ article.abstract }
@@ -49,6 +57,10 @@
         </div>
         % endif
 
+        <p>
+          <a class="btn btn-info btn-lg" href="${ reverse_url('blog:article:post:new', article.id) }">${ _("Reply Article") }</a>
+          <span>${ _("Silence are not always virtues.") }</span>
+        </p>
       </div><!-- End article-view -->
 
     </div><!-- End col-md-9 -->

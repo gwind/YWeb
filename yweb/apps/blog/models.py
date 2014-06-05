@@ -62,7 +62,6 @@ class BlogArticle(ORMBase):
     created = Column( DateTime, default=datetime.datetime.now )
     updated = Column( DateTime, default=datetime.datetime.now )
 
-
     def __init__(self, user, title, body, markup=1, abstract=None, is_public=True):
 
         self.user_id = user.id
@@ -278,7 +277,6 @@ class BlogTag(ORMBase):
 
     created = Column( DateTime, default=datetime.datetime.now )
     updated = Column( DateTime, default=datetime.datetime.now )
-
 
     def __init__(self, name, brief='', detail='', markup=1):
 

@@ -13,7 +13,6 @@ from yweb.utils.translation import ugettext_lazy as _
 from .models import BlogArticle, BlogPost, BlogComment, \
     BlogTag
 from .forms import ArticleEditForm
-from .utils import page_404
 
 
 class Index(RequestHandler):
@@ -218,7 +217,8 @@ class ArticleEdit(RequestHandler):
 
         article = self.db.query(BlogArticle).get(ID)
         if not article:
-            page_404(self, _('Can not find article %s') % ID)
+            emsg = _('Can not find article %s') % ID
+            self.send_error(404, emsg=emsg)
 
         return article
 

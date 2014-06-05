@@ -16,3 +16,4 @@ img.user-logo-img{width:100px;height:100px;border-radius:100px;border:1px solid 
 .article-view-baseinfo{border-bottom:1px dotted #ddd;margin-bottom:25px;padding-bottom:15px}.article-view-baseinfo table th{padding:2px 8px;text-align:right;border:1px solid #ddd;border-radius:3px;background-color:#666;color:#fff}
 .article-view-baseinfo table td{padding-left:10px;color:#666}
 .tag{border-radius:3px;background-color:#ff0;color:#999;padding:2px 5px;margin-bottom:5px;display:inline-block}
+.post-new textarea#body{height:360px}

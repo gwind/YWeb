@@ -1,0 +1,30 @@
+<%inherit file="blog_base.html"/>
+
+<%block name="subcontent">
+<div class="container post-new">
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <h2 class="panel-title">
+        <strong>${ _("Reply: ") }</strong>
+        ${ article.title }
+      </h2>
+    </div>
+    <div class="panel-body">
+      <div class="article-info">
+        <span><a href="${ reverse_url('user', article.user.uid) }" target="_blank">${ article.user.nickname }</a></span>
+        ${ _("updated at ") }
+        ${ ftime(article.updated) }
+      </div>
+      <div class="article-abstract">${ article.abstract }</div>
+    </div><!-- End panel-body -->
+  </div><!-- End panel -->
+
+  <form method="POST" role="form">${ xsrf_form_html() }
+    ${ form.body(class_="form-control") }
+    ${ form.html_errors( form.body ) }
+    <br/>
+    <button class="btn btn-primary">${ _("Post") }</button>
+  </form>
+
+</div><!-- End post-new -->
+</%block>

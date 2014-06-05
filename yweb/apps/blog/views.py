@@ -2,7 +2,7 @@
 
 from sqlalchemy import and_, desc, asc
 
-from tornado.web import authenticated
+from tornado.web import authenticated, HTTPError
 from yweb.handler import RequestHandler
 from yweb.utils.pagination import pagination
 from yweb.utils.translation import ugettext_lazy as _
@@ -12,7 +12,7 @@ from yweb.utils.url import urlupdate, urlupdate2
 from .models import BlogArticle, BlogPost, BlogComment, \
     BlogTag, Article_Tag
 
-from .utils import page_404
+from .forms import PostEditForm
 
 
 def get_post_order(handler):
@@ -64,20 +64,21 @@ class ArticleView(RequestHandler):
         article = self.db.query(BlogArticle).get( article_id )
 
         if not article:
-            return page_404(self, _('Can not find article %s') % article_id)
+            emsg = _('Can not find article %s') % article_id
+            return self.send_error(404, emsg=emsg)
 
         if not article.is_public:
             if cur_uid != article.user_id:
-                return page_404(_('Article %s is not public.') % article_id)
+                emsg = _('Article %s is not public.') % article_id
+                return self.send_error(404, emsg=emsg)
 
         cur_page, page_size, start, stop = pagination(self)
 
-        post_q = self.db.query(BlogPost).filter_by(
-            article_id = article_id)
-        post_total = post_q.count()
+        post_total = article.post_count
 
-        posts = post_q.order_by(
-            get_post_order(self)).slice(start, stop)
+        posts = self.db.query(BlogPost).filter_by(
+            article_id = article_id).order_by(
+                get_post_order(self)).slice(start, stop)
 
         # 增加查看次数
         article.view_count += 1
@@ -105,11 +106,13 @@ class ArticlePostAll(RequestHandler):
         article = self.db.query(BlogArticle).get( article_id )
 
         if not article:
-            return page_404(self, _('Can not find article %s') % article_id)
+            emsg = _('Can not find article %s') % article_id
+            return self.send_error(404, emsg=emsg)
 
         if not article.is_public:
             if cur_uid != article.user_id:
-                return page_404(_('Article %s is not public.') % article_id)
+                emsg = _('Article %s is not public.') % article_id
+                return self.send_error(404, emsg=emsg)
 
         cur_page, page_size, start, stop = pagination(self)
 
@@ -128,6 +131,57 @@ class ArticlePostAll(RequestHandler):
                          urlupdate2 = urlupdate2)
 
         self.render('blog/article_post_all.html')
+
+
+class PostNew(RequestHandler):
+
+    @authenticated
+    def prepare(self):
+
+        self.title = _('Reply Article')
+        self.template_path = 'blog/post_new.html'
+        self.data = dict(form = PostEditForm(self),
+                         ftime = ftime)
+
+    def get(self, article_id):
+
+        article = self.get_article(article_id)
+        if not article: return
+
+        self.render()
+
+    def post(self, article_id):
+
+        article = self.get_article(article_id)
+        if not article: return
+
+        form = self.data['form']
+
+        if form.validate():
+
+            post = BlogPost(article = article,
+                            user    = self.current_user,
+                            body    = form.body.data,
+                            markup  = 1)
+
+            self.db.add(post)
+            self.db.commit()
+
+            url = self.reverse_url('blog:article:view', article.id)
+            return self.redirect( url )
+
+        self.render()
+
+    def get_article(self, ID):
+
+        article = self.db.query(BlogArticle).get(ID)
+        self.data['article'] = article
+        # TODO: 文章的回复权限
+        if not article:
+            emsg = _('Can not find article %s') % ID
+            self.send_error(404, emsg=emsg)
+
+        return article
 
 
 class TempRedirect1(RequestHandler):

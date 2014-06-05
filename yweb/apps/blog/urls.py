@@ -15,6 +15,9 @@ handlers = [
     url('/blog/article/([0-9]+)/post/all', views.ArticlePostAll,
         name='blog:article:post:all'),
 
+    url('/blog/article/([0-9]+)/post/new', views.PostNew,
+        name='blog:article:post:new'),
+
     # 重定向旧文章路径
     url('/imind/([0-9]+)', views.TempRedirect1),
     url('/([0-9]+)', views.TempRedirect1),

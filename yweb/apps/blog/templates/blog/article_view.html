@@ -9,7 +9,17 @@
       <div class="article-view">
         <div class="panel panel-default">
           <div class="panel-heading">
+
             <strong class="article-title">${ article.title }</strong>
+
+            % if not article.is_public:
+            <button type="button" class="btn btn-warning btn-xs">${ _("Not Public") }</button>
+            % endif
+
+            % if current_user and (current_user.id == article.user_id or current_user.is_superuser):
+            <a class="btn btn-info btn-xs" href="${ reverse_url('console:blog:article:edit', article.id) }">${ _("Edit") }</a>
+            % endif
+
           </div>
           <div class="panel-body">
 
@@ -72,14 +82,13 @@
         <div class="blog-post-container">
 
           <% purl = reverse_url('blog:article:post:all', article.id) %>
+          % if article.post_count > 0:
           <ul class="nav nav-pills">
             <li class="active"><a href="${ reverse_url('blog:article:post:all', article.id) }">${ _("The hottest Reply") }</a></li>
             <li><a href="${ urlupdate(purl, 'order_by', 'updated') }">${ _("Latest reply") }</a></li>
             <li><a href="${ urlupdate2(purl, {'order_by':'created', 'asc': 1}) }">${ _("The earliest Reply") }</a></li>
           </ul>
-
-          % if post_total:
-          % for post in article.posts:
+          % for post in posts:
           <div class="panel panel-default blog-post-item">
             <div class="panel-heading">
               <a href="${ reverse_url('user', post.user.uid) }"><img class="img-circle" src="${ post.user.avatar_xs_url }"/></a>
@@ -94,11 +103,12 @@
             </div>
           </div>
           % endfor
-          % else:
-          <div class="big-center">
-            <h3 class="text-warning">${ _("No posts yet.") }</h3>
-          </div>
           % endif
+
+          <p>
+            <a class="btn btn-info btn-lg" href="${ reverse_url('blog:article:post:new', article.id) }">${ _("Reply Article") }</a>
+            <span>${ _("Silence are not always virtues.") }</span>
+          </p>
         </div>
       </div>
     </div><!-- End col-md-9 -->
