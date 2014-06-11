@@ -248,6 +248,7 @@ class ArticleEdit(RequestHandler):
             article.body = form.body.data
             article.abstract = form.abstract.data
             article.is_public = form.is_public.data
+            article.updated = datetime.datetime.now()
 
             self.db.commit()
 

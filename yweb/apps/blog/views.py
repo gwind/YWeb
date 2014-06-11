@@ -15,6 +15,18 @@ from .models import BlogArticle, BlogPost, BlogComment, \
 from .forms import PostEditForm
 
 
+def get_order(handler, allow_list, default_order="id"):
+
+    ascending = handler.get_argument('asc', None)
+    _by = handler.get_argument('order_by', 'id')
+    if _by not in allow_list:
+        _by = 'id'
+
+    order_by = asc(_by) if ascending else desc(_by)
+
+    return order_by
+
+
 def get_post_order(handler):
 
     ascending = handler.get_argument('asc', None)
@@ -51,11 +63,11 @@ class Index(RequestHandler):
         self.render('blog/index.html', **d)
 
     def get_order(self):
-        order = self.get_argument('order', 'id')
+        order = self.get_argument('order', 'updated')
         if order not in [
                 'vote_up', 'vote_down', 'view_count', 'post_count',
-                'created', 'updated']:
-            order = 'id'
+                'created', 'updated', 'id']:
+            order = 'updated'
 
         if self.get_argument('asc', False):
             return asc(order)
