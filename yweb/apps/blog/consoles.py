@@ -161,15 +161,7 @@ class ArticleNew(RequestHandler):
 
         self.title = _('Create an new article')
         self.template_path = 'blog/consoles/basic_edit.html'
-
-        markup = self.get_argument('markup', 1)
-        try:
-            markup = int(markup)
-        except:
-            markup = 1
-
-        self.data = dict(markup = markup,
-                         css_class = 'article-edit',
+        self.data = dict(css_class = 'article-edit',
                          form = ArticleEditForm(self))
 
     def post(self):
@@ -182,7 +174,7 @@ class ArticleNew(RequestHandler):
                 user = self.current_user,
                 title = form.title.data,
                 body = form.body.data,
-#                markup = form.markup.data,
+                markup = form.markup.data,
                 abstract = form.abstract.data,
                 is_public = form.is_public.data)
 
@@ -202,15 +194,7 @@ class ArticleEdit(RequestHandler):
 
         self.title = _('Edit article')
         self.template_path = 'blog/consoles/basic_edit.html'
-
-        markup = self.get_argument('markup', 1)
-        try:
-            markup = int(markup)
-        except:
-            markup = 1
-
-        self.data = dict(markup = markup,
-                         css_class = 'article-edit',
+        self.data = dict(css_class = 'article-edit',
                          form = ArticleEditForm(self))
 
     def get_article(self, ID):
@@ -231,6 +215,7 @@ class ArticleEdit(RequestHandler):
         form.title.data = article.title
         form.body.data = article.body
         form.abstract.data = article.abstract
+        form.markup.data = article.markup
         form.is_public.data = article.is_public
 
         self.render(article=article)
@@ -247,6 +232,7 @@ class ArticleEdit(RequestHandler):
             article.title = form.title.data
             article.body = form.body.data
             article.abstract = form.abstract.data
+            article.markup = form.markup.data
             article.is_public = form.is_public.data
             article.updated = datetime.datetime.now()
 

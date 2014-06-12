@@ -18,6 +18,11 @@ class ArticleEditForm(Form):
     abstract = TextAreaField( _('Abstract'), [
         validators.Length(min=2, max=1024) ] )
 
+    markup = SelectField(
+        _('Markup Language'), coerce=int, default=1,
+        choices=[(1, 'Markdown'),
+                 (2, 'reStructuredText')] )
+
     body = TextAreaField( _('Body'), [
         validators.Length(min=6, max=1024*1024) ] )
 
