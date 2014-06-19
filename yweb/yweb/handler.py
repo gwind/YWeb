@@ -93,7 +93,7 @@ class RequestHandler(tornado.web.RequestHandler):
 
         # Does session expired ?
         if session.expire_date < now:
-            self.db.remove( session )
+            self.db.delete( session )
             self.db.commit()
             return None
 
