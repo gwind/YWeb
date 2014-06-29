@@ -111,6 +111,12 @@ class PaginationUI(UIModule):
         except:
             cur = 1
             sepa = settings.DEFAULT_PAGE_SIZE
+
+        if sepa <= 1:
+            sepa = settings.DEFAULT_PAGE_SIZE
+        if cur <= 1:
+            cur = 1
+
         d = pagination(url, total, sepa, cur, list_size, sepa_range)
         if d:
             return self.render_string('common/modules/pagination.html', **d)
