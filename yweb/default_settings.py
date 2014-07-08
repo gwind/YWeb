@@ -45,6 +45,9 @@ TEMPLATE_DIRS = (
 # 启用 static serve ，如果使用 nginx 提供，可以设置为 False
 ENABLE_STATIC_SERVE = True
 
+# 设置时区
+TIME_ZONE = 'Asia/Shanghai'
+
 # 安全 KEY
 # 重要：修改为只有你自己知道的字符串
 SECRET_KEY = 'Not set now!'
