@@ -32,10 +32,14 @@
         <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
           <ul class="nav navbar-nav">
             <li id="site-entry-blog"><a href="${ reverse_url('blog:index') }"><i class="fa fa-circle-thin fa-lg"></i> ${ _("Blog") }</a></li>
-            <li><a href="#"><i class="fa fa-circle-thin fa-lg"></i> ${ _("Item 2") }</a></li>
-            <li><a href="#"><i class="fa fa-circle-thin fa-lg"></i> ${ _("Item 3") }</a></li>
-            <li><a href="#"><i class="fa fa-support fa-lg"></i> ${ _("FAQ") }</a></li>
           </ul>
+          <form role="search" class="navbar-form navbar-left bee-search-box" action="http://beefetch.com/search" method="GET">
+            <div class="form-group">
+              <input type="text" value="Linux" name="q" id="q" placeholder="Linux" class="form-control col-sm-3 input-box">
+            </div>
+            <input type="hidden" value="1" name="app_id">
+            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span> ${ _("Search") }</button>
+          </form>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/about"><i class="fa fa-lightbulb-o"></i> ${ _("About") }</a></li>
 

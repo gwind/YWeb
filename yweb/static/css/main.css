@@ -76,3 +76,4 @@ body{color:#2f2f2f;font-size:16px}
 .f-left,.left{float:left !important}
 #home-welcome{background:radial-gradient(ellipse at center center, #a4d0d3 0, #257fa1 100%) repeat scroll 0 0 rgba(0,0,0,0);color:#fff;padding:160px 0 500px;margin:0;text-align:center}#home-welcome p{padding:15px}
 #home-welcome .supported-link{font-family:Times,"Songti SC","SimSun",serif;font-weight:bold;line-height:30px}
+.bee-search-box .input-box{box-shadow:0 0 20px #e8ebed inset}
