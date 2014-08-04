@@ -80,7 +80,6 @@ Python 下优秀的 ORM 、数据库操作绑定库，可以很方便地与其�
 
 # 联系我们
 
-- 社区： http://www.ylinux.org
-- 邮件： admin@ooctech.com
-- QQ群1： 中国云计算交流 232629450
-- QQ群2： YLinux 社区群 371582154
+- 社区： http://ylinux.org
+- 邮件： info@ylinux.org
+- QQ群： Linux与云计算 232629450

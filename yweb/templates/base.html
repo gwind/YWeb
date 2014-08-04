@@ -73,13 +73,18 @@
       <div id="footer-content">
         <div class="container">
           <div class="row">
-            <div class="col-md-2 text-left">
-              <ul class="nav nav-pills nav-stacked">
-                <li><a href="/about">${ _("About US") }</a></li>
-                <li><a href="/contact">${ _("Contact US") }</a></li>
-              </ul>
+            <div class="col-md-3 text-left">
+              <div class="fast-contact">
+                <h2>联系我们</h2>
+
+                <h3><i class="fa fa-envelope-o"></i> 电子邮件</h3>
+                <p><a href="mailto:info@ylinux.org">info@ylinux.org</a></p>
+
+                <h3><a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=6071aaabcbdef4078232a0893286f77b666945ccac2082aeb00274d6d5ef76fc"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="Linux与云计算" title="Linux与云计算"></a></h3>
+                <p>Linux与云计算<br/><strong>232629450</strong></p>
+              </div>
             </div>
-            <div class="col-md-10 text-right">
+            <div class="col-md-9 text-right">
               ${ module('setlang') }
             </div>
           </div>
@@ -89,12 +94,13 @@
         <div class="container">
           <div class="f-right">
             <ul class="nav">
-              <li><a href="#" title="Privacy Policy">Privacy Policy</a></li>
-              <li><a href="#" title="Terms of Service">Terms of Service</a></li>
-              <li><a href="#" title="License/Trademark FAQ">License/Trademark FAQ</a></li>
-          </ul>            </div>
-          <div class="f-left">©&nbsp;2014 <a href="http://www.ylinux.org/">YLinux.org</a>. All rights reserved.
+              <li><a href="/about">${ _("About US") }</a></li>
+              <li><a href="/contact">${ _("Contact US") }</a></li>
+            </ul>
+          </div>
+          <div class="f-left">©&nbsp;2014 <a href="http://ylinux.org/">YLinux.org</a>. All rights reserved.
             Powered by <a href="https://github.com/jianlee/YWeb">YWeb</a>
+            <span class="tongji"></span>
           </div>
         </div>
       </div>

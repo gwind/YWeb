@@ -6,7 +6,7 @@ from tornado.web import authenticated, HTTPError
 from yweb.handler import RequestHandler
 from yweb.utils.pagination import pagination
 from yweb.utils.translation import ugettext_lazy as _
-from yweb.utils.ydatetime import ftime
+from yweb.utils.ydatetime import ftime, htime
 from yweb.utils.url import urlupdate, urlupdate2
 
 from .models import BlogArticle, BlogPost, BlogComment, \
@@ -58,7 +58,8 @@ class Index(RequestHandler):
 
         d = dict(article_list = articles,
                  article_total = total,
-                 ftime = ftime)
+                 ftime = ftime,
+                 htime = htime)
 
         self.render('blog/index.html', **d)
 
@@ -118,6 +119,7 @@ class ArticleView(RequestHandler):
                          post_total = post_total,
                          posts = posts,
                          ftime = ftime,
+                         htime = htime,
                          urlupdate = urlupdate,
                          urlupdate2 = urlupdate2)
 

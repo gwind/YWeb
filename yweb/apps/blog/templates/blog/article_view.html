@@ -106,32 +106,17 @@
           % endif
 
           <p>
-            <a class="btn btn-info btn-lg" href="${ reverse_url('blog:article:post:new', article.id) }">${ _("Reply Article") }</a>
-            <span>${ _("Silence are not always virtues.") }</span>
+            <a class="btn btn-primary" href="${ reverse_url('blog:article:post:new', article.id) }">${ _("Reply Article") }</a>
           </p>
         </div>
       </div>
     </div><!-- End col-md-9 -->
 
     <div class="col-md-3 blog-sidebar-container">
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h2 class="title">${ _("About Author") }</h2>
-        </div>
-        <div class="panel-body">
-          <div class="user-avatar text-center">
-            <a href="${ reverse_url('user', article.user.uid) }"><img class="user-logo-img" src="${ article.user.avatar_lg_url }" alt="Avatar" /></a>
-            <p class="username">${ article.user.nickname }</p>
-          </div>
-        </div>
-
-        <div class="list-group">
-          <a href="${ reverse_url('user', article.user.uid) }" class="list-group-item"><i class="fa fa-home"></i> ${ _("Author Homepage") }</a>
-          <a href="#" class="list-group-item"><i class="fa fa-envelope-o"></i> ${ _("Contact Me") }</a>
-        </div>
+      <div class="user-avatar text-center">
+        <a href="${ reverse_url('user', article.user.uid) }"><img class="user-logo-img" src="${ article.user.avatar_lg_url }" alt="Avatar" /></a>
+        <p class="username"><a href="${ reverse_url('user', article.user.uid) }">${ article.user.nickname }</a></p>
       </div>
-
     </div><!-- End col-md-3 -->
 
   </div><!-- End row -->

@@ -64,10 +64,14 @@ body{color:#2f2f2f;font-size:16px}
 #site-nav-primary{border-radius:0;border:none}
 #site-nav-primary.navbar{margin-bottom:0}
 .big-center{padding:150px 0 500px;text-align:center}.big-center p{font-size:20px}
-#footer{padding-top:60px;padding-bottom:10px;text-align:center;background-color:#31302b;font:13px/18px 'Courier New',Courier,monospace;overflow:hidden;position:relative}#footer a{color:#428bca}
-#footer #copyright{font:12px/12px 'OpenSansRegular',sans-serif;text-transform:uppercase;color:#828070;border-top:1px solid #5a5955;margin-top:55px;padding:10px 0 15px;overflow:hidden}#footer #copyright li{float:left}
+#footer{color:#fff;padding-top:50px;padding-bottom:10px;text-align:center;background-color:#31302b;font:13px/18px 'Courier New',Courier,monospace;overflow:hidden;position:relative}#footer a{color:#428bca}
+#footer #copyright{font:12px/12px 'OpenSansRegular',sans-serif;text-transform:uppercase;color:#828070;border-top:1px solid #5a5955;margin-top:15px;padding:10px 0;overflow:hidden}#footer #copyright li{float:left}
 #footer #copyright a{color:#cac3b4}
 #footer #copyright .f-left{padding-top:11px}
+#footer .fast-contact{font-size:16px}#footer .fast-contact h2{margin-top:5px;font-size:18px}
+#footer .fast-contact h3{font-size:16px}
+#footer .fast-contact a{color:#ff0}
+#footer .tongji{margin-left:15px}
 .f-right,.right{float:right !important}
 .f-left,.left{float:left !important}
 #home-welcome{background:radial-gradient(ellipse at center center, #a4d0d3 0, #257fa1 100%) repeat scroll 0 0 rgba(0,0,0,0);color:#fff;padding:160px 0 500px;margin:0;text-align:center}#home-welcome p{padding:15px}
