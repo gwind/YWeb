@@ -7,77 +7,34 @@
     <div class="col-md-9">
 
       <div class="article-view">
-        <div class="panel panel-default">
-          <div class="panel-heading">
 
-            <strong class="article-title">${ article.title }</strong>
+        <h1 class="t1">${ article.title }</h1>
 
-            % if not article.is_public:
-            <button type="button" class="btn btn-warning btn-xs">${ _("Not Public") }</button>
-            % endif
+        <div class="a-info">
+          ${ _("by") }
+          <a href="${ reverse_url('user', article.user.uid) }">${ article.user.nickname }</a>
+          ${ _("created at") }
+          <span class="datetime">${ ftime(article.created) }</span>
+          ${ _("updated at") }
+          <span class="datetime">${ ftime(article.updated) }</span>
 
-            % if current_user and (current_user.id == article.user_id or current_user.is_superuser):
-            <a class="btn btn-info btn-xs" href="${ reverse_url('console:blog:article:edit', article.id) }">${ _("Edit") }</a>
-            % endif
+          % if not article.is_public:
+          <button type="button" class="btn btn-warning btn-xs">${ _("Not Public") }</button>
+          % endif
 
-          </div>
-          <div class="panel-body">
-
-            <div>
-              % for tag in article.tags:
-              <span class="tag">${ tag.tag.name }</span>
-              % endfor
-            </div>
-            <div class="article-view-baseinfo row">
-              <div class="col-md-6">
-                <table>
-                  <tbody>
-                    <tr>
-                      <th>${ _("ID") }</th>
-                      <td>${ article.id }</td>
-                    </tr>
-                    <tr>
-                      <th>${ _("Status") }</th>
-                      <td>${ article.status }</td>
-                    </tr>
-                    <tr>
-                      <th>${ _("Created") }</th>
-                      <td>${ ftime(article.created) }</td>
-                    </tr>
-                    <tr>
-                      <th>${ _("Updated") }</th>
-                      <td>${ ftime(article.updated) }</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-              <div class="col-md-6">
-                <table>
-                  <tbody>
-                    <tr>
-                      <th>${ _("Vote Up") }</th>
-                      <td>${ article.vote_up }</td>
-                    </tr>
-                    <tr>
-                      <th>${ _("Vote Down") }</th>
-                      <td>${ article.vote_down }</td>
-                    </tr>
-                    <tr>
-                      <th>${ _("View Count") }</th>
-                      <td>${ article.view_count }</td>
-                    </tr>
-                    <tr>
-                      <th>${ _("Post Count") }</th>
-                      <td>${ article.post_count }</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-
-            ${ article.body_html }
-          </div>
+          % if current_user and (current_user.id == article.user_id or current_user.is_superuser):
+          <a class="btn btn-info btn-xs" href="${ reverse_url('console:blog:article:edit', article.id) }">${ _("Edit") }</a>
+          % endif
         </div>
+
+        <div>
+          % for tag in article.tags:
+          <span class="tag">${ tag.tag.name }</span>
+          % endfor
+        </div>
+
+        <div class="abstract"><i class="fa fa-quote-left"></i>${ article.abstract }<i class="fa fa-quote-right"></i></div>
+        <div class="a-body">${ article.body_html }</div>
 
         <div class="blog-post-container">
 
@@ -113,10 +70,37 @@
     </div><!-- End col-md-9 -->
 
     <div class="col-md-3 blog-sidebar-container">
-      <div class="user-avatar text-center">
-        <a href="${ reverse_url('user', article.user.uid) }"><img class="user-logo-img" src="${ article.user.avatar_lg_url }" alt="Avatar" /></a>
-        <p class="username"><a href="${ reverse_url('user', article.user.uid) }">${ article.user.nickname }</a></p>
+      <div class="article-view-baseinfo">
+        <table>
+          <tbody>
+            <tr>
+              <th>${ _("ID") }</th>
+              <td>${ article.id }</td>
+            </tr>
+            <tr>
+              <th>${ _("Status") }</th>
+              <td>${ article.status }</td>
+            </tr>
+            <tr>
+              <th>${ _("Vote Up") }</th>
+              <td>${ article.vote_up }</td>
+            </tr>
+            <tr>
+              <th>${ _("Vote Down") }</th>
+              <td>${ article.vote_down }</td>
+            </tr>
+            <tr>
+              <th>${ _("View Count") }</th>
+              <td>${ article.view_count }</td>
+            </tr>
+            <tr>
+              <th>${ _("Post Count") }</th>
+              <td>${ article.post_count }</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+
     </div><!-- End col-md-3 -->
 
   </div><!-- End row -->

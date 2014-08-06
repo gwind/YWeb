@@ -15,7 +15,12 @@ img.user-logo-img{width:100px;height:100px;border-radius:100px;border:1px solid 
 .index-article-list .a-header{font-weight:bold;margin-bottom:5px}
 .index-article-list .a-body{margin-top:10px;color:#666}
 .index-article-list .a-info{margin-top:6px;font-size:.9em}.index-article-list .a-info a{color:#666}
-.article-view-baseinfo{border-bottom:1px dotted #ddd;margin-bottom:25px;padding-bottom:15px}.article-view-baseinfo table th{padding:2px 6px;text-align:right;color:#444}
-.article-view-baseinfo table td{padding-left:6px;color:#666}
+.article-view .t1{font-size:22px;font-weight:bold;margin:0 0 0 -1px;padding:0}
+.article-view .a-info{font-size:14px;color:#444;margin:5px 0 25px}
+.article-view .abstract{margin-bottom:30px;color:#666;font-size:18px}.article-view .abstract .fa-quote-left{margin-right:10px}
+.article-view .abstract .fa-quote-right{margin-left:10px}
+.article-view .a-body h1,.article-view .a-body h2,.article-view .a-body h3,.article-view .a-body h4,.article-view .a-body h5,.article-view .a-body h6{font-size:18px;color:#333;font-weight:bold}
+.article-view-baseinfo{margin-top:25px}.article-view-baseinfo table{font-size:.9em}.article-view-baseinfo table th{text-align:right}
+.article-view-baseinfo table td{padding-left:5px}
 .tag{border-radius:3px;background-color:#ff0;color:#999;padding:2px 5px;margin-bottom:5px;display:inline-block}
 .post-new textarea#body{height:360px}

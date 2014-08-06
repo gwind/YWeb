@@ -115,7 +115,8 @@ class ArticleView(RequestHandler):
         article.view_count += 1
         self.db.commit()
 
-        self.data = dict(article = article,
+        self.data = dict(title = article.title,
+                         article = article,
                          post_total = post_total,
                          posts = posts,
                          ftime = ftime,

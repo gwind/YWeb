@@ -52,14 +52,14 @@ class RequestHandler(tornado.web.RequestHandler):
             s=lambda x: u"\"{0}\"".format(x),
         )
 
-        args.update(self.data)
-        args.update(kwargs)
-
         # 如果标题未设置，设置一个默认值
         if self.title:
             args['title'] = self.title
         else:
             args['title'] = settings.DEFAULT_HTML_TITLE
+
+        args.update(self.data)
+        args.update(kwargs)
 
         try:
             html = self.application.template_lookup.get_template(

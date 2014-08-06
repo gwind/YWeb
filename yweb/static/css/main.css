@@ -61,7 +61,8 @@
 .codehilite .vi{color:#008080}
 .codehilite .il{color:#099}
 body{color:#2f2f2f;font-size:16px}
-#site-nav-primary{border-radius:0;border:none}
+#site-nav-primary{border-radius:0;border:none}#site-nav-primary .navbar-header a{padding-top:5px;padding-bottom:0}#site-nav-primary .navbar-header a img{height:36px}
+#site-nav-primary .navbar-header a b{display:inline-block;margin-top:10px}
 #site-nav-primary.navbar{margin-bottom:0}
 .big-center{padding:150px 0 500px;text-align:center}.big-center p{font-size:20px}
 #footer{color:#fff;padding-top:50px;padding-bottom:10px;text-align:center;background-color:#31302b;font:13px/18px 'Courier New',Courier,monospace;overflow:hidden;position:relative}#footer a{color:#428bca}
