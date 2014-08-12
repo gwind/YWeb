@@ -4,9 +4,9 @@ YWeb ( YLinux Web Framework ) -- The First Choice For Your Great Site.
 
 基于 Python, Tornado, SQLAlchemy, Mako, WTForms 提供一整套 Web 开发环境与流程。
 
-![YWeb Home Index](https://raw.githubusercontent.com/jianlee/YWeb/master/docs/source/_static/screenshots/yweb-home-index.png)
-![YWeb Console Account](https://raw.githubusercontent.com/jianlee/YWeb/master/docs/source/_static/screenshots/yweb-console-account.png)
-![YWeb Admin Account](https://raw.githubusercontent.com/jianlee/YWeb/master/docs/source/_static/screenshots/yweb-admin-account.png)
+![YWeb Home Index](https://raw.githubusercontent.com/gwind/YWeb/master/docs/source/_static/screenshots/yweb-home-index.png)
+![YWeb Console Account](https://raw.githubusercontent.com/gwind/YWeb/master/docs/source/_static/screenshots/yweb-console-account.png)
+![YWeb Admin Account](https://raw.githubusercontent.com/gwind/YWeb/master/docs/source/_static/screenshots/yweb-admin-account.png)
 
 
 ## 组件
@@ -66,7 +66,7 @@ Python 下优秀的 ORM 、数据库操作绑定库，可以很方便地与其�
 
 ## 部署 YWeb
 
-    git clone https://github.com/jianlee/YWeb.git
+    git clone https://github.com/gwind/YWeb.git
     cd YWeb/yweb/
     wget http://dl.ylinux.org/yweb/tools/YWeb_dev_third_lib-20140531.tar.bz2
     tar xf YWeb_dev_third_lib-20140531.tar.bz2
