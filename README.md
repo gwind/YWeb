@@ -1,5 +1,12 @@
 # Y Web Framework
 
+**注意** 本项目做为学习 Python / Tornado Web 开发有参考价值.随着后来经验增加,当前我倾向这样的 Web 开发:
+
+1. api 层(RESTFul风格): 使用 golang + sqlx + postgresql 或 python + sqlalchemy
+2. UI 层 golang / python / nodejs / ... + (semanti ui + react) 
+
+愿诸君以开放的心态拥抱技术开放的时代吧! :-)
+
 YWeb ( YLinux Web Framework ) -- The First Choice For Your Great Site.
 
 基于 Python, Tornado, SQLAlchemy, Mako, WTForms 提供一整套 Web 开发环境与流程。
